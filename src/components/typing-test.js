@@ -14,6 +14,8 @@ class TypingTest extends Component {
         this.setState({ lines: this.textToLines() });
     }
 
+    // Convert the text passed in as props to an array of string, where each
+    // line is no longer than props.lineLength characters.
     textToLines() {
         let lines = [""]
         let currentLine = 0;
@@ -27,7 +29,9 @@ class TypingTest extends Component {
                 lines.push("");
                 currentLine++;
             } else if (lines[currentLine].length > 0)
+                // Insert space if this is not the first word on the line
                 lines[currentLine] += " ";
+
             lines[currentLine] += word;
         });
         return lines;
