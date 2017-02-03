@@ -5,7 +5,6 @@ import TypingTestTimer from './typing-test-timer';
 
 class TypingTest extends Component {
     constructor() {
-        super();
         this.state = { lines: [""] };
     }
 
