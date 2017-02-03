@@ -48,9 +48,6 @@ class TypingTestContents extends Component {
     }
 }
 
-//const TypingTestContents = ({text}) => <div style={style}>{text}</div>;
-
-
 TypingTestContents.propTypes = {
     text: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
 }

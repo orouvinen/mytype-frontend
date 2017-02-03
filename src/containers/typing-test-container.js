@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import store from '../store';
 
 import TypingTest from '../components/typing-test';
@@ -13,26 +14,26 @@ class TypingTestContainer extends Component {
         this.handleKeyPress = this.handleKeyPress.bind(this);
 
         this.state = {
-            text: "This is typing test sample non-sense blaablaa is this text here you got it yet it doesn't get any better than this",
+            text: "this is test text the quick brown fox jumped over the lazy fox" +
+            "second line of text begins here so and so testing one two three the cat is free",
             minutes: 0,
             seconds: 0,
             typedText: "",
             currentChar: 0,
             correctCharCount: 0,
             wrongCharCount: 0,
-            inProgress: false,
             durationMinutes: 1,
             durationSeconds: 0,
         };
     }
 
     componentDidMount() {
+        this.props.dispatch(action.setText(this.state.text));
     }
 
     start() {
+        this.props.dispatch(action.startTypingTest(this.state.text));
         this.setState({
-            inProgress: true,
-
             // Timer interval handler
             interval: window.setInterval(() => {
                 let { minutes, seconds } = this.state;
@@ -51,7 +52,7 @@ class TypingTestContainer extends Component {
 
     stop() {
         window.clearInterval(this.state.interval);
-        this.setState({ inProgress: false })
+        //this.setState({ inProgress: false })
         store.dispatch(action.typingTestDone(this.calculateWPM()))
     }
 
@@ -60,7 +61,7 @@ class TypingTestContainer extends Component {
     }
 
     handleKeyPress(e) {
-        if (!this.state.inProgress && e.key !== 'Shift' && e.key !== 'Tab')
+        if (!this.props.inProgress && e.key !== 'Shift' && e.key !== 'Tab')
             this.start();
 
         if (e.key === 'Shift' || e.key === 'Ctrl' || e.key === 'Alt')
@@ -109,7 +110,7 @@ class TypingTestContainer extends Component {
     render() {
         return(
             <TypingTest
-                text={this.state.text}
+                text={this.props.typingTest.text}
                 lineLength={60}
                 minutes={this.state.minutes}
                 seconds={this.state.seconds}
@@ -118,4 +119,12 @@ class TypingTestContainer extends Component {
     }
 }
 
-export default TypingTestContainer;
+function mapStateToProps(state) {
+    return { typingTest: state.typingTest };
+}
+
+function mapDispatchToProps(dispatch) {
+    return { };
+}
+
+export default connect(mapStateToProps)(TypingTestContainer);//TypingTestContainer;
