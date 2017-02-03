@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TypingTestContents from './typing-test-contents';
 import TypingTestInput from './typing-test-input';
 import TypingTestTimer from './typing-test-timer';
 
 class TypingTest extends Component {
     constructor() {
+        super();
         this.state = { lines: [""] };
+        this.textToLines = this.textToLines.bind(this);
     }
 
     componentDidMount() {
@@ -34,7 +36,7 @@ class TypingTest extends Component {
     render() {
         return(
             <div>
-                <TypingTestContents text={textToLines(this.props.lineLength)} />
+                <TypingTestContents text={this.textToLines(this.props.lineLength)} />
                 <TypingTestInput onKeyPress={this.props.onKeyPress} />
                 <TypingTestTimer minutes={this.props.minutes} seconds={this.props.seconds} />
             </div>);
