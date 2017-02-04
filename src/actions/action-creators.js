@@ -1,3 +1,9 @@
+export function wordTyped() {
+    return {
+        type: 'TYPING_TEST_WORD_TYPED'  
+    };
+};
+
 export function setText(text) {
     return {
         type: 'TYPING_TEST_SET_TEXT',
@@ -16,11 +22,5 @@ export function startTypingTest(text) {
     return {
         type: 'TYPING_TEST_START',
         text: text,
-    };
-}
-
-export function wordTyped() {
-    return {
-        type: 'WORD_TYPED',
     };
 }

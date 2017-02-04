@@ -61,11 +61,11 @@ class TypingTestContainer extends Component {
     }
 
     handleKeyPress(e) {
-        if (!this.props.inProgress && e.key !== 'Shift' && e.key !== 'Tab')
-            this.start();
-
         if (e.key === 'Shift' || e.key === 'Ctrl' || e.key === 'Alt')
             return;
+        
+        if (!this.props.typingTest.inProgress && e.key !== 'Shift' && e.key !== 'Tab')
+            this.start();
 
         let { currentChar, correctCharCount, wrongCharCount } = this.state;
 
