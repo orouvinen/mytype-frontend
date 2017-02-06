@@ -8,12 +8,12 @@ import store from './store';
 import './index.css';
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Router history={browserHistory}>
-            <Route path="/" component={App}>
-                <IndexRoute component={MainLayout} />
-            </Route>
-        </Router>
-    </Provider>,
-    document.getElementById('root')
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={MainLayout} />
+      </Route>
+    </Router>
+  </Provider>,
+  document.getElementById('root')
 );
