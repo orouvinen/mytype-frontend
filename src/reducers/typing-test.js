@@ -10,7 +10,6 @@ const initialState = {
 function typingTest(state = initialState, action) {
   switch (action.type) {
     case 'TYPING_TEST_WORD_TYPED':
-
       return advanceWord(state);
 
     case 'TYPING_TEST_SET_TEXT':

@@ -11,7 +11,7 @@ export function setText(text) {
   }
 }
 
-export function typingTestDone(endTime, wpm) {
+export function stop(endTime, wpm) {
   return { 
     type: 'TYPING_TEST_DONE',
     wpm, 
@@ -19,10 +19,10 @@ export function typingTestDone(endTime, wpm) {
   };
 }
 
-export function startTypingTest(startTime, text) {
+export function start(startTime, text) {
   return {
     type: 'TYPING_TEST_START',
-    text,
     startTime,
+    text,
   };
 }

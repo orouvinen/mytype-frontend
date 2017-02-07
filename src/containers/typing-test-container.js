@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import store from '../store';
 
 import TypingTest from '../components/typing-test';
@@ -28,11 +29,13 @@ class TypingTestContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(action.setText(this.state.text));
+    //this.props.dispatch(action.setText(this.state.text));
+    this.props.setText(this.state.text);
   }
 
   start() {
-    this.props.dispatch(action.startTypingTest(Date.now(), this.state.text));
+    //this.props.dispatch(action.startTypingTest(Date.now(), this.state.text));
+    this.props.start(Date.now(), this.state.text); 
     this.setState({
       // Timer interval handler
       interval: window.setInterval(() => {
@@ -52,8 +55,7 @@ class TypingTestContainer extends Component {
 
   stop() {
     window.clearInterval(this.state.interval);
-    //this.setState({ inProgress: false })
-    store.dispatch(action.typingTestDone(Date.now(), this.calculateWPM()))
+    this.props.stop(Date.now(), this.calculateWPM());
   }
 
   calculateWPM() {
@@ -124,7 +126,13 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return { };
+  let { start, stop, wordTyped, setText } = action;
+  return bindActionCreators({ 
+    start,
+    stop,
+    wordTyped,
+    setText,
+  }, dispatch);
 }
 
-export default connect(mapStateToProps)(TypingTestContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TypingTestContainer);
