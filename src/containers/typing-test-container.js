@@ -17,9 +17,8 @@ class TypingTestContainer extends Component {
       text: "this is test text the quick brown fox jumped over the lazy fox" +
       " second line of text begins here so and so testing one two three the" +
       " cat is free",
-      minutes: 0,
-      seconds: 0,
-      typedWord: "",
+      words: [],
+      typedWord: "", // The current word as typed by the user
       totalWords: 0,
       currentChar: 0,
       correctCharCount: 0,
@@ -30,7 +29,7 @@ class TypingTestContainer extends Component {
   componentDidMount() {
     this.props.setText(this.state.text);
     // Transform the text into on array of words
-    this.setState({text: this.state.text.split(" ")});
+    this.setState({words: this.state.text.split(" ")});
     this.setState({ minutes: 1, seconds: 0 });
   }
 
@@ -72,6 +71,9 @@ class TypingTestContainer extends Component {
       correctCharCount,
       wrongCharCount } = this.state;
 
+    // Get the word that's currently being typed
+    const word = this.state.words[totalWords];
+
     if (e.key === "Tab")
       e.preventDefault();
 
@@ -91,7 +93,6 @@ class TypingTestContainer extends Component {
         return;
 
       // Is this a correct char?
-      const word = this.state.text[this.props.typingTest.currentWordNum];
       if (this.state.typedWord[currentChar - 1] === word[currentChar - 1])
         correctCharCount--;
       else
@@ -105,12 +106,11 @@ class TypingTestContainer extends Component {
       typedWord = "";
       totalWords++;
       currentChar = 0;
-      if (totalWords === this.state.text.length)
+      if (totalWords === this.state.words.length)
         this.stop();
       else
         this.props.wordTyped();
     } else {
-      const word = this.state.text[totalWords];
       // Handle other keys than backspace, space or enter
       if (e.key === word[currentChar])
         correctCharCount++;
@@ -121,12 +121,11 @@ class TypingTestContainer extends Component {
       typedWord += e.key;
 
       // Stop if all the text was typed (the last character being correct)
-      if (this.state.totalWords === this.state.text.length - 1 &&
+      if (this.state.totalWords === this.state.words.length - 1 &&
         typedWord.length === word.length &&
         typedWord.slice(-1) === word.slice(-1)) {
           
         this.stop();
-        console.log("end");    
       }
     }
     this.setState({
