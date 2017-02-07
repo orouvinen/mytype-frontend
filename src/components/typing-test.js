@@ -14,7 +14,7 @@ class TypingTest extends Component {
       <div>
         <TypingTestContents
           text={this.props.text}
-          line={this.props.currentLineNum} />
+          line={this.props.line} />
         <TypingTestInput onKeyPress={this.props.onKeyPress} />
         {/*  <TypingTestTimer
           minutes={this.props.minutes}

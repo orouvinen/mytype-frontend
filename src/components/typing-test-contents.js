@@ -35,12 +35,13 @@ const styleAfter = {
 
 class TypingTestContents extends Component {
   render() {
+    const currentLine = this.props.text[this.props.line];
     const lines = this.props.text.map(line => line);
     return (
       <div style={containerStyle}>
         <div style={styleBefore}>before text saljkd flkdsf lkjdsf </div>
         <div style={style}>
-          {lines[0]}
+          {currentLine}
         </div>
         <div style={styleAfter}>after lasdl kjasdlkjasd lasdlkasdj lkj</div>
       </div>
