@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import TypingTest from '../components/typing-test';
-import * as action from '../actions/action-creators';
+import * as actions from '../actions/action-creators';
 
 class TypingTestContainer extends Component {
   constructor() {
@@ -141,13 +141,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  let { start, stop, wordTyped, setText } = action;
-  return bindActionCreators({ 
-    start,
-    stop,
-    wordTyped,
-    setText,
-  }, dispatch);
+  return bindActionCreators(actions, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TypingTestContainer);
