@@ -15,16 +15,14 @@ class TypingTestContainer extends Component {
 
     this.state = {
       text: "this is test text the quick brown fox jumped over the lazy fox" +
-      "second line of text begins here so and so testing one two three the" +
-      "cat is free",
+      " second line of text begins here so and so testing one two three the" +
+      " cat is free",
       minutes: 0,
       seconds: 0,
       typedText: "",
       currentChar: 0,
       correctCharCount: 0,
       wrongCharCount: 0,
-      durationMinutes: 1,
-      durationSeconds: 0,
     };
   }
 
@@ -74,16 +72,16 @@ class TypingTestContainer extends Component {
     
     // Start when typing starts
     if (!this.props.typingTest.inProgress &&
-      e.key !== 'Shift' &&
-      e.key !== 'Tab')
+        e.key !== 'Shift' &&
+        e.key !== 'Tab')
       this.start();
 
     let { currentChar, correctCharCount, wrongCharCount } = this.state;
     
     // Handle backspace
     if (e.key === 'Backspace') {
-      // Already at the beginning?
-      if (currentChar === 0)
+      // Already at the beginning of the current word or (the whole text)?
+      if (currentChar === 0 || this.state.text[currentChar - 1] === ' ')
         return;
 
       // Is this a correct char?

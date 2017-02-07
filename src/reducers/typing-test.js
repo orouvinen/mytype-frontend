@@ -44,10 +44,10 @@ function advanceWord(state) {
   let line = state.currentLineNum; 
   let text = state.text;
   newState.currentWordNum++;
-
-  if (newState.currentWordNum === text[line].length) {
+  if (newState.currentWordNum === text[line].split(" ").length) {
     newState.currentWordNum = 0;
-    newState.currentLineNum++;
+    if (state.currentLineNum + 1 < state.text.length)
+      newState.currentLineNum++;
   }
   return newState;
 }
