@@ -3,6 +3,7 @@ const initialState = {
   currentLineNum: 0,
   currentWordNum: 0,
   inProgress: false,
+  finished: false,
   startTime: undefined,
   stopTime: undefined
 };
@@ -22,6 +23,7 @@ function typingTest(state = initialState, action) {
         ...state,
         stopTime: action.stopTime,
         inProgress: false,
+        finished: true, 
       };
       // break;
     case 'TYPING_TEST_START':

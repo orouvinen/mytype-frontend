@@ -34,7 +34,8 @@ class TypingTestContainer extends Component {
   }
 
   start() {
-    this.props.start(Date.now(), this.state.text); 
+    if (!this.props.typingTest.finished)
+      this.props.start(Date.now(), this.state.text); 
     /*
     this.setState({
     // Timer interval handler
