@@ -19,8 +19,8 @@ class TypingTestContainer extends Component {
       " cat is free",
       minutes: 0,
       seconds: 0,
-      typedText: "",
       typedWord: "",
+      totalWords: 0,
       currentChar: 0,
       correctCharCount: 0,
       wrongCharCount: 0,
@@ -29,6 +29,8 @@ class TypingTestContainer extends Component {
 
   componentDidMount() {
     this.props.setText(this.state.text);
+    // Transform the text into on array of words
+    this.setState({text: this.state.text.split(" ")});
     this.setState({ minutes: 1, seconds: 0 });
   }
 
@@ -63,10 +65,12 @@ class TypingTestContainer extends Component {
   }
 
   handleKeyPress(e) {
-    let { 
-      typedText, typedWord, currentChar,
-      correctCharCount, wrongCharCount
-    } = this.state;
+    let {
+      typedWord,
+      totalWords,
+      currentChar,
+      correctCharCount,
+      wrongCharCount } = this.state;
 
     if (e.key === "Tab")
       e.preventDefault();
@@ -82,50 +86,55 @@ class TypingTestContainer extends Component {
 
     // Handle backspace
     if (e.key === 'Backspace') {
-      // Already at the beginning of the current word or (the whole text)?
-      if (currentChar === 0 || this.state.text[currentChar - 1] === ' ')
+      // Already at the beginning of the current word?
+      if (currentChar === 0)
         return;
 
       // Is this a correct char?
-      if (this.state.typedText[currentChar - 1] ===
-        this.state.text[currentChar - 1])
+      const word = this.state.text[this.props.typingTest.currentWordNum];
+      if (this.state.typedWord[currentChar - 1] === word[currentChar - 1])
         correctCharCount--;
       else
         wrongCharCount--;
 
       currentChar--;
-      typedText = typedText.slice(0, typedText.length - 1);
       typedWord = typedWord.slice(0, typedWord.length - 1);
     } else if (e.key === ' ' || e.key === 'Enter') {
       // If this was the last word, then stop the typing test,
       // otherwise move on to next word
       typedWord = "";
-      if (currentChar === this.state.text.length)
+      totalWords++;
+      currentChar = 0;
+      if (totalWords === this.state.text.length)
         this.stop();
       else
         this.props.wordTyped();
     } else {
+      const word = this.state.text[totalWords];
       // Handle other keys than backspace, space or enter
-      if (e.key === this.state.text[currentChar])
+      if (e.key === word[currentChar])
         correctCharCount++;
       else
         wrongCharCount++;
 
       currentChar++;
-      typedText += e.key;
       typedWord += e.key;
 
       // Stop if all the text was typed (the last character being correct)
-      if (typedText.length === this.state.text.length &&
-        typedText.slice(-1) === this.state.text.slice(-1))
+      if (this.state.totalWords === this.state.text.length - 1 &&
+        typedWord.length === word.length &&
+        typedWord.slice(-1) === word.slice(-1)) {
+          
         this.stop();
+        console.log("end");    
+      }
     }
     this.setState({
       correctCharCount,
       wrongCharCount,
       currentChar,
-      typedText,
       typedWord,
+      totalWords,
     });
   }
 
