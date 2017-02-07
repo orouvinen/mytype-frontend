@@ -4,7 +4,7 @@ const initialState = {
   currentWordNum: 0,
   inProgress: false,
   startTime: undefined,
-  endTime: undefined
+  stopTime: undefined
 };
 
 function typingTest(state = initialState, action) {

@@ -11,11 +11,11 @@ export function setText(text) {
   }
 }
 
-export function stop(endTime, wpm) {
+export function stop(stopTime, wpm) {
   return { 
     type: 'TYPING_TEST_DONE',
     wpm, 
-    endTime,
+    stopTime,
   };
 }
 
