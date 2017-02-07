@@ -35,6 +35,7 @@ class TypingTestContainer extends Component {
 
   start() {
     this.props.start(Date.now(), this.state.text); 
+    /*
     this.setState({
       // Timer interval handler
       interval: window.setInterval(() => {
@@ -50,6 +51,7 @@ class TypingTestContainer extends Component {
           this.stop();
 
       }, 1000)});
+      */
   }
 
   stop() {
@@ -77,7 +79,7 @@ class TypingTestContainer extends Component {
       this.start();
 
     let { currentChar, correctCharCount, wrongCharCount } = this.state;
-
+    
     // Handle backspace
     if (e.key === 'Backspace') {
       // Already at the beginning?
@@ -94,6 +96,13 @@ class TypingTestContainer extends Component {
       currentChar--;
       typedText = typedText.slice(0, typedText.length - 1);
     } else {
+      // If the last character of the text has been typed and it is incorrect
+      // and the next key is either space or enter, end the test
+      if (currentChar === this.state.text.length) {
+        if (e.key === 'Space' || e.key === 'Enter')
+          this.stop();
+      }
+
       // Handle other keys than backspace
       if (e.key === this.state.text[currentChar])
         correctCharCount++;
@@ -101,7 +110,12 @@ class TypingTestContainer extends Component {
         wrongCharCount++;
 
       currentChar++;
-      typedText = typedText + e.key;
+      typedText += e.key;
+      
+      // Stop if all the text was typed (the last character being correct)
+      if (typedText.length === this.state.text.length &&
+          typedText.slice(-1) === this.state.text.slice(-1))
+        this.stop();
     }
     this.setState({
       correctCharCount,

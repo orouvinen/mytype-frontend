@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TypingTestContents from './typing-test-contents';
 import TypingTestInput from './typing-test-input';
-import TypingTestTimer from './typing-test-timer';
+// import TypingTestTimer from './typing-test-timer';
 
 class TypingTest extends Component {
   constructor() {
@@ -14,9 +14,9 @@ class TypingTest extends Component {
       <div>
         <TypingTestContents text={this.props.text} />
         <TypingTestInput onKeyPress={this.props.onKeyPress} />
-        <TypingTestTimer
+        {/*  <TypingTestTimer
           minutes={this.props.minutes}
-          seconds={this.props.seconds} />
+          seconds={this.props.seconds} /> */}
       </div>);
   }
 }
