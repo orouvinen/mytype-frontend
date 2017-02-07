@@ -48,11 +48,6 @@ function advanceWord(state) {
   if (newState.currentWordNum >= text[line].length) {
     newState.currentWordNum = 0;
     newState.currentLineNum++;
-
-    /* If the text has been typed, save endTime (timestamp) to state.
-     * TypingTestContents interval function can check if the endTime has been set, and
-     * if so, subtract the time difference.
-     */
   }
 }
 

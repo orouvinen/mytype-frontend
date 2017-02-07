@@ -15,7 +15,11 @@ class TypingTestTimer extends Component {
   }
 
   render() {
-    return(<div>{this.renderTimeDigits(this.props.minutes)}:{this.renderTimeDigits(this.props.seconds)}</div>);
+    return(
+      <div>
+        {this.renderTimeDigits(this.props.minutes)}
+        :{this.renderTimeDigits(this.props.seconds)}
+      </div>);
   }
 }
 

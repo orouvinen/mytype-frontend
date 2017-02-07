@@ -15,7 +15,8 @@ class TypingTestContainer extends Component {
 
     this.state = {
       text: "this is test text the quick brown fox jumped over the lazy fox" +
-      "second line of text begins here so and so testing one two three the cat is free",
+      "second line of text begins here so and so testing one two three the" +
+      "cat is free",
       minutes: 0,
       seconds: 0,
       typedText: "",
@@ -61,10 +62,18 @@ class TypingTestContainer extends Component {
   }
 
   handleKeyPress(e) {
+    let { typedText } = this.state;
+
+    if (e.key === "Tab")
+      e.preventDefault();
+    
     if (e.key === 'Shift' || e.key === 'Ctrl' || e.key === 'Alt')
       return;
-
-    if (!this.props.typingTest.inProgress && e.key !== 'Shift' && e.key !== 'Tab')
+    
+    // Start when typing starts
+    if (!this.props.typingTest.inProgress &&
+      e.key !== 'Shift' &&
+      e.key !== 'Tab')
       this.start();
 
     let { currentChar, correctCharCount, wrongCharCount } = this.state;
@@ -76,15 +85,14 @@ class TypingTestContainer extends Component {
         return;
 
       // Is this a correct char?
-      if (this.state.typedText[currentChar - 1] === this.state.text[currentChar - 1])
+      if (this.state.typedText[currentChar - 1] ===
+          this.state.text[currentChar - 1])
         correctCharCount--;
       else
         wrongCharCount--;
 
       currentChar--;
-      this.setState({
-        typedText: this.state.typedText.slice(0, this.state.typedText.length - 1)
-      });
+      typedText = typedText.slice(0, typedText.length - 1);
     } else {
       // Handle other keys than backspace
       if (e.key === this.state.text[currentChar])
@@ -93,17 +101,14 @@ class TypingTestContainer extends Component {
         wrongCharCount++;
 
       currentChar++;
-
-      this.setState({ typedText: this.state.typedText + e.key });
+      typedText = typedText + e.key;
     }
     this.setState({
       correctCharCount,
       wrongCharCount,
       currentChar,
+      typedText,
     });
-
-    if (e.key === "Tab")
-      e.preventDefault();
   }
 
   render() {
