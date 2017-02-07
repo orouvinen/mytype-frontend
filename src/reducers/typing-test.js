@@ -41,14 +41,15 @@ function advanceWord(state) {
   let newState = {}
   newState = Object.assign(newState, state);
 
-  let line = newState.currentLineNum; 
-  let text = newState.text;
+  let line = state.currentLineNum; 
+  let text = state.text;
   newState.currentWordNum++;
 
-  if (newState.currentWordNum >= text[line].length) {
+  if (newState.currentWordNum === text[line].length) {
     newState.currentWordNum = 0;
     newState.currentLineNum++;
   }
+  return newState;
 }
 
 // Convert the text passed in to an array of string, where each

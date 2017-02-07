@@ -96,11 +96,13 @@ class TypingTestContainer extends Component {
       currentChar--;
       typedText = typedText.slice(0, typedText.length - 1);
     } else {
-      // If the last character of the text has been typed and it is incorrect
-      // and the next key is either space or enter, end the test
-      if (currentChar === this.state.text.length) {
-        if (e.key === 'Space' || e.key === 'Enter')
+      if (e.key === ' ' || e.key === 'Enter') {
+        // If this was the last word, then stop the typing test,
+        // otherwise move on to next word
+        if (currentChar === this.state.text.length)
           this.stop();
+        else
+          this.props.wordTyped();
       }
 
       // Handle other keys than backspace
