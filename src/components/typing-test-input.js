@@ -1,7 +1,7 @@
 import React from 'react';
 
-const TypingTestInput = ({onKeyPress}) =>
-  <input type="text" onKeyDown={onKeyPress} />
+const TypingTestInput = ({typedWord, onKeyPress}) =>
+  <input type="text" value={typedWord} onKeyDown={onKeyPress} />
 
 TypingTestInput.propTypes = {
   onKeyPress: React.PropTypes.func.isRequired
