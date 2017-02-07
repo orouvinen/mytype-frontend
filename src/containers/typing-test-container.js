@@ -32,7 +32,7 @@ class TypingTestContainer extends Component {
   }
 
   start() {
-    this.props.dispatch(action.startTypingTest(this.state.text));
+    this.props.dispatch(action.startTypingTest(Date.now(), this.state.text));
     this.setState({
       // Timer interval handler
       interval: window.setInterval(() => {
@@ -53,7 +53,7 @@ class TypingTestContainer extends Component {
   stop() {
     window.clearInterval(this.state.interval);
     //this.setState({ inProgress: false })
-    store.dispatch(action.typingTestDone(this.calculateWPM()))
+    store.dispatch(action.typingTestDone(Date.now(), this.calculateWPM()))
   }
 
   calculateWPM() {
@@ -127,4 +127,4 @@ function mapDispatchToProps(dispatch) {
   return { };
 }
 
-export default connect(mapStateToProps)(TypingTestContainer);//TypingTestContainer;
+export default connect(mapStateToProps)(TypingTestContainer);

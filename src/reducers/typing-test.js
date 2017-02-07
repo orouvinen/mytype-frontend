@@ -3,6 +3,8 @@ const initialState = {
   currentLineNum: 0,
   currentWordNum: 0,
   inProgress: false,
+  startTime: undefined,
+  endTime: undefined
 };
 
 function typingTest(state = initialState, action) {
@@ -19,12 +21,14 @@ function typingTest(state = initialState, action) {
     case 'TYPING_TEST_DONE':
       return {
         ...state,
+        stopTime: action.stopTime,
         inProgress: false,
       };
       // break;
     case 'TYPING_TEST_START':
       return {
         ...state,
+        startTime: action.startTime,
         inProgress: true,
         currentLineNum: 0,
         currentWordNum: 0,

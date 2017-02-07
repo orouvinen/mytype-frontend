@@ -7,20 +7,22 @@ export function wordTyped() {
 export function setText(text) {
   return {
     type: 'TYPING_TEST_SET_TEXT',
-    text: text,
+    text,
   }
 }
 
-export function typingTestDone(wpm) {
+export function typingTestDone(endTime, wpm) {
   return { 
     type: 'TYPING_TEST_DONE',
-    wpm: wpm, 
+    wpm, 
+    endTime,
   };
 }
 
-export function startTypingTest(text) {
+export function startTypingTest(startTime, text) {
   return {
     type: 'TYPING_TEST_START',
-    text: text,
+    text,
+    startTime,
   };
 }
