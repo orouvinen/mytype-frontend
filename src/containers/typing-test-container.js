@@ -1,3 +1,7 @@
+// TODO:
+// move typedWord from state to redux store, and possibly other
+// state variables as well
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
