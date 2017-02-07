@@ -40,27 +40,9 @@ class TypingTestContainer extends Component {
   start() {
     if (!this.props.typingTest.finished)
       this.props.start(Date.now(), this.state.text); 
-    /*
-    this.setState({
-    // Timer interval handler
-      interval: window.setInterval(() => {
-        let { minutes, seconds } = this.state;
-
-        seconds = seconds === 0 ? 59 : seconds - 1;
-        if (seconds === 59 && minutes !== 0)
-          minutes -= 1;
-
-        this.setState({ seconds, minutes });
-
-        if (seconds === 0 && minutes === 0)
-          this.stop();
-
-      }, 1000)});
-      */
   }
 
   stop() {
-    window.clearInterval(this.state.interval);
     this.props.stop(Date.now(), this.calculateWPM());
   }
 
@@ -149,8 +131,6 @@ class TypingTestContainer extends Component {
         typedWord={this.state.typedWord}
         line={this.props.typingTest.currentLineNum}
         lineLength={60}
-        minutes={this.state.minutes}
-        seconds={this.state.seconds}
         onKeyPress={this.handleKeyPress}/>
     );
   }
