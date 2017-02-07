@@ -38,8 +38,7 @@ class TypingTestContainer extends Component {
   }
 
   start() {
-    if (!this.props.typingTest.finished)
-      this.props.start(Date.now(), this.state.text); 
+    this.props.start(Date.now(), this.state.text); 
   }
 
   stop() {
@@ -51,6 +50,9 @@ class TypingTestContainer extends Component {
   }
 
   handleKeyPress(e) {
+    if (this.props.typingTest.finished)
+      return;
+
     let {
       typedWord,
       totalWords,
@@ -111,9 +113,9 @@ class TypingTestContainer extends Component {
       if (this.state.totalWords === this.state.words.length - 1 &&
         typedWord.length === word.length &&
         typedWord.slice(-1) === word.slice(-1)) {
-          
-        this.stop();
-      }
+
+          this.stop();
+        }
     }
     this.setState({
       correctCharCount,
