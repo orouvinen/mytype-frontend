@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import store from '../store';
 
 import TypingTest from '../components/typing-test';
 import * as action from '../actions/action-creators';
@@ -29,12 +28,11 @@ class TypingTestContainer extends Component {
   }
 
   componentDidMount() {
-    //this.props.dispatch(action.setText(this.state.text));
     this.props.setText(this.state.text);
+    this.setState({ minutes: 1, seconds: 0 });
   }
 
   start() {
-    //this.props.dispatch(action.startTypingTest(Date.now(), this.state.text));
     this.props.start(Date.now(), this.state.text); 
     this.setState({
       // Timer interval handler
@@ -71,25 +69,24 @@ class TypingTestContainer extends Component {
 
     let { currentChar, correctCharCount, wrongCharCount } = this.state;
 
-    //
     // Handle backspace
-    //
     if (e.key === 'Backspace') {
       // Already at the beginning?
       if (currentChar === 0)
         return;
 
+      // Is this a correct char?
       if (this.state.typedText[currentChar - 1] === this.state.text[currentChar - 1])
         correctCharCount--;
       else
         wrongCharCount--;
 
       currentChar--;
-      this.setState({ typedText: this.state.typedText.slice(0, this.state.typedText.length - 1) });
+      this.setState({
+        typedText: this.state.typedText.slice(0, this.state.typedText.length - 1)
+      });
     } else {
-      //
       // Handle other keys than backspace
-      //
       if (e.key === this.state.text[currentChar])
         correctCharCount++;
       else
