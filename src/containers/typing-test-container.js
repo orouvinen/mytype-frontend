@@ -101,6 +101,9 @@ class TypingTestContainer extends Component {
         this.props.wordTyped();
     } else {
       // Handle other keys than backspace, space or enter
+      if (e.key.length > 1)
+        return; // Discard non-alphanumeric
+
       if (e.key === word[currentChar])
         correctCharCount++;
       else
