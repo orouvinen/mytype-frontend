@@ -3,11 +3,6 @@ import TypingTestContents from './typing-test-contents';
 import TypingTestInput from './typing-test-input';
 
 class TypingTest extends Component {
-  constructor() {
-    super();
-    this.state = { lines: [""] };
-  }
-
   render() {
     return(
       <div>
