@@ -46,16 +46,14 @@ class TypingTestContents extends Component {
     // Break the current line into an array of words
     const currentLine = this.props.text[this.props.line].split(" ");
     //const lines = this.props.text;
-    const currentWord = this.props.currentWord;
     return (
       <div style={containerStyle}>
         <div style={styleBefore}>before text saljkd flkdsf lkjdsf </div>
         <div style={style}>
           {
             currentLine.map((word, i) => {
-              let style = wordStyle;
-              if (i === currentWord)
-                style = styleCurrentWord;
+              let style =
+                i === this.props.currentWord ? styleCurrentWord : wordStyle;
               return (<span key={i} style={style}>{word} </span>);
             })
           }
