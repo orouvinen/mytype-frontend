@@ -33,15 +33,32 @@ const styleAfter = {
   borderRadius: 2,
 };
 
+const styleCurrentWord = {
+  color: "white",
+};
+
+const wordStyle = {
+  color: "#333",
+};
+
 class TypingTestContents extends Component {
   render() {
-    const currentLine = this.props.text[this.props.line];
+    // Break the current line into an array of words
+    const currentLine = this.props.text[this.props.line].split(" ");
     const lines = this.props.text.map(line => line);
+    const currentWord = this.props.currentWord;
     return (
       <div style={containerStyle}>
         <div style={styleBefore}>before text saljkd flkdsf lkjdsf </div>
         <div style={style}>
-          {currentLine}
+          {
+            currentLine.map(function(word, i) {
+              let style = wordStyle;
+              if (i === currentWord)
+                style = styleCurrentWord;
+              return (<span key={i} style={style}>{word} </span>);
+            })
+          }
         </div>
         <div style={styleAfter}>after lasdl kjasdlkjasd lasdlkasdj lkj</div>
       </div>
@@ -51,6 +68,8 @@ class TypingTestContents extends Component {
 
 TypingTestContents.propTypes = {
   text: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+  line: React.PropTypes.number.isRequired,
+  currentWord: React.PropTypes.number.isRequired,
 }
 
 export default TypingTestContents;

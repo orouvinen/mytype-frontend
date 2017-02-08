@@ -130,6 +130,7 @@ class TypingTestContainer extends Component {
     return(
       <TypingTest
         text={this.props.typingTest.text}
+        currentWord={this.props.typingTest.currentWordNum}
         typedWord={this.state.typedWord}
         line={this.props.typingTest.currentLineNum}
         lineLength={60}

@@ -11,7 +11,10 @@ class TypingTest extends Component {
   render() {
     return(
       <div>
-        <TypingTestContents text={this.props.text} line={this.props.line} />
+        <TypingTestContents
+          currentWord={this.props.currentWord}
+          text={this.props.text}
+          line={this.props.line} />
         <TypingTestInput
           typedWord={this.props.typedWord}
           onKeyPress={this.props.onKeyPress} />
