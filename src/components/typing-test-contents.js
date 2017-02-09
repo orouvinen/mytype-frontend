@@ -1,4 +1,26 @@
 import React, { Component } from 'react';
+/*
+ http://jsfiddle.net/b9vtW/4/
+ .row{
+    width: 300px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #777;
+    max-height:200px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    content: "";
+    position:relative;
+}
+.row:before {
+    content:'';
+    width:100%;
+    height:100%;    
+    position:absolute;
+    left:0;
+    top:0;
+    background:linear-gradient(transparent 150px, white);
+}*/
 
 const containerStyle = {
   width: "35em",
