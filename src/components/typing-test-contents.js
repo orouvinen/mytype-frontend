@@ -15,19 +15,10 @@ const style = {
   borderRadius: 2,
 };
 
-const styleBefore = {
-  height: "3em",
-  padding: 4,
-  fontSize: "1.2em",
-  textAlign: "center",
-  backgroundColor: "#ddd",
-  borderRadius: 2,
-};
-
 const styleAfter = {
   height: "3em",
   padding: 4,
-  fontSize: "1.3em",
+  fontSize: "1.2em",
   textAlign: "center",
   backgroundColor: "#ddd",
   borderRadius: 2,
@@ -43,22 +34,26 @@ const wordStyle = {
 
 class TypingTestContents extends Component {
   render() {
+    const { line, text } = this.props;
     // Break the current line into an array of words
-    const currentLine = this.props.text[this.props.line].split(" ");
+    const currentLine = text[line].split(" ");
     //const lines = this.props.text;
+    const nextLines = text.slice(line + 1, line + 3);
+    
     return (
       <div style={containerStyle}>
-        <div style={styleBefore}>before text saljkd flkdsf lkjdsf </div>
         <div style={style}>
           {
             currentLine.map((word, i) => {
-              let style =
+              const style =
                 i === this.props.currentWord ? styleCurrentWord : wordStyle;
               return (<span key={i} style={style}>{word} </span>);
             })
           }
         </div>
-        <div style={styleAfter}>after lasdl kjasdlkjasd lasdlkasdj lkj</div>
+        <div style={styleAfter}>
+          {nextLines.map((line, i) => <div key={i}>{line}</div>)}
+        </div>
       </div>
     );
   }
