@@ -14,13 +14,19 @@ class TypingTestContainer extends Component {
     super();
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
-    this.calculateWPM = this.calculateWPM.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.WPM = this.WPM.bind(this);
 
+    /* We keep in local state everything related to the actual act of typing.
+     * Anything else (typing test level and word-level things)
+     * will be in redux store.
+     *
+     * TODO: move raw text to redux store
+     */
     this.state = {
-      text: "this is test text the quick brown fox jumped over the lazy fox" +
-      " second line of text begins here so and so testing one two three the" +
-      " cat is free",
+      text: "some and America will be program totally in last man standing" +
+      " having to type is life begin in man totally casting sun in three of" +
+      " the most up",
       words: [],
       typedWord: "", // The current word as typed by the user
       totalWords: 0,
@@ -42,11 +48,10 @@ class TypingTestContainer extends Component {
   }
 
   stop() {
-    this.props.stop(Date.now(), this.calculateWPM());
+    this.props.stop(Date.now(), this.WPM());
   }
 
-  calculateWPM() {
-    return 0;
+  WPM() {
   }
 
   handleKeyPress(e) {
@@ -90,6 +95,10 @@ class TypingTestContainer extends Component {
       currentChar--;
       typedWord = typedWord.slice(0, typedWord.length - 1);
     } else if (e.key === ' ' || e.key === 'Enter') {
+      // Count as incorrectly typed characters any letters that were
+      // left to type
+      wrongCharCount += word.length - currentChar; 
+
       // If this was the last word, then stop the typing test,
       // otherwise move on to next word
       typedWord = "";
@@ -132,10 +141,10 @@ class TypingTestContainer extends Component {
   render() {
     return(
       <TypingTest
-        text={this.props.typingTest.text}
-        currentWord={this.props.typingTest.currentWordNum}
+        typingTest={this.props.typingTest}
         typedWord={this.state.typedWord}
-        line={this.props.typingTest.currentLineNum}
+        correctChars={this.state.correctCharCount}
+        wrongChars={this.state.wrongCharCount}
         onKeyPress={this.handleKeyPress}/>
     );
   }

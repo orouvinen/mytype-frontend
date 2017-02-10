@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TypingTestContents from './typing-test-contents';
 import TypingTestInput from './typing-test-input';
+import WPM from './wpm';
 
 const containerStyle = {
   width: "35em",
@@ -10,15 +11,18 @@ const containerStyle = {
 
 class TypingTest extends Component {
   render() {
+    const { text, line, word } = this.props.typingTest;
     return(
       <div style={containerStyle}>
-        <TypingTestContents
-          currentWord={this.props.currentWord}
-          text={this.props.text}
-          line={this.props.line} />
+        <TypingTestContents currentWord={word} text={text} line={line} />
         <TypingTestInput
           typedWord={this.props.typedWord}
           onKeyPress={this.props.onKeyPress} />
+        <WPM 
+          typingTest={this.props.typingTest}
+          correctChars={this.props.correctChars}
+          wrongChars={this.props.wrongChars}>
+        </WPM>
       </div>);
   }
 }

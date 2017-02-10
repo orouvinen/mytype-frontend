@@ -1,7 +1,7 @@
 const initialState = {
   text: [""],
-  currentLineNum: 0,
-  currentWordNum: 0,
+  line: 0,  // current line num 0...n-1
+  word: 0,  // word num in the current line 0...n-1
   inProgress: false,
   finished: false,
   startTime: undefined,
@@ -31,8 +31,8 @@ function typingTest(state = initialState, action) {
         ...state,
         startTime: action.startTime,
         inProgress: true,
-        currentLineNum: 0,
-        currentWordNum: 0,
+        line: 0,
+        word: 0,
       };
     default:
       return state;
@@ -43,13 +43,13 @@ function advanceWord(state) {
   let newState = {}
   newState = Object.assign(newState, state);
 
-  let line = state.currentLineNum; 
+  let line = state.line; 
   let text = state.text;
-  newState.currentWordNum++;
-  if (newState.currentWordNum === text[line].split(" ").length) {
-    newState.currentWordNum = 0;
-    if (state.currentLineNum + 1 < state.text.length)
-      newState.currentLineNum++;
+  newState.word++;
+  if (newState.word=== text[line].split(" ").length) {
+    newState.word= 0;
+    if (state.line + 1 < state.text.length)
+      newState.line++;
   }
   return newState;
 }
