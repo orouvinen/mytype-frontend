@@ -136,7 +136,6 @@ class TypingTestContainer extends Component {
         currentWord={this.props.typingTest.currentWordNum}
         typedWord={this.state.typedWord}
         line={this.props.typingTest.currentLineNum}
-        lineLength={60}
         onKeyPress={this.handleKeyPress}/>
     );
   }

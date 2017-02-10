@@ -1,44 +1,12 @@
 import React, { Component } from 'react';
-/*
- http://jsfiddle.net/b9vtW/4/
- .row{
-    width: 300px;
-    margin-bottom: 5px;
-    padding-bottom: 5px;
-    border-bottom: 3px solid #777;
-    max-height:200px;
-    overflow:hidden;
-    text-overflow: ellipsis;
-    content: "";
-    position:relative;
-}
-.row:before {
-    content:'';
-    width:100%;
-    height:100%;    
-    position:absolute;
-    left:0;
-    top:0;
-    background:linear-gradient(transparent 150px, white);
-}*/
-
-const containerStyle = {
-};
 
 const currentLineStyle = {
-  lineHeight: "2em",  
+  lineHeight: "1.5em",
+  minHeight: "3em",
   width: "100%",
   margin: "2px auto",
   fontSize: "1.2em",
   backgroundColor: "#ddd",
-  borderRadius: 2,
-};
-
-const styleAfter = {
-  height: "3em",
-  padding: 4,
-  fontSize: "1.2em",
-  backgroundColor: "#aaa",
   borderRadius: 2,
 };
 
@@ -56,10 +24,10 @@ class TypingTestContents extends Component {
     // Break the current line into an array of words
     const currentLine = text[line].split(" ");
     //const lines = this.props.text;
-    const nextLines = text.slice(line + 1, line + 3);
+    const nextLine = text[line + 1] !== undefined ? text[line + 1] : " ";
 
     return (
-      <div style={containerStyle}>
+      <div>
         <div style={currentLineStyle}>
           {
             currentLine.map((word, i) => {
@@ -68,9 +36,7 @@ class TypingTestContents extends Component {
               return (<span key={i} style={style}>{word} </span>);
             })
           }
-        </div>
-        <div style={styleAfter}>
-          {nextLines.map((line, i) => <div key={i}>{line}</div>)}
+          <div style={{display: "inline-block"}}>{nextLine}</div>
         </div>
       </div>
     );
