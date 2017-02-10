@@ -32,7 +32,8 @@ class WPM extends Component {
   }
 
   accuracy() {
-    return (this.props.correctChars / (this.props.correctChars + this.props.wrongChars)) * 100;
+    return (this.props.correctChars /
+      (this.props.correctChars + this.props.wrongChars)) * 100;
   }
 
   netWPM() {
@@ -58,9 +59,11 @@ class WPM extends Component {
 
   render() {
     return(<div style={containerStyle}>
-        <div>WPM: <strong>{this.state.wpm}</strong></div>
-        <div>Accuracy: {this.state.accuracy !== "NaN" ? this.state.accuracy + "%" : ""}</div>
-      </div>);
+      <div>WPM: <strong>{this.state.wpm}</strong></div>
+      <div>Accuracy:
+        {this.state.accuracy !== "NaN" ? this.state.accuracy + "%" : ""}
+      </div>
+    </div>);
   }
 }
 
