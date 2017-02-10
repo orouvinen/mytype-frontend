@@ -22,12 +22,11 @@ import React, { Component } from 'react';
     background:linear-gradient(transparent 150px, white);
 }*/
 
-const style = {
+const containerStyle = {
   width: "100%",
   height: "1.3em",
-  margin: "5px auto",
+  margin: "2px auto",
   fontSize: "1.2em",
-  textAlign: "center",
   backgroundColor: "#ddd",
   borderRadius: 2,
 };
@@ -36,7 +35,6 @@ const styleAfter = {
   height: "3em",
   padding: 4,
   fontSize: "1.2em",
-  textAlign: "center",
   backgroundColor: "#ddd",
   borderRadius: 2,
 };
@@ -59,7 +57,7 @@ class TypingTestContents extends Component {
 
     return (
       <div>
-        <div style={style}>
+        <div style={containerStyle}>
           {
             currentLine.map((word, i) => {
               const style =

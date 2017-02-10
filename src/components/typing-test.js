@@ -5,6 +5,7 @@ import TypingTestInput from './typing-test-input';
 const containerStyle = {
   width: "35em",
   margin: "0 auto",
+  textAlign: "center",
 };
 
 class TypingTest extends Component {
