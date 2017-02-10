@@ -6,7 +6,7 @@ import WPM from './wpm';
 const containerStyle = {
   width: "35em",
   margin: "0 auto",
-  textAlign: "center",
+  //textAlign: "center",
 };
 
 class TypingTest extends Component {

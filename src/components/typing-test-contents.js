@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+const containerStyle = {
+  textAlign: "center",
+};
+
 const currentLineStyle = {
   lineHeight: "1.5em",
   minHeight: "3em",
@@ -27,7 +31,7 @@ class TypingTestContents extends Component {
     const nextLine = text[line + 1] !== undefined ? text[line + 1] : " ";
 
     return (
-      <div>
+      <div style={containerStyle}>
         <div style={currentLineStyle}>
           {
             currentLine.map((word, i) => {

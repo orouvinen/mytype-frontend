@@ -1,9 +1,10 @@
 import React from 'react';
 
 const style = {
+  float: "left",
   textAlign: "center",
-  width: "50%",
-  margin: "3px auto 3px auto",
+  width: "60%",
+  margin: "3px 0 3px",
   borderRadius: "2px",
   border: "none",
   height: "1.8em",

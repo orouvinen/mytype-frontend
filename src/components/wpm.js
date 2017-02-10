@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
 const containerStyle = {
-  fontSize: "2.5em",
+  float: "left",
+  width: "30%",
+  marginLeft: "3px",
 };
 
 class WPM extends Component {
@@ -16,10 +18,11 @@ class WPM extends Component {
 
   componentDidMount() {
     this.setState({
+      // Update WPM once per second
       timer: setInterval(() => {
         this.setState({ 
           wpm: this.netWPM().toFixed(),
-          accuracy: this.accuracy().toFixed(1),
+          accuracy: this.accuracy().toFixed(),
         });
       }, 1000),
     });
@@ -56,7 +59,7 @@ class WPM extends Component {
   render() {
     return(<div style={containerStyle}>
         <div>WPM: <strong>{this.state.wpm}</strong></div>
-        <div>Accuracy: {this.state.accuracy !== "NaN" ? this.state.accuracy : ""}</div>
+        <div>Accuracy: {this.state.accuracy !== "NaN" ? this.state.accuracy + "%" : ""}</div>
       </div>);
   }
 }
