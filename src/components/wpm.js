@@ -1,28 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const WPM = ({typingTest, correctChars, wrongChars}) => {
-  const wpm = netWPM(typingTest, correctChars, wrongChars).toFixed(0);
-  return(<div>{wpm}</div>);
+const containerStyle = {
+  fontSize: "2.5em",
 };
 
-function netWPM(typingTest, correctChars, wrongChars) {
-  const charCount = correctChars + wrongChars; 
+class WPM extends Component {
+  constructor() {
+    super();
+    this.state = { 
+      wpm: 0,
+    };
+    this.netWPM = this.netWPM.bind(this);
+  }
 
-  console.log(typingTest, correctChars, wrongChars);
-  // Figure out elapsed time in milliseconds 
-  let timeElapsed;
-  if (!typingTest.inProgress) {
-    if (typingTest.finished)
-      timeElapsed = typingTest.stopTime - typingTest.startTime; 
-    else
-      return 0; // Nothing has been typed yet
-  } else
-    timeElapsed = Date.now() - typingTest.startTime;
+  componentDidMount() {
+    this.setState({
+      timer: setInterval(() => {
+        this.setState({ wpm: this.netWPM().toFixed() })
+      }, 1000),
+    });
+  }
+  componentWillUnMount() {
+    clearInterval(this.state.timer);
+  }
 
-  // Convert to minutes and get final WPM
-  timeElapsed /= 1000;
-  timeElapsed /= 60;
-  return ((charCount / 5) - wrongChars) / timeElapsed;
-};
+  netWPM() {
+    const { correctChars, wrongChars, typingTest } = this.props;
+    const charCount = correctChars + wrongChars; 
+
+    // Figure out elapsed time in milliseconds 
+    let timeElapsed;
+    if (!typingTest.inProgress) {
+      if (typingTest.finished)
+        timeElapsed = typingTest.stopTime - typingTest.startTime; 
+      else
+        return 0; // Nothing has been typed yet
+    } else
+      timeElapsed = Date.now() - typingTest.startTime;
+
+    // Convert to minutes and get final WPM
+    timeElapsed /= 1000;
+    timeElapsed /= 60;
+    // Return non-negative WPM
+    return Math.max(0, ((charCount / 5) - wrongChars) / timeElapsed);
+  }
+
+  render() {
+    return(<div style={containerStyle}>{this.state.wpm}</div>);
+  }
+}
 
 export default WPM;
