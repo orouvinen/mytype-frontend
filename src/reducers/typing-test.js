@@ -1,11 +1,11 @@
 const initialState = {
-  text: [""],
-  line: 0,  // current line num 0...n-1
-  word: 0,  // word num in the current line 0...n-1
-  inProgress: false,
-  finished: false,
-  startTime: undefined,
-  stopTime: undefined
+  text: [""],     // the text as an array of text lines
+  line: 0,        // current line num 0...n-1
+  word: 0,        // word num in the current line 0...n-1
+  inProgress: false,  // typing is taking place?
+  finished: false,    // the typing test has finished?
+  startTime: undefined, // timestamp for typing start time
+  stopTime: undefined   // timestamp for finishing time 
 };
 
 function typingTest(state = initialState, action) {
