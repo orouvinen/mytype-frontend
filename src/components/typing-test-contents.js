@@ -23,8 +23,11 @@ import React, { Component } from 'react';
 }*/
 
 const containerStyle = {
+};
+
+const currentLineStyle = {
+  lineHeight: "2em",  
   width: "100%",
-  height: "1.3em",
   margin: "2px auto",
   fontSize: "1.2em",
   backgroundColor: "#ddd",
@@ -35,7 +38,7 @@ const styleAfter = {
   height: "3em",
   padding: 4,
   fontSize: "1.2em",
-  backgroundColor: "#ddd",
+  backgroundColor: "#aaa",
   borderRadius: 2,
 };
 
@@ -56,8 +59,8 @@ class TypingTestContents extends Component {
     const nextLines = text.slice(line + 1, line + 3);
 
     return (
-      <div>
-        <div style={containerStyle}>
+      <div style={containerStyle}>
+        <div style={currentLineStyle}>
           {
             currentLine.map((word, i) => {
               const style =
