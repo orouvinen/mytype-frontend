@@ -23,7 +23,7 @@ function typingTest(state = initialState, action) {
         ...state,
         stopTime: action.stopTime,
         inProgress: false,
-        finished: true, 
+        finished: true,
       };
       // break;
     case 'TYPING_TEST_START':
@@ -43,11 +43,11 @@ function advanceWord(state) {
   let newState = {}
   newState = Object.assign(newState, state);
 
-  let line = state.line; 
+  let line = state.line;
   let text = state.text;
   newState.word++;
   if (newState.word=== text[line].split(" ").length) {
-    newState.word= 0;
+    newState.word = 0;
     if (state.line + 1 < state.text.length)
       newState.line++;
   }

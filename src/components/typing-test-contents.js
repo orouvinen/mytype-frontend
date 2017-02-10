@@ -10,16 +10,16 @@ const currentLineStyle = {
   width: "100%",
   margin: "2px auto",
   fontSize: "1.4em",
-  backgroundColor: "#ddd",
+  backgroundColor: "#26818e",
   borderRadius: 2,
 };
 
 const styleCurrentWord = {
-  color: "white",
+  color: "#e8b13a",
 };
 
 const wordStyle = {
-  color: "#333",
+  color: "white",
 };
 
 class TypingTestContents extends Component {

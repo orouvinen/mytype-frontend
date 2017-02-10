@@ -1,6 +1,6 @@
 export function wordTyped() {
   return {
-    type: 'TYPING_TEST_WORD_TYPED'  
+    type: 'TYPING_TEST_WORD_TYPED'
   };
 };
 
@@ -12,9 +12,9 @@ export function setText(text) {
 }
 
 export function stop(stopTime, wpm) {
-  return { 
+  return {
     type: 'TYPING_TEST_DONE',
-    wpm, 
+    wpm,
     stopTime,
   };
 }
