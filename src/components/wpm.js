@@ -11,6 +11,7 @@ class WPM extends Component {
     super();
     this.state = { 
       wpm: 0,
+      accuracy: "NaN",
     };
     this.netWPM = this.netWPM.bind(this);
     this.accuracy = this.accuracy.bind(this);
