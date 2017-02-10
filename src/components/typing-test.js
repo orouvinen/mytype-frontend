@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import TypingTestContents from './typing-test-contents';
 import TypingTestInput from './typing-test-input';
 
+const containerStyle = {
+  width: "35em",
+  margin: "0 auto",
+};
+
 class TypingTest extends Component {
   render() {
     return(
-      <div>
+      <div style={containerStyle}>
         <TypingTestContents
           currentWord={this.props.currentWord}
           text={this.props.text}

@@ -22,11 +22,6 @@ import React, { Component } from 'react';
     background:linear-gradient(transparent 150px, white);
 }*/
 
-const containerStyle = {
-  width: "35em",
-  margin: "0 auto",
-};
-
 const style = {
   width: "100%",
   height: "1.3em",
@@ -61,9 +56,9 @@ class TypingTestContents extends Component {
     const currentLine = text[line].split(" ");
     //const lines = this.props.text;
     const nextLines = text.slice(line + 1, line + 3);
-    
+
     return (
-      <div style={containerStyle}>
+      <div>
         <div style={style}>
           {
             currentLine.map((word, i) => {

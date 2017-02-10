@@ -6,6 +6,10 @@ html * {
      font-family: 'Nunito', sans-serif;
 }
 
+input {
+     font-family: 'Nunito', sans-serif;
+}
+
 body {
      background: #444;
      color: #d0d0d0;
