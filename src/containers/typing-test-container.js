@@ -44,7 +44,7 @@ class TypingTestContainer extends Component {
   }
 
   start() {
-    this.props.start(Date.now(), this.state.text); 
+    this.props.start(Date.now(), this.state.text);
   }
 
   stop() {
@@ -97,7 +97,7 @@ class TypingTestContainer extends Component {
     } else if (e.key === ' ' || e.key === 'Enter') {
       // Count as incorrectly typed characters any letters that were
       // left to type
-      wrongCharCount += word.length - currentChar; 
+      wrongCharCount += word.length - currentChar;
 
       // If this was the last word, then stop the typing test,
       // otherwise move on to next word
