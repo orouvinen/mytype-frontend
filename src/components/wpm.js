@@ -60,7 +60,9 @@ class WPM extends Component {
 
   render() {
     return(<div style={containerStyle}>
-      <div>WPM: <strong>{this.state.wpm}</strong></div>
+      <div style={{fontFamily: "Open Sans"}}>
+        WPM: <strong>{this.state.wpm}</strong>
+      </div>
       <div>Accuracy:
         {this.state.accuracy !== "NaN" ? this.state.accuracy + "%" : ""}
       </div>
