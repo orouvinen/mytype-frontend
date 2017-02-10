@@ -16,7 +16,7 @@ function typingTest(state = initialState, action) {
     case 'TYPING_TEST_SET_TEXT':
       return {
         ...state,
-        text: textToLines(action.text, 60),
+        text: textToLines(action.text, 50),
       };
     case 'TYPING_TEST_DONE':
       return {
