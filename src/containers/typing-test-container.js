@@ -24,7 +24,7 @@ class TypingTestContainer extends Component {
      * TODO: move raw text to redux store
      */
     this.state = {
-      text: "some and America will be program totally in last man standing" +
+      text: "some and all will be program totally in last man standing" +
       " having to type is life begin in man totally casting sun in three of" +
       " the most up",
       words: [],
