@@ -58,9 +58,9 @@ class TypingTestContainer extends Component {
   getRandomText(n) {
     const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
     let text = [];
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < n; i++)
       text.push(wordList[rand(0, wordList.length)]);
-    }
+
     return text.join(" ");
   }
 
@@ -93,7 +93,7 @@ class TypingTestContainer extends Component {
     if (e.key === "Tab")
       e.preventDefault();
 
-    if (e.key === 'Shift' || e.key === 'Ctrl' || e.key === 'Alt')
+    if (e.key === 'Shift' || e.key === 'Ctrl' || e.key === 'Alt')
       return;
 
     // Start when typing starts
