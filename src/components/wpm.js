@@ -32,8 +32,6 @@ class WPM extends Component {
       }, 1000),
     });
   }
-  componentWillUnMount() {
-  }
 
   netWPM() {
     const { correctChars, wrongChars, typingTest } = this.props;
