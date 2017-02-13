@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { wpm, accuracy } from '../helpers/wpm.js'
+import { wpm, accuracy } from '../helpers/wpm.js';
+
 const containerStyle = {
   float: "left",
   width: "30%",
