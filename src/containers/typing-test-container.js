@@ -35,9 +35,7 @@ class TypingTestContainer extends Component {
      * TODO: move raw text to redux store
      */
     this.state = {
-      text: "some and all will be program totally in last man standing" +
-      " having to type is life begin in man totally casting sun in three of" +
-      " the most up",
+      text: "",
       words: [],
       typedWord: "", // The current word as typed by the user
       totalWords: 0,
