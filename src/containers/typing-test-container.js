@@ -27,7 +27,6 @@ class TypingTestContainer extends Component {
     this.stop = this.stop.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.getRandomText = this.getRandomText.bind(this);
-    this.wpm = this.wpm.bind(this);
 
     /* We keep in local state everything related to the actual act of typing.
      * Anything else (typing test level and word-level things)
@@ -74,10 +73,6 @@ class TypingTestContainer extends Component {
     this.props.stop(endTime,
                     wpm(this.state.correctCharCount, this.state.wrongCharCount,
                     endTime - this.props.typingTest.startTime));
-  }
-
-  wpm() {
-    return 0; 
   }
 
   handleKeyPress(e) {
