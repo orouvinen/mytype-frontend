@@ -29,7 +29,7 @@ class WPM extends Component {
         }
         if (this.props.typingTest.finished)
           clearInterval(this.state.timer);
-      }, 1000),
+      }, 500)
     });
   }
 
