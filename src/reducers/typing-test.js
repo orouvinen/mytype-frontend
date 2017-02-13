@@ -46,7 +46,7 @@ function advanceWord(state) {
   let line = state.line;
   let text = state.text;
   newState.word++;
-  if (newState.word=== text[line].split(" ").length) {
+  if (newState.word === text[line].split(" ").length) {
     newState.word = 0;
     if (state.line + 1 < state.text.length)
       newState.line++;
