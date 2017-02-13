@@ -35,7 +35,6 @@ class TypingTestContainer extends Component {
      * TODO: move raw text to redux store
      */
     this.state = {
-      text: "",
       words: [],
       typedWord: "", // The current word as typed by the user
       totalWords: 0,
@@ -46,9 +45,7 @@ class TypingTestContainer extends Component {
   }
 
   componentDidMount() {
-    //this.props.setText(this.state.text);
     // Transform the text into on array of words
-    //this.setState({words: this.state.text.split(" ")});
     const text = this.getRandomText.bind(this)(50);
     this.props.setText(text);
     this.setState({ words: text.split(" ") }); 
