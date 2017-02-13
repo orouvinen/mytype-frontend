@@ -49,7 +49,7 @@ class TypingTestContainer extends Component {
   componentDidMount() {
     // Generate random words
     const text = this.getRandomText(50);
-    this.props.setText(text);
+    this.props.setText(text, 50);
     
     // Transform the text into on array of words
     this.setState({ words: text.split(" ") }); 

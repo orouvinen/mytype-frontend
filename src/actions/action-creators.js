@@ -4,10 +4,11 @@ export function wordTyped() {
   };
 };
 
-export function setText(text) {
+export function setText(text, lineLength) {
   return {
     type: 'TYPING_TEST_SET_TEXT',
     text,
+    lineLength,
   }
 }
 
