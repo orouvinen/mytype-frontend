@@ -20,16 +20,19 @@ class WPM extends Component {
     this.setState({
       // Update WPM once per second
       timer: setInterval(() => {
-        this.setState({ 
-          wpm: this.netWPM().toFixed(),
-          accuracy: accuracy(this.props.correctChars, this.props.wrongChars)
-                    .toFixed(1),
-        });
+        if (this.props.typingTest.inProgress) {
+          this.setState({ 
+            wpm: this.netWPM().toFixed(),
+            accuracy: accuracy(this.props.correctChars, this.props.wrongChars)
+                      .toFixed(1),
+          });
+        }
+        if (this.props.typingTest.finished)
+          clearInterval(this.state.timer);
       }, 1000),
     });
   }
   componentWillUnMount() {
-    clearInterval(this.state.timer);
   }
 
   netWPM() {
