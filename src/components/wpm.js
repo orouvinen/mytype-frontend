@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { wpm, accuracy } from '../helpers/wpm.js'
 const containerStyle = {
   float: "left",
   width: "30%",
@@ -14,7 +14,6 @@ class WPM extends Component {
       accuracy: "NaN",
     };
     this.netWPM = this.netWPM.bind(this);
-    this.accuracy = this.accuracy.bind(this);
   }
 
   componentDidMount() {
@@ -23,7 +22,8 @@ class WPM extends Component {
       timer: setInterval(() => {
         this.setState({ 
           wpm: this.netWPM().toFixed(),
-          accuracy: this.accuracy().toFixed(),
+          accuracy: accuracy(this.props.correctChars, this.props.wrongChars)
+                    .toFixed(1),
         });
       }, 1000),
     });
@@ -32,14 +32,8 @@ class WPM extends Component {
     clearInterval(this.state.timer);
   }
 
-  accuracy() {
-    return (this.props.correctChars /
-      (this.props.correctChars + this.props.wrongChars)) * 100;
-  }
-
   netWPM() {
     const { correctChars, wrongChars, typingTest } = this.props;
-    const charCount = correctChars + wrongChars; 
 
     // Figure out elapsed time in milliseconds 
     let timeElapsed;
@@ -51,11 +45,7 @@ class WPM extends Component {
     } else
       timeElapsed = Date.now() - typingTest.startTime;
 
-    // Convert to minutes and get final WPM
-    timeElapsed /= 1000;
-    timeElapsed /= 60;
-    // Return non-negative WPM
-    return Math.max(0, ((charCount / 5) - wrongChars) / timeElapsed);
+    return wpm(correctChars, wrongChars, timeElapsed);
   }
 
   render() {
@@ -63,7 +53,7 @@ class WPM extends Component {
       <div style={{fontFamily: "Open Sans"}}>
         WPM: <strong>{this.state.wpm}</strong>
       </div>
-      <div>Accuracy:
+      <div>Accuracy:&nbsp;
         {this.state.accuracy !== "NaN" ? this.state.accuracy + "%" : ""}
       </div>
     </div>);

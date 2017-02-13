@@ -4,6 +4,7 @@ const initialState = {
   word: 0,        // word num in the current line 0...n-1
   inProgress: false,  // typing is taking place?
   finished: false,    // the typing test has finished?
+  finishWPM: 0,
   startTime: undefined, // timestamp for typing start time
   stopTime: undefined   // timestamp for finishing time 
 };
@@ -24,6 +25,7 @@ function typingTest(state = initialState, action) {
         stopTime: action.stopTime,
         inProgress: false,
         finished: true,
+        finishWPM: action.wpm,
       };
       // break;
     case 'TYPING_TEST_START':
@@ -33,6 +35,7 @@ function typingTest(state = initialState, action) {
         inProgress: true,
         line: 0,
         word: 0,
+        finishWPM: 0,
       };
     default:
       return state;

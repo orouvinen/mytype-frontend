@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import { wpm } from '../helpers/wpm';
 import TypingTest from '../components/typing-test';
 import * as actions from '../actions/action-creators';
 
@@ -70,7 +70,10 @@ class TypingTestContainer extends Component {
   }
 
   stop() {
-    this.props.stop(Date.now(), this.wpm());
+    const endTime = Date.now();
+    this.props.stop(endTime,
+                    wpm(this.state.correctCharCount, this.state.wrongCharCount,
+                    endTime - this.props.typingTest.startTime));
   }
 
   wpm() {
