@@ -26,7 +26,8 @@ class TypingTestContainer extends Component {
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.WPM = this.WPM.bind(this);
+    this.getRandomText = this.getRandomText.bind(this);
+    this.wpm = this.wpm.bind(this);
 
     /* We keep in local state everything related to the actual act of typing.
      * Anything else (typing test level and word-level things)
@@ -35,24 +36,27 @@ class TypingTestContainer extends Component {
      * TODO: move raw text to redux store
      */
     this.state = {
-      words: [],
-      typedWord: "", // The current word as typed by the user
-      totalWords: 0,
-      currentChar: 0,
+      words: [],        // The text as an array of words
+      typedWord: "",    // The current word as typed by the user
+      typedLine: [""],  // Whole words typed on this line so far
+      totalWords: 0,    // Total number of words typed
+      currentChar: 0,   // Index of current char in current word
       correctCharCount: 0,
       wrongCharCount: 0,
     };
   }
 
   componentDidMount() {
-    // Transform the text into on array of words
-    const text = this.getRandomText.bind(this)(50);
+    // Generate random words
+    const text = this.getRandomText(50);
     this.props.setText(text);
+    
+    // Transform the text into on array of words
     this.setState({ words: text.split(" ") }); 
   }
 
+  // Generates a string with n randomly selected words separated by spaces 
   getRandomText(n) {
-    // arg n: how many words to generate
     const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
     let text = [];
     for (let i = 0; i < n; i++) {
@@ -66,10 +70,11 @@ class TypingTestContainer extends Component {
   }
 
   stop() {
-    this.props.stop(Date.now(), this.WPM());
+    this.props.stop(Date.now(), this.wpm());
   }
 
-  WPM() {
+  wpm() {
+    return 0; 
   }
 
   handleKeyPress(e) {
@@ -78,6 +83,7 @@ class TypingTestContainer extends Component {
 
     let {
       typedWord,
+      typedLine,
       totalWords,
       currentChar,
       correctCharCount,
@@ -119,6 +125,7 @@ class TypingTestContainer extends Component {
 
       // If this was the last word, then stop the typing test,
       // otherwise move on to next word
+      typedLine[this.props.typingTest.word] = typedWord;
       typedWord = "";
       totalWords++;
       currentChar = 0;
@@ -152,6 +159,7 @@ class TypingTestContainer extends Component {
       wrongCharCount,
       currentChar,
       typedWord,
+      typedLine,
       totalWords,
     });
   }
@@ -161,6 +169,7 @@ class TypingTestContainer extends Component {
       <TypingTest
         typingTest={this.props.typingTest}
         typedWord={this.state.typedWord}
+        typedLine={this.state.typedLine}
         correctChars={this.state.correctCharCount}
         wrongChars={this.state.wrongCharCount}
         onKeyPress={this.handleKeyPress}/>

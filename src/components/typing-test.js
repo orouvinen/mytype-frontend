@@ -14,7 +14,11 @@ class TypingTest extends Component {
     const { text, line, word } = this.props.typingTest;
     return(
       <div style={containerStyle}>
-        <TypingTestContents currentWord={word} text={text} line={line} />
+        <TypingTestContents
+          typedLine={this.props.typedLine}
+          currentWord={word}
+          text={text}
+          line={line} />
         <TypingTestInput
           typedWord={this.props.typedWord}
           onKeyPress={this.props.onKeyPress} />
