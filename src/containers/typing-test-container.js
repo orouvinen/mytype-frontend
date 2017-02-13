@@ -50,12 +50,8 @@ class TypingTestContainer extends Component {
     // Transform the text into on array of words
     //this.setState({words: this.state.text.split(" ")});
     const text = this.getRandomText.bind(this)(50);
-    this.setState({ text });
-    this.setState({ words: text.split(" ") },
-      function() { this.props.setText(this.state.text) }
-    ); 
-
-    this.setState({ minutes: 1, seconds: 0 });
+    this.props.setText(text);
+    this.setState({ words: text.split(" ") }); 
   }
 
   getRandomText(n) {
@@ -69,7 +65,7 @@ class TypingTestContainer extends Component {
   }
 
   start() {
-    this.props.start(Date.now(), this.state.text);
+    this.props.start(Date.now());
   }
 
   stop() {

@@ -19,10 +19,9 @@ export function stop(stopTime, wpm) {
   };
 }
 
-export function start(startTime, text) {
+export function start(startTime) {
   return {
     type: 'TYPING_TEST_START',
     startTime,
-    text,
   };
 }
