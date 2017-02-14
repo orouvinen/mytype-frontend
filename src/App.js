@@ -6,7 +6,8 @@ const headerStyle = {
   fontWeight: "bold",
   color: "white",
   padding: "10px",
-  margin: "0 auto 10px auto"
+  margin: "0 auto 10px auto",
+  fontSize: "1.2em",
 };
 
 const headerAppTitle = "mytype";
