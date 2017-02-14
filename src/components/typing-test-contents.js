@@ -20,6 +20,7 @@ const styleCurrentWord = {
 
 const styleIncorrectWord = {
   color: "red",
+  textDecoration: "line-through",
 };
 
 const wordStyle = {
