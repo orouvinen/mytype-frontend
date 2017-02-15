@@ -165,7 +165,7 @@ class TypingTestContainer extends Component {
   render() {
     return(
       <TypingTest
-        typingTest={this.props.typingTest}
+        {...this.props.typingTest}
         typedWord={this.state.typedWord}
         typedLine={this.state.typedLine}
         correctChars={this.state.correctCharCount}

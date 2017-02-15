@@ -21,31 +21,31 @@ class WPM extends Component {
     this.setState({
       // Update WPM once per second
       timer: setInterval(() => {
-        if (this.props.typingTest.inProgress) {
+        if (this.props.inProgress) {
           this.setState({ 
             wpm: this.netWPM().toFixed(),
             accuracy: accuracy(this.props.correctChars, this.props.wrongChars)
                       .toFixed(1),
           });
         }
-        if (this.props.typingTest.finished)
+        if (this.props.finished)
           clearInterval(this.state.timer);
       }, 500)
     });
   }
 
   netWPM() {
-    const { correctChars, wrongChars, typingTest } = this.props;
+    const { correctChars, wrongChars, startTime, stopTime } = this.props;
 
     // Figure out elapsed time in milliseconds 
     let timeElapsed;
-    if (!typingTest.inProgress) {
-      if (typingTest.finished)
-        timeElapsed = typingTest.stopTime - typingTest.startTime; 
+    if (!this.props.inProgress) {
+      if (this.props.finished)
+        timeElapsed = stopTime - startTime; 
       else
         return 0; // Nothing has been typed yet
     } else
-      timeElapsed = Date.now() - typingTest.startTime;
+      timeElapsed = Date.now() - startTime;
 
     return wpm(correctChars, wrongChars, timeElapsed);
   }
