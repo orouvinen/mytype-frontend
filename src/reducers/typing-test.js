@@ -3,8 +3,8 @@ const initialState = {
   line: 0,        // current line num 0...n-1
   word: 0,        // word num in the current line 0...n-1
   char: 0,        // current character
-  typedWord: "",
-  typedLine: [],
+  typedWord: "",  // Progress of currently typed word
+  typedLine: [],      // All the typed words on the current line so fat 
   inProgress: false,  // typing is taking place?
   finished: false,    // the typing test has finished?
   startTime: undefined, // timestamp for typing start time
