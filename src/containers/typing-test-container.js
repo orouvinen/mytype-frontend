@@ -91,9 +91,7 @@ class TypingTestContainer extends Component {
       return;
 
     // Start when typing starts
-    if (!typingTest.running &&
-      e.key !== 'Shift' &&
-      e.key !== 'Tab')
+    if (!typingTest.running && e.key.length === 1)
       this.start();
      
     this.props.keyPress(e.key);
