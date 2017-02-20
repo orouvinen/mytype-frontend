@@ -89,36 +89,36 @@ function keyHandler(key, currentState) {
 
 
 // Returns new state when space / enter has been pressed
-function advanceWord(state) {
-  let newState = Object.assign({}, state);
-  const { line, text } = state;
+function advanceWord(currentState) {
+  let state = Object.assign({}, currentState);
+  const { line, text } = currentState;
   const words = text[line].split(' ');
   let currentWord = words[state.word];
 
-  newState.typedLine.push(state.typedWord);
-  newState.word++;
-  newState.totalWords++;
-  newState.char = 0;
-  newState.typedWord = "";
+  state.typedLine.push(currentState.typedWord);
+  state.word++;
+  state.totalWords++;
+  state.char = 0;
+  state.typedWord = "";
 
   // Add to incorrect character count any letters that were not
-  newState.wrongChars += currentWord.length - state.char;
+  state.wrongChars += currentWord.length - currentState.char;
 
   // End of line reached?
-  if (newState.word === words.length) {
+  if (state.word === words.length) {
     // Check if the last line was typed and stop the test if so.
     // Otherwise just advance to new line
-    if (newState.line === text.length - 1) {
-      newState.endTime = Date.now();
-      newState.finished = true;
+    if (state.line === text.length - 1) {
+      state.endTime = Date.now();
+      state.finished = true;
     } else {
-      newState.correctChars++; // Space / enter counts as correct char
-      newState.typedLine = [];
-      newState.word = 0;
-      newState.line++;
+      state.correctChars++; // Space / enter counts as correct char
+      state.typedLine = [];
+      state.word = 0;
+      state.line++;
     }
   }
-  return newState;
+  return state;
 }
 
 // Convert the text passed in to an array of strings, where each
