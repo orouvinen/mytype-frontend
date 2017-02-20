@@ -1,7 +1,3 @@
-// TODO:
-// move typedWord from state to redux store, and possibly other
-// state variables as well
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -27,30 +23,15 @@ class TypingTestContainer extends Component {
     this.stop = this.stop.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.getRandomText = this.getRandomText.bind(this);
-
-    /* We keep in local state everything related to the actual act of typing.
-     * Anything else (typing test level and word-level things)
-     * will be in redux store.
-     *
-     * TODO: move raw text to redux store
-     */
-    this.state = {
-      words: [],        // The text as an array of words
-      typedWord: "",    // The current word as typed by the user
-      typedLine: [""],  // Whole words typed on this line so far
-      totalWords: 0,    // Total number of words typed
-      currentChar: 0,   // Index of current char in current word
-      correctCharCount: 0,
-      wrongCharCount: 0,
-    };
+    this.state = { words: [] }; 
   }
 
   componentDidMount() {
     // Generate random words
-    const text = this.getRandomText(50);
+    const text = this.getRandomText(20);
     this.props.setText(text, 45);
     
-    // Transform the text into on array of words
+    // Transform the text into on array of words for local state
     this.setState({ words: text.split(" ") }); 
   }
 
@@ -64,112 +45,66 @@ class TypingTestContainer extends Component {
     return text.join(" ");
   }
 
+  componentWillReceiveProps(props) {
+    const { text, line, word, typedWord } = props.typingTest;
+    const words = text[line].split(' ');
+    const correctWord = words[word];
+    // See if the keyhandler has marked the test finished due to
+    // the last line being typed (with last space / enter pressed
+    // on last word)
+    if (props.typingTest.inProgress && props.typingTest.finished) {
+      this.stop();
+      return;
+    }
+    // Do nothing if the current round has been finished
+    if (props.typingTest.finished && !props.typingTest.inProgress)
+      return;
+
+    // Check if the last word of the test was typed correctly and
+    // stop the round immediately if so
+    if (props.typingTest.inProgress &&
+        line === text.length - 1 &&
+        word === words.length - 1 &&
+        typedWord === correctWord)
+      this.stop();
+  }
+
   start() {
+    this.props.reset();
     this.props.start(Date.now());
   }
 
   stop() {
-    const endTime = Date.now();
-    this.props.stop(endTime,
-                    wpm(this.state.correctCharCount, this.state.wrongCharCount,
-                    endTime - this.props.typingTest.startTime));
+    const { typingTest } = this.props;
+    this.props.stop(typingTest.endTime,
+                    wpm(typingTest.correctChars, typingTest.wrongChars,
+                    typingTest.endTime - typingTest.startTime));
   }
 
   handleKeyPress(e) {
-    if (this.props.typingTest.finished)
+    const { typingTest } = this.props;
+
+    if (typingTest.finished)
       return;
 
-    let {
-      typedWord,
-      typedLine,
-      totalWords,
-      currentChar,
-      correctCharCount,
-      wrongCharCount } = this.state;
-
-    // Get the word that's currently being typed
-    const word = this.state.words[totalWords];
-
-    if (e.key === "Tab")
-      e.preventDefault();
+    e.preventDefault();
 
     if (e.key === 'Shift' || e.key === 'Ctrl' || e.key === 'Alt')
       return;
 
     // Start when typing starts
-    if (!this.props.typingTest.inProgress &&
+    if (!typingTest.inProgress &&
       e.key !== 'Shift' &&
       e.key !== 'Tab')
       this.start();
-
-    // Handle backspace
-    if (e.key === 'Backspace') {
-      // Already at the beginning of the current word?
-      if (currentChar === 0)
-        return;
-
-      // Is this a correct char?
-      if (this.state.typedWord[currentChar - 1] === word[currentChar - 1])
-        correctCharCount--;
-      else
-        wrongCharCount--;
-
-      currentChar--;
-      typedWord = typedWord.slice(0, typedWord.length - 1);
-    } else if (e.key === ' ' || e.key === 'Enter') {
-      // Count as incorrectly typed characters any letters that were
-      // left to type
-      wrongCharCount += word.length - currentChar;
-
-      // If this was the last word, then stop the typing test,
-      // otherwise move on to next word
-      typedLine[this.props.typingTest.word] = typedWord;
-      typedWord = "";
-      totalWords++;
-      currentChar = 0;
-      if (totalWords === this.state.words.length)
-        this.stop();
-      else
-        this.props.wordTyped();
-    } else {
-      // Handle other keys than backspace, space or enter
-      if (e.key.length > 1)
-        return; // Discard non-alphanumeric
-
-      if (e.key === word[currentChar])
-        correctCharCount++;
-      else
-        wrongCharCount++;
-
-      currentChar++;
-      typedWord += e.key;
-
-      // Stop if all the text was typed (the last character being correct)
-      if (this.state.totalWords === this.state.words.length - 1 &&
-        typedWord.length === word.length &&
-        typedWord.slice(-1) === word.slice(-1)) {
-
-          this.stop();
-        }
-    }
-    this.setState({
-      correctCharCount,
-      wrongCharCount,
-      currentChar,
-      typedWord,
-      typedLine,
-      totalWords,
-    });
+     
+    this.props.keyPress(e.key);
   }
 
   render() {
     return(
       <TypingTest
-        {...this.props.typingTest}
-        typedWord={this.state.typedWord}
-        typedLine={this.state.typedLine}
-        correctChars={this.state.correctCharCount}
-        wrongChars={this.state.wrongCharCount}
+        typingTest={this.props.typingTest}
         onKeyPress={this.handleKeyPress}/>
     );
   }

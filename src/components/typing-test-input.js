@@ -11,11 +11,16 @@ const style = {
   fontSize: "1.3em",
 };
 
-const TypingTestInput = ({typedWord, onKeyPress}) =>
-  <input type="text" style={style} value={typedWord} onKeyDown={onKeyPress} />
+const TypingTestInput = ({typingTest, onKeyPress}) =>
+  <input
+    type="text"
+    style={style}
+    value={typingTest.typedWord}
+    onKeyDown={onKeyPress} />
 
 TypingTestInput.propTypes = {
-  onKeyPress: React.PropTypes.func.isRequired
+  typingTest: React.PropTypes.object.isRequired,
+  onKeyPress: React.PropTypes.func.isRequired,
 };
 
 export default TypingTestInput;

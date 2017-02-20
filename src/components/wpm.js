@@ -13,39 +13,45 @@ class WPM extends Component {
     this.state = { 
       wpm: 0,
       accuracy: "NaN",
+      timer: null,
     };
     this.netWPM = this.netWPM.bind(this);
   }
+  
+  componentWillReceiveProps(props) {
+    if (props.typingTest.inProgress && !this.state.timer) {
+      this.setState({
+        timer: setInterval(this.updateWPM.bind(this), 500),
+      });
+    }
+  }
 
-  componentDidMount() {
-    this.setState({
-      // Update WPM once per second
-      timer: setInterval(() => {
-        if (this.props.inProgress) {
-          this.setState({ 
-            wpm: this.netWPM().toFixed(),
-            accuracy: accuracy(this.props.correctChars, this.props.wrongChars)
-                      .toFixed(1),
-          });
-        }
-        if (this.props.finished)
-          clearInterval(this.state.timer);
-      }, 500)
-    });
+  updateWPM() {
+    const { typingTest } = this.props;
+    const { correctChars, wrongChars } = typingTest;
+    if (!typingTest.finished) {
+      this.setState({ 
+        wpm: this.netWPM().toFixed(),
+        accuracy: accuracy(correctChars, wrongChars).toFixed(1),
+      });
+    } else {
+      clearInterval(this.state.timer);
+      this.setState({ timer: null });
+    }
   }
 
   netWPM() {
-    const { correctChars, wrongChars, startTime, stopTime } = this.props;
-
+    const typingTest = this.props.typingTest;
+    const { correctChars, wrongChars } = this.props.typingTest;
     // Figure out elapsed time in milliseconds 
     let timeElapsed;
-    if (!this.props.inProgress) {
-      if (this.props.finished)
-        timeElapsed = stopTime - startTime; 
+    if (!typingTest.inProgress) {
+      if (typingTest.finished)
+        timeElapsed = typingTest.stopTime - typingTest.startTime; 
       else
         return 0; // Nothing has been typed yet
     } else
-      timeElapsed = Date.now() - startTime;
+      timeElapsed = Date.now() - typingTest.startTime;
 
     return wpm(correctChars, wrongChars, timeElapsed);
   }
@@ -60,6 +66,10 @@ class WPM extends Component {
       </div>
     </div>);
   }
+}
+
+WPM.propTypes = {
+  typingTest: React.PropTypes.object.isRequired,
 }
 
 export default WPM;

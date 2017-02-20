@@ -26,3 +26,30 @@ export function start(startTime) {
     startTime,
   };
 }
+
+export function keyPress(key) {
+  return {
+    type: 'TYPING_TEST_KEYPRESS',
+    key,
+  }
+}
+
+export function character(char) {
+  return {
+    type: 'TYPING_TEST_CHARACTER',
+    char,
+  };
+}
+
+export function erase(isCorrect) {
+  return {
+    type: 'TYPING_TEST_ERASE',
+    isCorrect,  // Was the erased character correct?
+  };
+}
+
+export function reset() {
+  return {
+    type: 'TYPING_TEST_RESET',
+  }
+}

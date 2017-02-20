@@ -13,17 +13,18 @@ class TypingTest extends Component {
   render() {
     return(
       <div style={containerStyle}>
-        <TypingTestContents
-          typedLine={this.props.typedLine}
-          currentWord={this.props.word}
-          text={this.props.text}
-          line={this.props.line} />
+        <TypingTestContents typingTest={this.props.typingTest} />
         <TypingTestInput
-          typedWord={this.props.typedWord}
+          typingTest={this.props.typingTest}
           onKeyPress={this.props.onKeyPress} />
-        <WPM {...this.props} />
+        <WPM typingTest={this.props.typingTest} />
       </div>);
   }
 }
+
+TypingTest.propTypes = {
+  typingTest: React.PropTypes.object.isRequired,
+  onKeyPress: React.PropTypes.func.isRequired,
+};
 
 export default TypingTest;
