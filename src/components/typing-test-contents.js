@@ -19,7 +19,7 @@ const styleCurrentWord = {
 };
 
 const styleIncorrectWord = {
-  color: "red",
+  color: "#aa0c00",
   textDecoration: "line-through",
 };
 
