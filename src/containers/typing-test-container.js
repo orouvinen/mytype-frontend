@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { wpm } from '../helpers/wpm';
 import TypingTest from '../components/typing-test';
 import * as actions from '../actions/action-creators';
 
@@ -49,6 +48,7 @@ class TypingTestContainer extends Component {
     const { text, line, word, typedWord } = props.typingTest;
     const words = text[line].split(' ');
     const correctWord = words[word];
+    
     // See if the keyhandler has marked the test finished due to
     // the last line being typed (with last space / enter pressed
     // on last word)
@@ -76,9 +76,7 @@ class TypingTestContainer extends Component {
 
   stop() {
     const { typingTest } = this.props;
-    this.props.stop(typingTest.endTime,
-                    wpm(typingTest.correctChars, typingTest.wrongChars,
-                    typingTest.endTime - typingTest.startTime));
+    this.props.stop(typingTest.endTime)
   }
 
   handleKeyPress(e) {

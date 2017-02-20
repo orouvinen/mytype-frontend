@@ -1,6 +1,3 @@
-//
-// After fix, go through reducer helper functions and container/components
-//
 const initialState = {
   text: [""],     // the text as an array of text lines
   line: 0,        // current line num 0...n-1
@@ -10,7 +7,6 @@ const initialState = {
   typedLine: [],
   inProgress: false,  // typing is taking place?
   finished: false,    // the typing test has finished?
-  finishWPM: 0,
   startTime: undefined, // timestamp for typing start time
   stopTime: undefined,  // timestamp for finishing time 
   correctChars: 0,
@@ -34,7 +30,6 @@ function typingTest(state = initialState, action) {
         finished: true,
         finishWPM: action.wpm,
       };
-      // break;
 
     case 'TYPING_TEST_START':
       return {
@@ -44,7 +39,6 @@ function typingTest(state = initialState, action) {
         line: 0,
         word: 0,
         totalWords: 0,
-        finishWPM: 0,
       };
 
     case 'TYPING_TEST_KEYPRESS':
@@ -126,8 +120,8 @@ function advanceWord(state) {
   return newState;
 }
 
-// Convert the text passed in to an array of string, where each
-// line is no longer than props.lineLength characters.
+// Convert the text passed in to an array of strings, where each
+// line is no longer than lineLength characters.
 function textToLines(text, lineLength) {
   let lines = [""]
   let currentLine = 0;
