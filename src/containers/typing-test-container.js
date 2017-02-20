@@ -93,8 +93,9 @@ class TypingTestContainer extends Component {
     // Start when typing starts
     if (!typingTest.running && e.key.length === 1)
       this.start();
-     
-    this.props.keyPress(e.key);
+
+    if (typingTest.running) 
+      this.props.keyPress(e.key);
   }
 
   render() {
