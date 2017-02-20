@@ -29,10 +29,10 @@ const wordStyle = {
 
 class TypingTestContents extends Component {
   render() {
-    const { line, text } = this.props;
+    const { line, text, typedLine } = this.props.typingTest;
+    const wordNum = this.props.typingTest.word;
     // Break the current line into an array of words
     const currentLine = text[line].split(" ");
-    const { typedLine } = this.props;
     const nextLine = text[line + 1] !== undefined ? text[line + 1] : " ";
 
     return (
@@ -43,11 +43,10 @@ class TypingTestContents extends Component {
             // and so far incorrectly typed words from the rest)
             currentLine.map((word, i) => {
               let style;
-              if (i < this.props.currentWord && word !== typedLine[i])
+              if (i < wordNum && word !== typedLine[i])
                 style = styleIncorrectWord;  
               else
-                style =
-                  i === this.props.currentWord ? styleCurrentWord : wordStyle;
+                style = (i === wordNum) ? styleCurrentWord : wordStyle;
               return (<span key={i} style={style}>{word} </span>);
             })
           }
@@ -59,10 +58,7 @@ class TypingTestContents extends Component {
 }
 
 TypingTestContents.propTypes = {
-  text: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
-  line: React.PropTypes.number.isRequired,
-  typedLine: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
-  currentWord: React.PropTypes.number.isRequired,
+  typingTest: React.PropTypes.object.isRequired,
 }
 
 export default TypingTestContents;

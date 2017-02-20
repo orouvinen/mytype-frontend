@@ -11,24 +11,20 @@ const containerStyle = {
 
 class TypingTest extends Component {
   render() {
-    const { text, line, word } = this.props.typingTest;
     return(
       <div style={containerStyle}>
-        <TypingTestContents
-          typedLine={this.props.typedLine}
-          currentWord={word}
-          text={text}
-          line={line} />
+        <TypingTestContents typingTest={this.props.typingTest} />
         <TypingTestInput
-          typedWord={this.props.typedWord}
-          onKeyPress={this.props.onKeyPress} />
-        <WPM 
           typingTest={this.props.typingTest}
-          correctChars={this.props.correctChars}
-          wrongChars={this.props.wrongChars}>
-        </WPM>
+          onKeyPress={this.props.onKeyPress} />
+        <WPM typingTest={this.props.typingTest} />
       </div>);
   }
 }
+
+TypingTest.propTypes = {
+  typingTest: React.PropTypes.object.isRequired,
+  onKeyPress: React.PropTypes.func.isRequired,
+};
 
 export default TypingTest;
