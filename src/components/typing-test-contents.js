@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const containerStyle = {
   textAlign: "center",
@@ -27,35 +27,33 @@ const wordStyle = {
   color: "white",
 };
 
-class TypingTestContents extends Component {
-  render() {
-    const { line, text, typedLine } = this.props.typingTest;
-    const wordNum = this.props.typingTest.word;
-    // Break the current line into an array of words
-    const currentLine = text[line].split(" ");
-    const nextLine = text[line + 1] !== undefined ? text[line + 1] : " ";
+const TypingTestContents = ({ typingTest }) => {
+  const { line, text, typedLine } = typingTest;
+  const wordNum = typingTest.word;
+  // Break the current line into an array of words
+  const currentLine = text[line].split(" ");
+  const nextLine = text[line + 1] !== undefined ? text[line + 1] : " ";
 
-    return (
-      <div style={containerStyle}>
-        <div style={currentLineStyle}>
-          {
-            // Choose style for word (distinguish currently typed word
-            // and so far incorrectly typed words from the rest)
-            currentLine.map((word, i) => {
-              let style;
-              if (i < wordNum && word !== typedLine[i])
-                style = styleIncorrectWord;  
-              else
-                style = (i === wordNum) ? styleCurrentWord : wordStyle;
-              return (<span key={i} style={style}>{word} </span>);
-            })
-          }
-          <div style={{display: "inline-block"}}>{nextLine}</div>
-        </div>
+  return (
+    <div style={containerStyle}>
+      <div style={currentLineStyle}>
+        {
+          // Choose style for word (distinguish currently typed word
+          // and so far incorrectly typed words from the rest)
+          currentLine.map((word, i) => {
+            let style;
+            if (i < wordNum && word !== typedLine[i])
+              style = styleIncorrectWord;  
+            else
+              style = (i === wordNum) ? styleCurrentWord : wordStyle;
+            return (<span key={i} style={style}>{word} </span>);
+          })
+        }
+        <div style={{display: "inline-block"}}>{nextLine}</div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 TypingTestContents.propTypes = {
   typingTest: React.PropTypes.object.isRequired,

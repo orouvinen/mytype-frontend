@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TypingTestContents from './typing-test-contents';
 import TypingTestInput from './typing-test-input';
 import WPM from './wpm';
@@ -6,21 +6,16 @@ import WPM from './wpm';
 const containerStyle = {
   width: "35em",
   margin: "0 auto",
-  //textAlign: "center",
 };
 
-class TypingTest extends Component {
-  render() {
-    return(
-      <div style={containerStyle}>
-        <TypingTestContents typingTest={this.props.typingTest} />
-        <TypingTestInput
-          typingTest={this.props.typingTest}
-          onKeyPress={this.props.onKeyPress} />
-        <WPM typingTest={this.props.typingTest} />
-      </div>);
-  }
-}
+const TypingTest = ({ typingTest, onKeyPress }) => {
+  return(
+    <div style={containerStyle}>
+      <TypingTestContents typingTest={typingTest} />
+      <TypingTestInput typingTest={typingTest} onKeyPress={onKeyPress} />
+      <WPM typingTest={typingTest} />
+    </div>);
+};
 
 TypingTest.propTypes = {
   typingTest: React.PropTypes.object.isRequired,
