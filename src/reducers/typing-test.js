@@ -112,6 +112,7 @@ function advanceWord(state) {
       newState.endTime = Date.now();
       newState.finished = true;
     } else {
+      newState.correctChars++; // Space / enter counts as correct char
       newState.typedLine = [];
       newState.word = 0;
       newState.line++;
