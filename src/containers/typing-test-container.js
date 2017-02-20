@@ -52,17 +52,17 @@ class TypingTestContainer extends Component {
     // See if the keyhandler has marked the test finished due to
     // the last line being typed (with last space / enter pressed
     // on last word)
-    if (props.typingTest.inProgress && props.typingTest.finished) {
+    if (props.typingTest.running && props.typingTest.finished) {
       this.stop();
       return;
     }
     // Do nothing if the current round has been finished
-    if (props.typingTest.finished && !props.typingTest.inProgress)
+    if (props.typingTest.finished && !props.typingTest.running)
       return;
 
     // Check if the last word of the test was typed correctly and
     // stop the round immediately if so
-    if (props.typingTest.inProgress &&
+    if (props.typingTest.running &&
         line === text.length - 1 &&
         word === words.length - 1 &&
         typedWord === correctWord)
@@ -91,7 +91,7 @@ class TypingTestContainer extends Component {
       return;
 
     // Start when typing starts
-    if (!typingTest.inProgress &&
+    if (!typingTest.running &&
       e.key !== 'Shift' &&
       e.key !== 'Tab')
       this.start();

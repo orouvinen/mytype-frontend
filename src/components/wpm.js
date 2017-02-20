@@ -19,7 +19,7 @@ class WPM extends Component {
   }
   
   componentWillReceiveProps(props) {
-    if (props.typingTest.inProgress && !this.state.timer) {
+    if (props.typingTest.running && !this.state.timer) {
       this.setState({
         timer: setInterval(this.updateWPM.bind(this), 500),
       });
@@ -45,7 +45,7 @@ class WPM extends Component {
     const { correctChars, wrongChars } = this.props.typingTest;
     // Figure out elapsed time in milliseconds 
     let timeElapsed;
-    if (!typingTest.inProgress) {
+    if (!typingTest.running) {
       if (typingTest.finished)
         timeElapsed = typingTest.stopTime - typingTest.startTime; 
       else

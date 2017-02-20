@@ -5,7 +5,7 @@ const initialState = {
   char: 0,        // current character
   typedWord: "",  // Progress of currently typed word
   typedLine: [],      // All the typed words on the current line so fat 
-  inProgress: false,  // typing is taking place?
+  running: false,  // typing is taking place?
   finished: false,    // the typing test has finished?
   startTime: undefined, // timestamp for typing start time
   stopTime: undefined,  // timestamp for finishing time 
@@ -26,7 +26,7 @@ function typingTest(state = initialState, action) {
       return {
         ...state,
         stopTime: action.stopTime,
-        inProgress: false,
+        running: false,
         finished: true,
         finishWPM: action.wpm,
       };
@@ -35,7 +35,7 @@ function typingTest(state = initialState, action) {
       return {
         ...state,
         startTime: action.startTime,
-        inProgress: true,
+        running: true,
         line: 0,
         word: 0,
         totalWords: 0,
