@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TypingTest from '../components/typing-test';
-import * as actions from '../actions/action-creators';
+import * as actions from '../actions/typing-test-actions';
 
 const corpus = 
   "the be to of and a in that have I it for not on with" +
