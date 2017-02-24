@@ -76,7 +76,8 @@ class TypingTestContainer extends Component {
 
   stop() {
     const { typingTest } = this.props;
-    this.props.stop(typingTest.endTime)
+    const endTime = typingTest.endTime || Date.now();
+    this.props.stop(endTime);
   }
 
   handleKeyPress(e) {
