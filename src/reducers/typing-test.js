@@ -101,8 +101,12 @@ function advanceWord(currentState) {
   state.char = 0;
   state.typedWord = "";
 
-  // Add to incorrect character count any letters that were not
-  state.wrongChars += currentWord.length - currentState.char;
+  // Add to incorrect character count any letters that were not typed,
+  // or excess letters typed beyond the correct word.
+  if (currentState.char > currentWord.length)
+    state.wrongChars += currentState.char - currentWord.length;
+  else
+    state.wrongChars += currentWord.length - currentState.char;
 
   // End of line reached?
   if (state.word === words.length) {
