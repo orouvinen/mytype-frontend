@@ -11,7 +11,8 @@ export function wpm(correctCount, incorrectCount, time) {
   //time /= 60;
   time /= 60000;
 
-  return Math.max(0, ((charCount / 5) - incorrectCount) / time);
+  // return Math.max(0, ((charCount / 5) - incorrectCount) / time);
+  return Math.max(0, correctCount / 5 / time);
 }
 
 export function accuracy(correctCount, incorrectCount) {
