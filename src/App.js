@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import './App.css';
 
 const headerStyle = {
@@ -10,11 +11,18 @@ const headerStyle = {
   fontSize: "1.2em",
 };
 
+const headerLinkStyle = {
+  color: "white",
+  textDecoration: "none",
+};
+
 const headerAppTitle = "mytype";
 
 const App = (props) => (
   <div>
-    <header style={headerStyle}><h2>{headerAppTitle}</h2></header>
+    <header style={headerStyle}>
+      <h2><Link style={headerLinkStyle} to="/">{headerAppTitle}</Link></h2>
+    </header>
     {React.cloneElement(props.children, props)}
   </div>
 );
