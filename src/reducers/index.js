@@ -3,7 +3,7 @@ const initialState = {
   user: {},
 };
 
-function auth(state = initialState, action) {
+function index(state = initialState, action) {
   switch (action.type) {
 
     default:
@@ -11,4 +11,4 @@ function auth(state = initialState, action) {
   }
 }
 
-export default auth;
+export default index;
