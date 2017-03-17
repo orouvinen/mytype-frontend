@@ -3,4 +3,3 @@ export function requestSignUp() {
     type: 'AUTH_SIGNUP_REQUEST',
   };
 }
-

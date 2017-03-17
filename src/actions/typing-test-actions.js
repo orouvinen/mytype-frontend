@@ -2,7 +2,7 @@ export function wordTyped() {
   return {
     type: 'TYPING_TEST_WORD_TYPED'
   };
-};
+}
 
 export function setText(text, lineLength) {
   return {

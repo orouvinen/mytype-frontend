@@ -7,12 +7,11 @@ import * as actions from '../actions/auth-actions';
 class SignUpContainer extends Component {
   handleSubmit(values) {
     const { name, email, password } = values;
-
     this.props.requestSignUp();
   }
 
   render() {
-    return <SignUp onSubmit={this.handleSubmit} />;
+    return <SignUp onSubmit={this.handleSubmit.bind(this)} />;
   }
 }
 
