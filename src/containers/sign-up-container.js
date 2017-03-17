@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SignUp from '../components/sign-up';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../actions/auth-actions';
+import * as actions from '../actions/auth';
 
 class SignUpContainer extends Component {
   handleSubmit(values) {
