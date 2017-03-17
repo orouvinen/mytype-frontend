@@ -1,7 +1,7 @@
-export default function *rootSaga() {
+import { watchSignUpRequest } from './sign-up-saga';
+
+export default function* rootSaga() {
   yield [
-    /* authSaga,
-     * blaablaSaga
-     */
+    watchSignUpRequest
   ];
-};
+}
