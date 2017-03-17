@@ -1,6 +1,6 @@
 import { take, takeEvery, call, put } from 'redux-saga/effects';
 
-function* signUp() {
+function* signUp(action) {
 }
 
 export function* watchSignUpRequest() {

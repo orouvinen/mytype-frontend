@@ -7,7 +7,7 @@ import * as actions from '../actions/auth-actions';
 class SignUpContainer extends Component {
   handleSubmit(values) {
     const { name, email, password } = values;
-    this.props.requestSignUp();
+    this.props.requestSignUp(name, email, password);
   }
 
   render() {
