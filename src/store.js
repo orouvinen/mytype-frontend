@@ -3,9 +3,15 @@ import createSagaMiddleware from 'redux-saga';
 // Import reducers
 import typingTest from './reducers/typing-test';
 import index from './reducers/index';
+import { reducer as formReducer } from 'redux-form';
+
 import { authSaga } from './sagas/auth-saga';
 
-const rootReducer = combineReducers({ typingTest, index });
+const rootReducer = combineReducers({
+  typingTest,
+  index,
+  form: formReducer
+});
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
 

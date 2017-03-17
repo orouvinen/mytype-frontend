@@ -3,8 +3,12 @@ import SignUp from '../components/sign-up';
 import { connect } from 'redux';
 
 class SignUpContainer extends Component {
+  handleSubmit(values) {
+   
+  }
+  
   render() {
-    return <SignUp />;
+    return <SignUp onSubmit={this.handleSubmit.bind(this)}/>;
   }
 }
 
