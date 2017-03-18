@@ -33,7 +33,7 @@ const SignUpForm = (props) => {
           <div><Field name="name" component="input" type="text" required /></div>
         </div>
         <div style={inputFieldContainer}>
-          <div><label htmlFor="email">Email address (for password recovery)</label></div>
+          <div><label htmlFor="email">Email address</label></div>
           <div><Field name="email" component="input" type="email" required /></div>
         </div>
         <div style={inputFieldContainer}>
