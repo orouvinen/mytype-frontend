@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import SignUp from '../components/sign-up';
-import SignUpComplete from '../components/sign-up-complete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/auth';
+
+import SignUp from '../components/sign-up';
+import SignUpForm from '../components/sign-up-form';
+import SignUpComplete from '../components/sign-up-complete';
+
 
 class SignUpContainer extends Component {
   handleSubmit(values) {
@@ -13,9 +16,17 @@ class SignUpContainer extends Component {
 
   render() {
     if (this.props.auth.accountCreated)
-      return <SignUpComplete />
+      return (
+        <SignUp>
+          <SignUpComplete />
+        </SignUp>
+      );
     else
-      return <SignUp onSubmit={this.handleSubmit.bind(this)} />;
+      return (
+        <SignUp>
+          <SignUpForm auth={this.props.auth} onSubmit={this.handleSubmit.bind(this)} />
+        </SignUp>
+      );
   }
 }
 

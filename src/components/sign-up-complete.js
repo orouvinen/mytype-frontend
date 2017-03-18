@@ -8,6 +8,6 @@ const SignUpComplete = () => {
       <p>(in reality we are going to show you the login component here directly)</p>
     </div>
   );
-};
+}
 
 export default SignUpComplete;
