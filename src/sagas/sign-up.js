@@ -5,12 +5,17 @@ import * as auth from '../fetch/auth';
 function* signUp(action) {
   const { name, email, password } = action;
   let response = yield call(auth.signUp, [name, email, password]);
-  if (response.status === 200)
-    yield put(actions.signUpSuccess());
-  // To get the response JSON:
+  switch (response.status) {
+    case 200:
+      yield put(actions.signUpSuccess());
+      break;
+    case 409:
+      yield put(actions.signUpFail("Email is already in use"));
+      break;
+    default:
+      yield put(actions.signUpFail("Sign up failed"));
+  }
   //response.json().then(data => console.log(data));
-
-  // Status in response.status
 }
 
 export function* watchSignUpRequest() {

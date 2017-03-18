@@ -12,3 +12,10 @@ export function signUpSuccess() {
     type: 'AUTH_SIGNUP_SUCCESS',
   };
 }
+
+export function signUpFail(errorMessage) {
+  return {
+    type: 'AUTH_SIGNUP_FAIL',
+    errorMessage
+  };
+};

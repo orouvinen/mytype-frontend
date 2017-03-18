@@ -1,6 +1,8 @@
 const initialState = {
   signUpRequesting: false,
-  signedIn: false,
+  accountCreated: false,  // true after succesfull creation 
+  errorMessage: null,
+  loggedIn: false,
   user: null,
 };
 
@@ -15,6 +17,12 @@ function auth(state = initialState, action) {
       return {
         ...state,
         accountCreated: true,
+      };
+    case 'AUTH_SIGNUP_FAIL':
+      return {
+        ...state,
+        accountCreated: false,
+        errorMessage: action.errorMessage,
       };
     default:
       return state;
