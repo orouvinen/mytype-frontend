@@ -1,6 +1,6 @@
 const initialState = {
   signUpRequesting: false,
-  accountCreated: false,  // true after succesfull creation 
+  accountCreated: false,  // true after succesful creation
   errorMessage: null,
   loggedIn: false,
   user: null,
