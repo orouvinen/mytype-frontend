@@ -8,5 +8,5 @@ export function signUp(name, email, password) {
     body: JSON.stringify({ name, email, password })
   })
     .then(response => { return response; })
-    .catch(err => err)
+    .catch(err => err);
 }
