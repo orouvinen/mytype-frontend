@@ -6,3 +6,9 @@ export function requestSignUp(name, email, password) {
     password,
   };
 }
+
+export function signUpSuccess() {
+  return {
+    type: 'AUTH_SIGNUP_SUCCESS',
+  };
+}

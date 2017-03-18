@@ -11,6 +11,11 @@ function auth(state = initialState, action) {
         ...state,
         signUpRequesting: true,
       };
+    case 'AUTH_SIGNUP_SUCCESS':
+      return {
+        ...state,
+        accountCreated: true,
+      };
     default:
       return state;
   }
