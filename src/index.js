@@ -7,7 +7,6 @@ import MainLayout from './components/main-layout';
 import NotFound from './components/not-found';
 import SignUp from './containers/sign-up-container';
 import store from './store';
-import './index.css';
 
 ReactDOM.render(
   <Provider store={store}>
