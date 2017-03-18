@@ -1,9 +1,10 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import colors from '../colors';
 
 // Wrapper around the whole login form
 const containerStyle = {
-  backgroundColor: "#025c68",
+  backgroundColor: colors.primary0,
   width: "50%",
   maxWidth: "500px",
   margin: "30px auto",

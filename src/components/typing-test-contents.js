@@ -1,4 +1,5 @@
 import React from 'react';
+import colors from '../colors';
 
 const containerStyle = {
   textAlign: "center",
@@ -10,16 +11,16 @@ const currentLineStyle = {
   width: "100%",
   margin: "2px auto",
   fontSize: "1.4em",
-  backgroundColor: "#26818e",
+  backgroundColor: colors.primary1,
   borderRadius: 2,
 };
 
 const styleCurrentWord = {
-  color: "#e8b13a",
+  color: colors.secondary1,
 };
 
 const styleIncorrectWord = {
-  color: "#aa0c00",
+  color: colors.tertiary0,
   textDecoration: "line-through",
 };
 
@@ -43,7 +44,7 @@ const TypingTestContents = ({ typingTest }) => {
           currentLine.map((word, i) => {
             let style;
             if (i < wordNum && word !== typedLine[i])
-              style = styleIncorrectWord;  
+              style = styleIncorrectWord;
             else
               style = (i === wordNum) ? styleCurrentWord : wordStyle;
             return (<span key={i} style={style}>{word} </span>);
