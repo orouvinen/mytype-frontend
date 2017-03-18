@@ -1,5 +1,4 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
 import colors from '../colors';
 
 // Wrapper around the whole login form

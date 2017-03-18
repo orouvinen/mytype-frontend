@@ -13,7 +13,6 @@ function* signUp(action) {
       break;
     case 409:
       yield put(actions.signUpFail("Email is already in use"));
-      response.json().then(data => console.log(data));
       break;
     default:
       yield put(actions.signUpFail("Sign up failed"));

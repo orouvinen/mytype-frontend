@@ -12,10 +12,13 @@ const submitButtonContainer = {
   textAlign: "right",
 };
 
+const errorMessageStyle = {
+  color: colors.tertiary3,
+};
 
 const AccountExistsNotify = props => {
   if (props.auth.signUpRequested && !props.auth.accountCreated)
-    return <div>Account with this email already exists!</div>;
+    return <div style={errorMessageStyle}>{props.auth.errorMessage}</div>;
   else
     return null;
 };
