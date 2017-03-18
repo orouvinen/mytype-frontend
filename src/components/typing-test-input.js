@@ -9,6 +9,8 @@ const style = {
   border: "none",
   height: "1.8em",
   fontSize: "1.3em",
+  background: "white",
+  color: "black",
 };
 
 const TypingTestInput = ({typingTest, onKeyPress}) =>

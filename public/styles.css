@@ -17,3 +17,31 @@ body {
      background: #014953;
      color: white;
 }
+
+label {
+     font-size: 0.8em;
+     padding-left: 3px;
+     display: inline-block;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+     padding: 3px;
+     margin: 0 0 0 3px;
+     background: #26818e;
+     color: white;
+     border: none;
+     border-radius: 1px;
+     font-size: 1.1em;
+}
+
+button[type="submit"] {
+     line-height: 1.5em;
+     font-size: 1.2em;
+     font-weight: bold;
+     padding: 8px;
+     background: #e8b13a;
+     color: white;
+     margin: 4px; 
+     border-radius: 1px;
+     border: none;
+}
