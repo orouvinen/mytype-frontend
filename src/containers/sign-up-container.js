@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/auth';
 
-import SignUp from '../components/sign-up';
+import FormWrapper from '../components/form-wrapper';
 import SignUpForm from '../components/sign-up-form';
 import SignUpComplete from '../components/sign-up-complete';
 
@@ -17,15 +17,15 @@ class SignUpContainer extends Component {
   render() {
     if (this.props.auth.accountCreated)
       return (
-        <SignUp>
+        <FormWrapper>
           <SignUpComplete />
-        </SignUp>
+        </FormWrapper>
       );
     else
       return (
-        <SignUp>
+        <FormWrapper>
           <SignUpForm auth={this.props.auth} onSubmit={this.handleSubmit.bind(this)} />
-        </SignUp>
+        </FormWrapper>
       );
   }
 }

@@ -11,10 +11,10 @@ const containerStyle = {
   borderRadius: "2px",
 };
 
-const SignUp = (props) => {
+const FormWrapper = (props) => {
   return(
     <div style={containerStyle}>{props.children}</div>
   );
 }
 
-export default SignUp;
+export default FormWrapper;
