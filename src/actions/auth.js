@@ -16,6 +16,27 @@ export function signUpSuccess() {
 export function signUpFail(errorMessage) {
   return {
     type: 'AUTH_SIGNUP_FAIL',
-    errorMessage
+    errorMessage,
+  };
+};
+
+export function requestLogin(email, password) {
+  return {
+    type: 'AUTH_LOGIN_REQUEST',
+    email,
+    password,
+  };
+};
+
+export function loginSuccess() {
+  return {
+    type: 'AUTH_LOGIN_SUCCESS',
+  };
+};
+
+export function loginFail(errorMessage) {
+  return {
+    type: 'AUTH_LOGIN_FAIL',
+    errorMessage,
   };
 };
