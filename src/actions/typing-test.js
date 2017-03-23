@@ -1,12 +1,8 @@
-export function wordTyped() {
-  return {
-    type: 'TYPING_TEST_WORD_TYPED'
-  };
-}
+import { typingActions } from './action-types';
 
 export function setText(text, lineLength) {
   return {
-    type: 'TYPING_TEST_SET_TEXT',
+    type: typingActions.TYPINGTEST_SET_TEXT,
     text,
     lineLength,
   }
@@ -14,41 +10,42 @@ export function setText(text, lineLength) {
 
 export function stop(stopTime) {
   return {
-    type: 'TYPING_TEST_DONE',
+    type: typingActions.TYPINGTEST_DONE,
     stopTime,
   };
 }
 
 export function start(startTime) {
   return {
-    type: 'TYPING_TEST_START',
+    type: typingActions.TYPINGTEST_START,
     startTime,
   };
 }
 
+export function reset() {
+  return {
+    type: typingActions.TYPINGTEST_RESET,
+  }
+}
+
 export function keyPress(key) {
   return {
-    type: 'TYPING_TEST_KEYPRESS',
+    type: typingActions.TYPINGTEST_KEYPRESS,
     key,
   }
 }
 
 export function character(char) {
   return {
-    type: 'TYPING_TEST_CHARACTER',
+    type: typingActions.TYPINGTEST_CHARACTER,
     char,
   };
 }
 
 export function erase(isCorrect) {
   return {
-    type: 'TYPING_TEST_ERASE',
+    type: typingActions.TYPINGTEST_ERASE,
     isCorrect,  // Was the erased character correct?
   };
 }
 
-export function reset() {
-  return {
-    type: 'TYPING_TEST_RESET',
-  }
-}

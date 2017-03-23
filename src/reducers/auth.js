@@ -1,3 +1,5 @@
+import { authActions } from '../actions/action-types';
+
 const initialState = {
   signUpRequested: false,
   accountCreated: false,  // true after succesful creation
@@ -8,17 +10,17 @@ const initialState = {
 
 function auth(state = initialState, action) {
   switch (action.type) {
-    case 'AUTH_SIGNUP_REQUEST':
+    case authActions.AUTH_SIGNUP_REQUEST:
       return {
         ...state,
         signUpRequested: true,
       };
-    case 'AUTH_SIGNUP_SUCCESS':
+    case authActions.AUTH_SIGNUP_SUCCESS:
       return {
         ...state,
         accountCreated: true,
       };
-    case 'AUTH_SIGNUP_FAIL':
+    case authActions.AUTH_SIGNUP_FAIL:
       return {
         ...state,
         accountCreated: false,

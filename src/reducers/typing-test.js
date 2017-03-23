@@ -1,14 +1,16 @@
+import { typingActions } from '../actions/action-types';
+
 const initialState = {
   text: [""],     // the text as an array of text lines
   line: 0,        // current line num 0...n-1
   word: 0,        // word num in the current line 0...n-1
   char: 0,        // current character
   typedWord: "",  // Progress of currently typed word
-  typedLine: [],      // All the typed words on the current line so fat 
+  typedLine: [],      // All the typed words on the current line so far
   running: false,  // typing is taking place?
   finished: false,    // the typing test has finished?
   startTime: undefined, // timestamp for typing start time
-  stopTime: undefined,  // timestamp for finishing time 
+  stopTime: undefined,  // timestamp for finishing time
   correctChars: 0,
   wrongChars: 0,
   totalWords: 0, // total number of words typed so far
@@ -16,13 +18,13 @@ const initialState = {
 
 function typingTest(state = initialState, action) {
   switch (action.type) {
-    case 'TYPING_TEST_SET_TEXT':
+    case typingActions.TYPINGTEST_SET_TEXT:
       return {
         ...state,
         text: textToLines(action.text, action.lineLength),
       };
 
-    case 'TYPING_TEST_DONE':
+    case typingActions.TYPINGTEST_DONE:
       return {
         ...state,
         stopTime: action.stopTime,
@@ -31,7 +33,7 @@ function typingTest(state = initialState, action) {
         finishWPM: action.wpm,
       };
 
-    case 'TYPING_TEST_START':
+    case typingActions.TYPINGTEST_START:
       return {
         ...state,
         startTime: action.startTime,
@@ -41,10 +43,10 @@ function typingTest(state = initialState, action) {
         totalWords: 0,
       };
 
-    case 'TYPING_TEST_KEYPRESS':
+    case typingActions.TYPINGTEST_KEYPRESS:
       return keyHandler(action.key, state);
 
-    case 'TYPING_TEST_RESET':
+    case typingActions.TYPINGTEST_RESET:
       return {
         ...initialState,
         text: state.text,
@@ -59,13 +61,13 @@ function keyHandler(key, currentState) {
   const { text, line, word, char, typedWord } = state;
   const words = text[line].split(' ');
   const correctWord = words[word];
-  
+
   if (key === 'Backspace') {
     // Already at the beginning of the current word?
     if (char === 0)
       return state;
 
-    // Was the to-be-deleted character correct or incorrect? 
+    // Was the to-be-deleted character correct or incorrect?
     if (typedWord[char - 1] === correctWord[char - 1])
       state.correctChars--;
     else
