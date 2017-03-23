@@ -6,6 +6,7 @@ import App from './App';
 import MainLayout from './components/main-layout';
 import NotFound from './components/not-found';
 import SignUp from './containers/sign-up-container';
+import Login from './containers/login-container';
 import store from './store';
 
 ReactDOM.render(
@@ -13,7 +14,8 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={MainLayout} />
-        <Route path="/signup" component={SignUp}></Route>
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={SignUp} />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>
