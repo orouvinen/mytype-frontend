@@ -5,6 +5,29 @@ import { storeAuthToken, deleteAuthToken } from '../helpers/auth';
 import * as auth from '../fetch/auth';
 import { browserHistory } from 'react-router';
 
+/*
+ * Listeners
+ */
+function* logout(action) {
+  yield call(deleteAuthToken);
+}
+
+export function* watchSignUpRequest() {
+  yield takeEvery(authActions.AUTH_SIGNUP_REQUEST, signUp);
+}
+
+export function* watchLoginRequest() {
+  yield takeEvery(authActions.AUTH_LOGIN_REQUEST, authenticate);
+}
+
+export function* watchLogout() {
+  yield takeEvery(authActions.AUTH_LOGOUT, logout);
+}
+
+
+/*
+ * Workers
+ */
 function* signUp(action) {
   const { name, email, password } = action;
   let response = yield call(auth.signUp, name, email, password);
@@ -44,19 +67,3 @@ function* authenticate(action) {
   }
 }
 
-
-function* logout(action) {
-  yield call(deleteAuthToken);
-}
-
-export function* watchSignUpRequest() {
-  yield takeEvery(authActions.AUTH_SIGNUP_REQUEST, signUp);
-}
-
-export function* watchLoginRequest() {
-  yield takeEvery(authActions.AUTH_LOGIN_REQUEST, authenticate);
-}
-
-export function* watchLogout() {
-  yield takeEvery(authActions.AUTH_LOGOUT, logout);
-}
