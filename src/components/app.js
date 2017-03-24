@@ -38,7 +38,7 @@ const App = props => (
             <div>Logged in: {props.auth.user.name}</div>
             <a href="#" onClick={props.logout}>Logout</a>
           </div> :
-          <Link to="/login">Login</Link>
+          <a href="#" onClick={props.loginClicked}>Login</a>
         }
       </div>
       <div style={{clear: "both"}}></div>

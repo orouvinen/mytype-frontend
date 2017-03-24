@@ -15,10 +15,18 @@ const errorMessageStyle = {
   color: colors.tertiary3,
 };
 
+const AuthFailNotify = props => {
+  if (props.auth.authFailed) {
+    return(<div style={errorMessageStyle}>{props.auth.errorMessage}</div>);
+  } else
+    return null;
+};
+
 const LoginForm = props => {
   const { handleSubmit } = props;
   return (
     <div>
+      <AuthFailNotify auth={props.auth} />
       <form onSubmit={handleSubmit} method="POST">
         <div style={inputFieldContainer}>
           <div><label htmlFor="email">Email address</label></div>

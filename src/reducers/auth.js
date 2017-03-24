@@ -3,6 +3,7 @@ import { authActions } from '../actions/action-types';
 const initialState = {
   signUpRequested: false,
   accountCreated: false,  // true after succesful creation
+  authFailed: false,
   errorMessage: null,
   loggedIn: false,
   user: null,
@@ -29,15 +30,28 @@ function auth(state = initialState, action) {
     case authActions.AUTH_LOGIN_SUCCESS:
       return {
         ...state,
+        authFailed: false,
         loggedIn: true,
         user: action.data.user
       };
-      break;
+    case authActions.AUTH_LOGIN_FAIL:
+      return {
+        ...state,
+        authFailed: true,
+        errorMessage: action.errorMessage,
+      };
     case authActions.AUTH_LOGOUT:
       return {
         ...state,
+        errorMessage: null,
         loggedIn: false,
         user: null,
+      };
+    case authActions.AUTH_RESET_FAILSTATE:
+      return {
+        ...state,
+        authFailed: false,
+        errorMessage: null
       };
     default:
       return state;
