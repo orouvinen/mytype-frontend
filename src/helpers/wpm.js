@@ -5,11 +5,9 @@
 //  time: total time elapsed in milliseconds
 export function wpm(correctCount, incorrectCount, time) {
   // Convert milliseconds to minutes
-  //time /= 1000;
-  //time /= 60;
-  time /= 60000;
+  time /= 1000;
+  time /= 60;
 
-  // return Math.max(0, ((charCount / 5) - incorrectCount) / time);
   return Math.max(0, correctCount / 5 / time);
 }
 
