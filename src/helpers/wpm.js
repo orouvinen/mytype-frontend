@@ -4,8 +4,6 @@
 //  incorrectCount: -"-     incorrectly    -"
 //  time: total time elapsed in milliseconds
 export function wpm(correctCount, incorrectCount, time) {
-  const charCount = correctCount + incorrectCount;
-
   // Convert milliseconds to minutes
   //time /= 1000;
   //time /= 60;
