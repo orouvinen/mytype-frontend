@@ -1,4 +1,4 @@
-import { take, takeEvery, call, put } from 'redux-saga/effects';
+import { takeEvery, call, put } from 'redux-saga/effects';
 import * as actions from '../actions/auth';
 import { reset } from '../actions/typing-test';
 import { authActions } from '../actions/action-types.js';
