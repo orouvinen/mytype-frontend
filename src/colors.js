@@ -1,8 +1,8 @@
 const colors = {
   // Each color group goes from light to dark
-  primary0: "#025C68",
-  primary1: "#26818E",
-  primary2: "#0C707E",
+  primary0: "#26818E",
+  primary1: "#0C707E",
+  primary2: "#025C68",
   primary3: "#014953",
   primary4: "#003138",
 

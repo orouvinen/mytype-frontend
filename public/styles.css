@@ -24,6 +24,9 @@ label {
      display: inline-block;
 }
 
+a {
+     color: #5c2c00; /* complementary */
+}
 
 input[type="text"], input[type="password"], input[type="email"] {
      padding: 3px;
