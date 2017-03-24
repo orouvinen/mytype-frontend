@@ -28,7 +28,7 @@ function* authenticate(action) {
   switch (response.status) {
     case 200: // OK
       // Rretrieve reponse body as json, save JWT for future requests and
-      // dispatch action for succesful login
+      // dispatch action for succesful login and redirect app to root route.
       const body = yield call(() => response.json().then(data => data));
       yield call(storeAuthToken, body.token);
       yield put(actions.loginSuccess(body));
