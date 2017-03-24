@@ -17,6 +17,12 @@ const colors = {
   tertiary2: "#CD1E10",
   tertiary3: "#870A00",
   tertiary4: "#5C0700",
+
+  complementary0: "#E88D3A",
+  complementary1: "#CD6B10",
+  complementary2: "#AA5200",
+  complementary3: "#874100",
+  complementary4: "#5C2C00",
 };
 
 export default colors;
