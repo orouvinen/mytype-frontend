@@ -1,5 +1,6 @@
 import { take, takeEvery, call, put } from 'redux-saga/effects';
 import * as actions from '../actions/auth';
+import { authActions } from '../actions/action-types.js';
 import * as auth from '../fetch/auth';
 import { browserHistory } from 'react-router';
 
@@ -17,9 +18,8 @@ function* signUp(action) {
     default:
       yield put(actions.signUpFail("Sign up failed"));
   }
-  //response.json().then(data => console.log(data));
 }
 
 export function* watchSignUpRequest() {
-  yield takeEvery('AUTH_SIGNUP_REQUEST', signUp);
+  yield takeEvery(authActions.AUTH_SIGNUP_REQUEST, signUp);
 }
