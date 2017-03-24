@@ -1,6 +1,7 @@
 import { take, takeEvery, call, put } from 'redux-saga/effects';
 import * as actions from '../actions/auth';
 import { authActions } from '../actions/action-types.js';
+import { storeAuthToken, deleteAuthToken } from '../helpers/auth';
 import * as auth from '../fetch/auth';
 import { browserHistory } from 'react-router';
 
@@ -20,15 +21,22 @@ function* signUp(action) {
   }
 }
 
-function* login(action) {
+function* authenticate(action) {
   const { email, password} = action;
   const response = yield call(auth.authenticate, email, password);
 
   switch (response.status) {
-    case 200:
-      // Retrieve reponse body as json and dispatch action for succesful login
+    case 200: // OK
+      // Rretrieve reponse body as json, save JWT for future requests and
+      // dispatch action for succesful login
       const body = yield call(() => response.json().then(data => data));
-      yield put(actions.loginSuccess(body)); 
+      yield call(storeAuthToken, body.token);
+      yield put(actions.loginSuccess(body));
+      yield call(browserHistory.push, '/');
+      break;
+
+    case 401: // Unauthorized
+      yield put(actions.loginFail("Invalid email address or password"));
       break;
 
     default:
@@ -37,10 +45,18 @@ function* login(action) {
 }
 
 
+function* logout(action) {
+  yield call(deleteAuthToken);
+}
+
 export function* watchSignUpRequest() {
   yield takeEvery(authActions.AUTH_SIGNUP_REQUEST, signUp);
 }
 
 export function* watchLoginRequest() {
-  yield takeEvery(authActions.AUTH_LOGIN_REQUEST, login);
+  yield takeEvery(authActions.AUTH_LOGIN_REQUEST, authenticate);
+}
+
+export function* watchLogout() {
+  yield takeEvery(authActions.AUTH_LOGOUT, logout);
 }

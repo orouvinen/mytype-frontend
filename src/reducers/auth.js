@@ -26,6 +26,19 @@ function auth(state = initialState, action) {
         accountCreated: false,
         errorMessage: action.errorMessage,
       };
+    case authActions.AUTH_LOGIN_SUCCESS:
+      return {
+        ...state,
+        loggedIn: true,
+        user: action.data.user
+      };
+      break;
+    case authActions.AUTH_LOGOUT:
+      return {
+        ...state,
+        loggedIn: false,
+        user: null,
+      };
     default:
       return state;
   }

@@ -20,7 +20,7 @@ export function signUpFail(errorMessage) {
     type: authActions.AUTH_SIGNUP_FAIL,
     errorMessage,
   };
-};
+}
 
 export function requestLogin(email, password) {
   return {
@@ -28,19 +28,24 @@ export function requestLogin(email, password) {
     email,
     password,
   };
-};
+}
 
 export function loginSuccess(responseBody) {
-  console.log(responseBody);
   return {
     type: authActions.AUTH_LOGIN_SUCCESS,
     data: responseBody,
   };
-};
+}
 
 export function loginFail(errorMessage) {
   return {
     type: authActions.AUTH_LOGIN_FAIL,
     errorMessage,
   };
-};
+}
+
+export function logout() {
+  return {
+    type: authActions.AUTH_LOGOUT,
+  };
+}

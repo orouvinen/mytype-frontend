@@ -19,5 +19,5 @@ export function authenticate(email, password) {
     },
     body: JSON.stringify({ email, password })
   })
-    .then(response => response);
+  .then(response => response);
 }
