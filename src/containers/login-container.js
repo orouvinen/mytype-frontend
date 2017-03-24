@@ -8,15 +8,23 @@ import FormWrapper from '../components/form-wrapper';
 
 
 class LoginContainer extends Component {
+  constructor() {
+    super();
+    this.state = { loginTries: 0 };
+  }
   handleSubmit(values) {
     const { email, password } = values;
     this.props.requestLogin(email, password);
+    this.setState({ loginTries: this.state.loginTries + 1});
   }
 
   render() {
     return (
       <FormWrapper>
-        <LoginForm auth={this.props.auth} onSubmit={this.handleSubmit.bind(this)} />
+        <LoginForm
+          auth={this.props.auth}
+          loginTries={this.state.loginTries}
+          onSubmit={this.handleSubmit.bind(this)} />
       </FormWrapper>
     );
   }

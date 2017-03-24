@@ -16,7 +16,7 @@ const errorMessageStyle = {
 };
 
 const AuthFailNotify = props => {
-  if (props.auth.authFailed) {
+  if (props.auth.authFailed && props.loginTries > 0) {
     return(<div style={errorMessageStyle}>{props.auth.errorMessage}</div>);
   } else
     return null;
@@ -26,7 +26,7 @@ const LoginForm = props => {
   const { handleSubmit } = props;
   return (
     <div>
-      <AuthFailNotify auth={props.auth} />
+      <AuthFailNotify auth={props.auth} loginTries={props.loginTries} />
       <form onSubmit={handleSubmit} method="POST">
         <div style={inputFieldContainer}>
           <div><label htmlFor="email">Email address</label></div>

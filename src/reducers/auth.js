@@ -47,12 +47,6 @@ function auth(state = initialState, action) {
         loggedIn: false,
         user: null,
       };
-    case authActions.AUTH_RESET_FAILSTATE:
-      return {
-        ...state,
-        authFailed: false,
-        errorMessage: null
-      };
     default:
       return state;
   }

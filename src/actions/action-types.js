@@ -6,7 +6,6 @@ export const authActions = {
   AUTH_LOGIN_SUCCESS: 'AUTH_LOGIN_SUCCESS',
   AUTH_LOGIN_FAIL: 'AUTH_LOGIN_FAIL',
   AUTH_LOGOUT: 'AUTH_LOGOUT',
-  AUTH_RESET_FAILSTATE: 'AUTH_RESET_FAILSTATE',
 };
 
 export const typingActions = {
