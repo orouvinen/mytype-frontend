@@ -10,6 +10,7 @@ import FormWrapper from '../components/form-wrapper';
 class LoginContainer extends Component {
   handleSubmit(values) {
     const { email, password } = values;
+    this.props.requestLogin(email, password);
   }
 
   render() {
@@ -21,8 +22,12 @@ class LoginContainer extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return { auth: state.auth };
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch);
 }
 
-export default connect(mapDispatchToProps)(LoginContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

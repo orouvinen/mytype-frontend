@@ -1,7 +1,8 @@
-import { watchSignUpRequest } from './sign-up';
+import { watchSignUpRequest, watchLoginRequest } from './auth';
 
 export default function* rootSaga() {
   yield [
-    watchSignUpRequest()
+    watchSignUpRequest(),
+    watchLoginRequest(),
   ];
 }

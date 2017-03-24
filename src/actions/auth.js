@@ -30,9 +30,11 @@ export function requestLogin(email, password) {
   };
 };
 
-export function loginSuccess() {
+export function loginSuccess(responseBody) {
+  console.log(responseBody);
   return {
     type: authActions.AUTH_LOGIN_SUCCESS,
+    data: responseBody,
   };
 };
 
