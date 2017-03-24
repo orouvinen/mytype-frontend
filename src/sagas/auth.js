@@ -1,5 +1,6 @@
 import { take, takeEvery, call, put } from 'redux-saga/effects';
 import * as actions from '../actions/auth';
+import { reset } from '../actions/typing-test';
 import { authActions } from '../actions/action-types.js';
 import { storeAuthToken, deleteAuthToken } from '../helpers/auth';
 import * as auth from '../fetch/auth';
@@ -55,6 +56,7 @@ function* authenticate(action) {
       const body = yield call(() => response.json().then(data => data));
       yield call(storeAuthToken, body.token);
       yield put(actions.loginSuccess(body));
+      yield put(reset());
       yield call(browserHistory.push, '/');
       break;
 
@@ -66,4 +68,3 @@ function* authenticate(action) {
       yield put(actions.loginFail("Can't login"));
   }
 }
-
