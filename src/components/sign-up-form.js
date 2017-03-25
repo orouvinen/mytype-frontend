@@ -28,6 +28,7 @@ const SignUpForm = (props) => {
   const { handleSubmit } = props;
   return (
     <div>
+      <h2>Create a new account</h2>
       <AccountExistsNotify auth={props.auth} /> 
       <form onSubmit={handleSubmit} method="POST">
         <div style={inputFieldContainer}>
