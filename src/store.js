@@ -6,6 +6,7 @@ import index from './reducers/index';
 import auth from './reducers/auth'
 import { reducer as formReducer } from 'redux-form';
 import { persistStore, autoRehydrate } from 'redux-persist';
+import createFilter from 'redux-persist-transform-filter';
 import rootSaga from './sagas/index';
 
 const rootReducer = combineReducers({
@@ -23,7 +24,14 @@ let store = createStore(rootReducer,
     autoRehydrate()
 ));
 
-persistStore(store, { blacklist: ['typingTest', 'form']});
+// Only persist loggedIn-status and the possible user object from auth state
+const authSubsetFilter = createFilter('auth', ['loggedIn', 'user']);
+
+persistStore(store, {
+  transforms: [ authSubsetFilter ],
+  blacklist: ['typingTest', 'form']
+});
+
 sagaMiddleware.run(rootSaga);
 
 export default store;

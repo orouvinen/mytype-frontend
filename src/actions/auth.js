@@ -49,3 +49,9 @@ export function logout() {
     type: authActions.AUTH_LOGOUT,
   };
 }
+
+export function resetFailStates() {
+  return {
+    type: authActions.AUTH_RESET_FAILSTATES,
+  };
+}
