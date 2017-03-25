@@ -14,10 +14,6 @@ class SignUpContainer extends Component {
     this.props.requestSignUp(name, email, password);
   }
 
-  componentWillUnmount() {
-    this.props.resetFailStates();
-  }
-
   render() {
     if (this.props.auth.signUpRequested && this.props.auth.accountCreated)
       return (
