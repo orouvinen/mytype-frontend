@@ -32,6 +32,7 @@ class TypingTestContainer extends Component {
     
     // Transform the text into on array of words for local state
     this.setState({ words: text.split(" ") }); 
+    this.props.reset();
   }
 
   // Generates a string with n randomly selected words separated by spaces 
