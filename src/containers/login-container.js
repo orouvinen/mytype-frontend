@@ -19,14 +19,22 @@ class LoginContainer extends Component {
   }
 
   render() {
-    return (
-      <FormWrapper>
-        <LoginForm
-          auth={this.props.auth}
-          loginTries={this.state.loginTries}
-          onSubmit={this.handleSubmit.bind(this)} />
-      </FormWrapper>
-    );
+    if (!this.props.auth.loggedIn) {
+      return (
+        <FormWrapper>
+          <LoginForm
+            auth={this.props.auth}
+            loginTries={this.state.loginTries}
+            onSubmit={this.handleSubmit.bind(this)} />
+        </FormWrapper>
+      );
+    } else {
+      return(
+        <FormWrapper>
+          <div>But you already are logged in!</div>
+        </FormWrapper>
+      );
+    }
   }
 }
 
