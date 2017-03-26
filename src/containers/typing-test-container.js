@@ -51,8 +51,7 @@ class TypingTestContainer extends Component {
     const correctWord = words[word];
     
     // See if the keyhandler has marked the test finished due to
-    // the last line being typed (with last space / enter pressed
-    // on last word)
+    // the last line being typed (with space / enter pressed on last word)
     if (props.typingTest.running && props.typingTest.finished) {
       this.stop();
       return;
