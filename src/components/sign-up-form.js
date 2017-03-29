@@ -13,7 +13,11 @@ const submitButtonContainer = {
 };
 
 const errorMessageStyle = {
-  color: colors.tertiary3,
+  color: colors.tertiary4,
+  backgroundColor: colors.secondary2,
+  padding: "3px",
+  margin: "3px",
+  borderRadius: "1px",
 };
 
 const AccountExistsNotify = props => {
