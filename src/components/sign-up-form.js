@@ -29,15 +29,15 @@ const SignUpForm = (props) => {
   return (
     <div>
       <h2>Create a new account</h2>
-      <AccountExistsNotify auth={props.auth} /> 
+      <AccountExistsNotify auth={props.auth} />
       <form onSubmit={handleSubmit} method="POST">
         <div style={inputFieldContainer}>
           <div><label htmlFor="name">Username</label></div>
-          <div><Field name="name" component="input" type="text" required /></div>
+          <div><Field name="name" component="input" type="text" maxLength={30} required /></div>
         </div>
         <div style={inputFieldContainer}>
           <div><label htmlFor="email">Email address</label></div>
-          <div><Field name="email" component="input" type="email" required /></div>
+          <div><Field name="email" component="input" type="email" maxLength={256} required /></div>
         </div>
         <div style={inputFieldContainer}>
           <div><label htmlFor="password">Password</label></div>
