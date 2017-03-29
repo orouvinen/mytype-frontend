@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router';
 import colors from '../colors';
 
 // wrapper around each input field (and its label)
@@ -30,6 +31,22 @@ const AccountExistsNotify = props => {
 
 const SignUpForm = (props) => {
   const { handleSubmit } = props;
+  if (props.auth.loggedIn) {
+    return (
+      <div>
+        <h2>Krhm..</h2>
+        <p>
+          You are already logged in. So you don't really need to create an account. If you really, really do, then please
+          log out before creating a new account. Thanks.
+        </p>
+        <p>
+          Click <Link to="/">here</Link> and we'll get you back to the front page.
+          <br />Take care!
+        </p>
+      </div>);
+
+  }
+
   return (
     <div>
       <h2>Create a new account</h2>
