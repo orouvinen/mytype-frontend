@@ -3,6 +3,7 @@ MyType is an app to test your typing skills.
 It serves as a learning and a "weekend" project and the current status is that it is
 very much under development.
 
+[Here](https://github.com/orouvinen/mytype-backend) is the backend repository.
 
 ## Installation
 ```
