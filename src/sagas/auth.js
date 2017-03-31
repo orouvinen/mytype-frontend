@@ -9,10 +9,6 @@ import { browserHistory } from 'react-router';
 /*
  * Listeners
  */
-function* logout(action) {
-  yield call(deleteAuthToken);
-}
-
 export function* watchSignUpRequest() {
   yield takeEvery(authActions.AUTH_SIGNUP_REQUEST, signUp);
 }
@@ -68,3 +64,8 @@ function* authenticate(action) {
       yield put(actions.loginFail("Can't login"));
   }
 }
+
+function* logout(action) {
+  yield call(deleteAuthToken);
+}
+
