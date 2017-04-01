@@ -1,5 +1,5 @@
 export function signUp(name, email, password) {
-  return fetch('/api/user', {
+  return fetch('/api/users', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
