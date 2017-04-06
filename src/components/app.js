@@ -32,10 +32,10 @@ const App = props => (
       <div style={titleWrapper}>
         <h2><Link style={headerLinkStyle} to="/">{headerAppTitle}</Link></h2>
       </div>
-      <div style={authWrapper}>    
+      <div style={authWrapper}>
         {props.auth.loggedIn ?
           <div>
-            <div>Logged in: {props.auth.user.name}</div>
+            <div>Logged in: <Link to='/profile'>{props.auth.user.name}</Link></div>
             <a href="#" onClick={props.logout}>Logout</a>
           </div> :
           <Link to='/login'>Login</Link>

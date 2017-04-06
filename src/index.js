@@ -7,6 +7,7 @@ import MainLayout from './components/main-layout';
 import NotFound from './components/not-found';
 import SignUp from './containers/sign-up-container';
 import Login from './containers/login-container';
+import UserProfile from './containers/user-profile-container';
 import store from './store';
 
 ReactDOM.render(
@@ -16,6 +17,7 @@ ReactDOM.render(
         <IndexRoute component={MainLayout} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/profile" component={UserProfile} />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>
