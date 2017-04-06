@@ -30,7 +30,7 @@ function* signUp(action) {
   let response = yield call(auth.signUp, name, email, password);
 
   switch (response.status) {
-    case 200:
+    case 201:
       yield put(actions.signUpSuccess());
       break;
     case 409:
