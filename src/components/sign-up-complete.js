@@ -5,7 +5,7 @@ const SignUpComplete = () => {
   return (
     <div>
       <h2>Signed up!</h2>
-      <p>You can now <Link to='/login'>log in</Link> with your email address and passowrd.</p>
+      <p>You can now <Link to='/login'>log in</Link> with your email address and password.</p>
     </div>
   );
 }
