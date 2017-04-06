@@ -2,6 +2,7 @@ import { authActions } from '../actions/action-types';
 
 const initialState = {
   signUpRequested: false,
+  requestCompleted: false,
   accountCreated: false,  // true after succesful creation
   authFailed: false,
   errorMessage: null,
@@ -14,22 +15,26 @@ function auth(state = initialState, action) {
     case authActions.AUTH_SIGNUP_REQUEST:
       return {
         ...state,
+        requestCompleted: false,
         signUpRequested: true,
       };
     case authActions.AUTH_SIGNUP_SUCCESS:
       return {
         ...state,
+        requestCompleted: true,
         accountCreated: true,
       };
     case authActions.AUTH_SIGNUP_FAIL:
       return {
         ...state,
+        requestCompleted: true,
         accountCreated: false,
         errorMessage: action.errorMessage,
       };
     case authActions.AUTH_LOGIN_SUCCESS:
       return {
         ...state,
+        requestCompleted: true,
         authFailed: false,
         loggedIn: true,
         user: action.data.user
@@ -37,6 +42,7 @@ function auth(state = initialState, action) {
     case authActions.AUTH_LOGIN_FAIL:
       return {
         ...state,
+        requestCompleted: true,
         authFailed: true,
         errorMessage: action.errorMessage,
       };

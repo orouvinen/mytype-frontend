@@ -22,7 +22,8 @@ const errorMessageStyle = {
 };
 
 const AccountExistsNotify = props => {
-  if (props.auth.signUpRequested && !props.auth.accountCreated)
+  if (props.auth.signUpRequested && props.auth.requestCompleted &&
+      !props.auth.accountCreated)
     return <div style={errorMessageStyle}>{props.auth.errorMessage}</div>;
   else
     return null;
