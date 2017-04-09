@@ -4,7 +4,8 @@ export const mainLayoutWrapper = {
 };
 
 export const leftColumn = {
-  marginLeft: "15px",
+  marginLeft: "35px",
+  marginTop: "25px",
   order: "1",
   flex: "1 6 20%",
 };
