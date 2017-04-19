@@ -12,7 +12,10 @@ const initialState = {
 function competitions(state = initialState, action) {
   switch (action.type) {
     case socket.COMPETITIONS_UPDATE:
-      return state;
+      return {
+        ...state,
+        competitions: action.competitions,
+      }
 
     case competition.COMPETITION_CREATE_REQUEST:
       return {
