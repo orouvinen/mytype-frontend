@@ -10,7 +10,6 @@ function createSocket() {
 function createCompetitionListUpdateChannel(socket) {
   return eventChannel(emit => {
     const competitionListHandler = event => {
-      console.log(event);
       emit(event);
     };
     socket.on('competitionListUpdate', competitionListHandler);
@@ -21,7 +20,6 @@ function createCompetitionListUpdateChannel(socket) {
   });
 }
 
-// https://github.com/redux-saga/redux-saga/blob/master/docs/advanced/Channels.md
 export function* watchCompetitionListUpdates() {
   const socket = yield call(createSocket);
   const socketChannel = yield call(createCompetitionListUpdateChannel, socket);
