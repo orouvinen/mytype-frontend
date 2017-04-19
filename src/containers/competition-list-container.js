@@ -9,7 +9,9 @@ class CompetitionListContainer extends Component {
   }
   render() {
     return (
-        <CompetitionList onCreateClicked={this.createCompetition.bind(this)}/>
+        <CompetitionList
+          competition={this.props.competition}
+          onCreateClicked={this.createCompetition.bind(this)} />
     );
   }
 }

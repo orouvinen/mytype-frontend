@@ -18,9 +18,9 @@ const CompetitionList = props => (
     </div>
     <div style={competitionListWrapper}>
       <ul>
-        <li>Competition 1</li>
-        <li>Competition 2</li>
-        <li>Competition 3</li>
+        {props.competition.competitions.map((comp, i) => {
+          return(<li key={i}>{comp.createdBy}'s competition</li>)
+        })}
       </ul>
     </div>
   </div>
