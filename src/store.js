@@ -4,7 +4,9 @@ import createSagaMiddleware from 'redux-saga';
 import typingTest from './reducers/typing-test';
 import index from './reducers/index';
 import auth from './reducers/auth'
+import competition from './reducers/competition';
 import { reducer as formReducer } from 'redux-form';
+
 import { persistStore, autoRehydrate } from 'redux-persist';
 import createFilter from 'redux-persist-transform-filter';
 import rootSaga from './sagas/index';
@@ -13,6 +15,7 @@ const rootReducer = combineReducers({
   typingTest,
   index,
   auth,
+  competition,
   form: formReducer
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -29,7 +32,7 @@ const authSubsetFilter = createFilter('auth', ['loggedIn', 'user']);
 
 persistStore(store, {
   transforms: [ authSubsetFilter ],
-  blacklist: ['typingTest', 'form']
+  blacklist: ['typingTest', 'form', 'competition']
 });
 
 sagaMiddleware.run(rootSaga);

@@ -5,7 +5,7 @@ export function setText(text, lineLength) {
     type: typingActions.TYPINGTEST_SET_TEXT,
     text,
     lineLength,
-  }
+  };
 }
 
 export function stop(stopTime) {

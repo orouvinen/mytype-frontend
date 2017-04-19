@@ -1,7 +1,7 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import * as actions from '../actions/auth';
 import { reset } from '../actions/typing-test';
-import { authActions } from '../actions/action-types.js';
+import { authActions } from '../actions/action-types';
 import { storeAuthToken, deleteAuthToken } from '../helpers/auth';
 import * as auth from '../fetch/auth';
 import { browserHistory } from 'react-router';

@@ -5,16 +5,23 @@ import { Route, Router, IndexRoute, browserHistory } from 'react-router';
 import App from './containers/app-container';
 import MainLayout from './components/main-layout';
 import NotFound from './components/not-found';
+import TypingTest from './containers/typing-test-container';
+import CompetitionList from './containers/competition-list-container';
 import SignUp from './containers/sign-up-container';
 import Login from './containers/login-container';
 import UserProfile from './containers/user-profile-container';
 import store from './store';
 
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={MainLayout} />
+        <IndexRoute
+          component={MainLayout}
+          centerColumn={TypingTest}
+          leftColumn={CompetitionList}
+          rightColumn={() => <div>quux</div>} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/profile" component={UserProfile} />
