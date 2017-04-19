@@ -3,7 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 // Import reducers
 import typingTest from './reducers/typing-test';
 import index from './reducers/index';
-import auth from './reducers/auth'
+import auth from './reducers/auth';
 import competition from './reducers/competition';
 import { reducer as formReducer } from 'redux-form';
 
