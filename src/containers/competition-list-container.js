@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CompetitionList from '../components/competition-list';
+import * as actions from '../actions/competition';
 
 class CompetitionListContainer extends Component {
   createCompetition() {
-    console.log("createCompetition"); 
+    this.props.createCompetition();
   }
   render() {
     return (
@@ -15,7 +16,14 @@ class CompetitionListContainer extends Component {
 
 function mapStateToProps(state) {
   return {
+    competition: state.competition,
   };
 }
 
-export default connect(mapStateToProps)(CompetitionListContainer);
+function mapDispatchToProps(dispatch) {
+  return {
+    createCompetition: () => dispatch(actions.requestCreateCompetition()),
+  } 
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CompetitionListContainer);

@@ -32,7 +32,7 @@ const authSubsetFilter = createFilter('auth', ['loggedIn', 'user']);
 
 persistStore(store, {
   transforms: [ authSubsetFilter ],
-  blacklist: ['typingTest', 'form']
+  blacklist: ['typingTest', 'form', 'competition']
 });
 
 sagaMiddleware.run(rootSaga);

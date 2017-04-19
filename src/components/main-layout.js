@@ -1,5 +1,4 @@
 import React from 'react';
-import TypingTestContainer from '../containers/typing-test-container';
 import * as layout from '../three-columns';
 
 const MainLayout = props => (
