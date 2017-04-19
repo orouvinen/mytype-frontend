@@ -25,14 +25,14 @@ export function start(startTime) {
 export function reset() {
   return {
     type: typingActions.TYPINGTEST_RESET,
-  }
+  };
 }
 
 export function keyPress(key) {
   return {
     type: typingActions.TYPINGTEST_KEYPRESS,
     key,
-  }
+  };
 }
 
 export function character(char) {
