@@ -1,6 +1,5 @@
 import { watchSignUpRequest, watchLoginRequest, watchLogout } from './auth';
-import { watchCompetitionListUpdates } from './socket';
-import { watchCompetitionCreate } from './competition';
+import { watchCompetitionCreate, watchCompetitionListUpdates } from './competition';
 
 export default function* rootSaga() {
   yield [

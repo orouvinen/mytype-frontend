@@ -18,3 +18,10 @@ export function createCompetitionFail() {
     type: actions.COMPETITION_CREATE_FAIL,
   };
 }
+
+export function updateCompetitionList(competitions) {
+  return {
+    type: actions.COMPETITIONS_UPDATE,
+    competitions,
+  };
+}

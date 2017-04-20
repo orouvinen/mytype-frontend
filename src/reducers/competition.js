@@ -1,6 +1,4 @@
-import {
-  competitionActions as competition, 
-  socketActions as socket } from '../actions/action-types';
+import { competitionActions as actions } from '../actions/action-types';
 
 
 const initialState = {
@@ -11,25 +9,25 @@ const initialState = {
 
 function competitions(state = initialState, action) {
   switch (action.type) {
-    case socket.COMPETITIONS_UPDATE:
+    case actions.COMPETITIONS_UPDATE:
       return {
         ...state,
         competitions: action.competitions,
       }
 
-    case competition.COMPETITION_CREATE_REQUEST:
+    case actions.COMPETITION_CREATE_REQUEST:
       return {
         ...state,
         createCompetitionRequested: true,
       };
 
-    case competition.COMPETITION_CREATE_SUCCESS:
+    case actions.COMPETITION_CREATE_SUCCESS:
       return {
         ...state,
         competitionCreated: true,
       };
 
-    case competition.COMPETITION_CREATE_FAIL:
+    case actions.COMPETITION_CREATE_FAIL:
       return {
         ...state,
         competitionCreated: false,
