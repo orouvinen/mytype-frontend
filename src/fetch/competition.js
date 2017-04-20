@@ -1,7 +1,7 @@
 import { getAuthToken } from '../helpers/auth';
 
 export function createCompetition(language) {
-  return fetch('/api/typingtests', {
+  return fetch('/api/competitions', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
