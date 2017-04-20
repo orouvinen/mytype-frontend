@@ -13,7 +13,7 @@ function competitions(state = initialState, action) {
       return {
         ...state,
         competitions: action.competitions,
-      }
+      };
 
     case actions.COMPETITION_CREATE_REQUEST:
       return {
