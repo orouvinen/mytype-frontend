@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import UserProfile from '../components/user-profile'
+import UserProfile from '../components/user-profile';
 
 class UserProfileContainer extends Component {
   render() {
