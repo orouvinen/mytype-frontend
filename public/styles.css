@@ -23,7 +23,6 @@ body {
 }
 
 .competitionListRow:hover {
-  /*background-color: white;*/
   background-color: #CD6B10;
   cursor: pointer;
 }
