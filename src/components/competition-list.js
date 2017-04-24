@@ -19,17 +19,37 @@ const competitionListRowStyle = {
   borderRadius: "1px",
 };
 
+const timerDigits = value => ((value < 10) ? "0" : "") + Math.floor(value).toFixed(0);
+
+const timeLeft = competition => {
+  // Get creation time
+  const start = new Date(competition.createdAt);
+  // Work out end time
+  const end = new Date(start);
+  end.setDate(start.getDate() + (competition.duration / 24));
+
+  const msLeft = end.getTime() - Date.now();
+  const secsLeft = msLeft / 1000;
+  let   minsLeft = secsLeft / 60;
+  const hoursLeft = minsLeft / 60;
+  minsLeft = minsLeft % 60;
+
+  // Construct the timer string
+  return timerDigits(hoursLeft) + ":" + timerDigits(minsLeft);
+};
+
+
 const CompetitionList = props => (
   <div>
     <div style={competitionControlsWrapper}>
       <CompetitionControls onCreateClicked={props.onCreateClicked} />
     </div>
     <div style={competitionListWrapper}>
-        {props.competition.competitions.map((comp, i) => {
-          return(<div
-            style={competitionListRowStyle}
-            className="competitionListRow"
-            key={i}>{comp.createdBy}'s competition
+      {props.competition.competitions.map((comp, i) => {
+        return (
+          <div style={competitionListRowStyle} className="competitionListRow" key={i}>
+            <span>{comp.createdBy}'s competition</span>
+            <span>&nbsp;{timeLeft(props.competition.competitions[i])}</span>
           </div>)
         })}
     </div>
