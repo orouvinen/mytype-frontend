@@ -18,6 +18,16 @@ body {
      color: white;
 }
 
+.competitionListRow {
+  background-color: #025C68
+}
+
+.competitionListRow:hover {
+  /*background-color: white;*/
+  background-color: #CD6B10;
+  cursor: pointer;
+}
+
 label {
      font-size: 0.8em;
      padding-left: 3px;
