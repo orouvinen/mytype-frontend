@@ -32,10 +32,9 @@ const timeLeft = competition => {
   const secsLeft = msLeft / 1000;
   let   minsLeft = secsLeft / 60;
   const hoursLeft = minsLeft / 60;
-  minsLeft = minsLeft % 60;
 
   // Construct the timer string
-  return timerDigits(hoursLeft) + ":" + timerDigits(minsLeft);
+  return timerDigits(hoursLeft) + ":" + timerDigits(minsLeft % 60);
 };
 
 
