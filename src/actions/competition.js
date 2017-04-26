@@ -25,3 +25,10 @@ export function updateCompetitionList(competitions) {
     competitions,
   };
 }
+
+export function selectCompetition(id) {
+  return {
+    type: actions.COMPETITION_SELECT,
+    id,
+  };
+}
