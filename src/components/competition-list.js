@@ -57,7 +57,7 @@ const CompetitionList = props => (
               onClick={() => props.competitionClicked(comp.id)}
               style={props.competition.selected === comp.id ? selectedCompetitionStyle : competitionListRowStyle}
               className="competitionListRow" key={i}>
-              <span>{comp.createdBy}'s competition</span>
+              <span>{comp.createdBy}&rsquo;s competition</span>
               <span>&nbsp;{timeLeft(props.competition.competitions[i])}</span>
             </div>)
         })}
