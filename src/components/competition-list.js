@@ -19,6 +19,11 @@ const competitionListRowStyle = {
   borderRadius: "1px",
 };
 
+const selectedCompetitionStyle = {
+  ...competitionListRowStyle,
+  backgroundColor: colors.complementary1
+};
+
 const timerDigits = value => ((value < 10) ? "0" : "") + Math.floor(value).toFixed(0);
 
 const timeLeft = competition => {
@@ -48,7 +53,7 @@ const CompetitionList = props => (
         return (
           <div
           onClick={() => props.competitionClicked(comp.id)}
-          style={competitionListRowStyle}
+          style={props.competition.selected === comp.id ? selectedCompetitionStyle : competitionListRowStyle}
           className="competitionListRow" key={i}>
             <span>{comp.createdBy}'s competition</span>
             <span>&nbsp;{timeLeft(props.competition.competitions[i])}</span>

@@ -23,7 +23,7 @@ body {
 }
 
 .competitionListRow:hover {
-  background-color: #CD6B10;
+  background-color: #CD6B10; /* Complementary 1*/
   cursor: pointer;
 }
 
@@ -34,7 +34,7 @@ label {
 }
 
 a {
-     color: #5c2c00; /* complementary */
+     color: #5c2c00; /* complementary 4 */
 }
 
 input[type="text"], input[type="password"], input[type="email"] {
