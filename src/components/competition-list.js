@@ -21,7 +21,7 @@ const competitionListRowStyle = {
 
 const selectedCompetitionStyle = {
   ...competitionListRowStyle,
-  backgroundColor: colors.complementary1
+  backgroundColor: colors.complementary1,
 };
 
 const timerDigits = value => ((value < 10) ? "0" : "") + Math.floor(value).toFixed(0);
@@ -35,7 +35,7 @@ const timeLeft = competition => {
 
   const msLeft = end.getTime() - Date.now();
   const secsLeft = msLeft / 1000;
-  let   minsLeft = secsLeft / 60;
+  let minsLeft = secsLeft / 60;
   const hoursLeft = minsLeft / 60;
 
   // Construct the timer string
@@ -49,15 +49,17 @@ const CompetitionList = props => (
       <CompetitionControls onCreateClicked={props.onCreateClicked} />
     </div>
     <div style={competitionListWrapper}>
-      {props.competition.competitions.map((comp, i) => {
-        return (
-          <div
-          onClick={() => props.competitionClicked(comp.id)}
-          style={props.competition.selected === comp.id ? selectedCompetitionStyle : competitionListRowStyle}
-          className="competitionListRow" key={i}>
-            <span>{comp.createdBy}'s competition</span>
-            <span>&nbsp;{timeLeft(props.competition.competitions[i])}</span>
-          </div>)
+      <h2>Competitions</h2>
+      {props.competition.competitions.length === 0 ? <div style={{ fontSize: "0.7em" }}>(No competitions running)</div> :
+        props.competition.competitions.map((comp, i) => {
+          return (
+            <div
+              onClick={() => props.competitionClicked(comp.id)}
+              style={props.competition.selected === comp.id ? selectedCompetitionStyle : competitionListRowStyle}
+              className="competitionListRow" key={i}>
+              <span>{comp.createdBy}'s competition</span>
+              <span>&nbsp;{timeLeft(props.competition.competitions[i])}</span>
+            </div>)
         })}
     </div>
   </div>
