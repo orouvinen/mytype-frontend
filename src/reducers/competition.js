@@ -5,6 +5,7 @@ const initialState = {
   competitions: [],
   createCompetitionRequested: false,
   competitionCreated: false,
+  selected: null,
 };
 
 function competitions(state = initialState, action) {
@@ -32,6 +33,12 @@ function competitions(state = initialState, action) {
         ...state,
         competitionCreated: false,
       };
+    
+    case actions.COMPETITION_SELECT:
+      return {
+        ...state,
+        selected: action.id,
+      }
 
     default:
       return state;

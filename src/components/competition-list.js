@@ -46,7 +46,10 @@ const CompetitionList = props => (
     <div style={competitionListWrapper}>
       {props.competition.competitions.map((comp, i) => {
         return (
-          <div style={competitionListRowStyle} className="competitionListRow" key={i}>
+          <div
+          onClick={() => props.competitionClicked(comp.id)}
+          style={competitionListRowStyle}
+          className="competitionListRow" key={i}>
             <span>{comp.createdBy}'s competition</span>
             <span>&nbsp;{timeLeft(props.competition.competitions[i])}</span>
           </div>)
