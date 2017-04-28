@@ -2,18 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TypingTest from '../components/typing-test';
+import { randomText } from '../helpers/typing-test-content-gen';
 import * as actions from '../actions/typing-test';
-
-const corpus = 
-  "the be to of and a in that have I it for not on with" +
-  " he as you do at this but his by from they we say her she or an will my one" +
-  " all would there their what so up out if about who get which go me when" +
-  " make can like time no just him know take people into year your good some" +
-  " could them see other than then now look only come its over think also" +
-  " back after use two how our work first well way even new want because any" +
-  " these give day most us";
-
-const wordList = corpus.split(" ");
 
 class TypingTestContainer extends Component {
   constructor() {
@@ -21,28 +11,17 @@ class TypingTestContainer extends Component {
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.getRandomText = this.getRandomText.bind(this);
     this.state = { words: [] }; 
   }
 
   componentDidMount() {
     // Generate random words
-    const text = this.getRandomText(20);
+    const text = randomText(20);
     this.props.setText(text, 45);
     
     // Transform the text into on array of words for local state
     this.setState({ words: text.split(" ") }); 
     this.props.reset();
-  }
-
-  // Generates a string with n randomly selected words separated by spaces 
-  getRandomText(n) {
-    const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-    let text = [];
-    for (let i = 0; i < n; i++)
-      text.push(wordList[rand(0, wordList.length)]);
-
-    return text.join(" ");
   }
 
   componentWillReceiveProps(props) {
