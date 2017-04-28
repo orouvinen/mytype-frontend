@@ -27,7 +27,7 @@ export function* watchCompetitionListUpdates() {
  * Workers
  */
 function* createCompetition(action) {
-  let response = yield call(competition.createCompetition, action.language);
+  let response = yield call(competition.createCompetition, action.language, action.content);
   
   switch(response.status) {
     case 201:

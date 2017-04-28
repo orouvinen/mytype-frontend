@@ -1,9 +1,10 @@
 import { competitionActions as actions } from './action-types';
 
-export function requestCreateCompetition(language) {
+export function requestCreateCompetition(language, content) {
   return {
     type: actions.COMPETITION_CREATE_REQUEST,
     language,
+    content,
   };
 }
 

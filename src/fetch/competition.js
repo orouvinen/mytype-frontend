@@ -1,6 +1,6 @@
 import { getAuthToken } from '../helpers/auth';
 
-export function createCompetition(language) {
+export function createCompetition(language, content) {
   return fetch('/api/competitions', {
     method: 'POST',
     headers: {
@@ -10,6 +10,7 @@ export function createCompetition(language) {
     },
     body: JSON.stringify({
       language,
+      content,
       competition: true
     }),
   })
