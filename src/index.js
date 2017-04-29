@@ -17,7 +17,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={MainPage} />
-        <Route path="/competition" component={CompetitionPage} />
+        <Route path="/competition/:competitionId" component={CompetitionPage} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/profile" component={UserProfile} />
