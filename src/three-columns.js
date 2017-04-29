@@ -4,13 +4,13 @@ export const layoutWrapper = {
 };
 
 export const leftColumn = {
-  marginLeft: "35px",
-  marginTop: "25px",
+  marginLeft: "15px",
   order: "1",
   flex: "1 6 20%",
 };
 
 export const centerColumn = {
+  marginLeft: "20px",
   order: "2",
   flex: "3 1 60%",
 };
