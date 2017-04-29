@@ -11,7 +11,6 @@ export function createCompetition(language, content) {
     body: JSON.stringify({
       language,
       content,
-      competition: true
     }),
   })
   .then(response => response);
