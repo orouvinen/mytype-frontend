@@ -6,12 +6,7 @@ const infoBoxStyle = {
   backgroundColor: colors.primary2,
   marginRight: "5px",
   padding: "5px",
-  minHeight: "45em",
   borderRadius: "1px",
-};
-
-const noSelectionStyle = {
-  color: "gray",
 };
 
 const joinButtonWrapper = {
