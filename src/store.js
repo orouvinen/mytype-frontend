@@ -29,10 +29,11 @@ let store = createStore(rootReducer,
 
 // Only persist loggedIn-status and the possible user object from auth state
 const authSubsetFilter = createFilter('auth', ['loggedIn', 'user']);
+const compSubsetFilter = createFilter('competition', ['selected', 'competitions']);
 
 persistStore(store, {
-  transforms: [ authSubsetFilter ],
-  blacklist: ['typingTest', 'form', 'competition']
+  transforms: [ authSubsetFilter, compSubsetFilter ],
+  blacklist: ['typingTest', 'form' ]
 });
 
 sagaMiddleware.run(rootSaga);

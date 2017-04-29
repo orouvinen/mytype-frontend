@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TypingTest from '../components/typing-test';
-import { randomText } from '../helpers/typing-test-content-gen';
 import * as actions from '../actions/typing-test';
 
 class TypingTestContainer extends Component {
@@ -16,7 +15,7 @@ class TypingTestContainer extends Component {
 
   componentDidMount() {
     // Generate random words
-    const text = randomText(20);
+    const text = this.props.content;
     this.props.setText(text, 45);
     
     // Transform the text into on array of words for local state
