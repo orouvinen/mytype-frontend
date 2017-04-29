@@ -9,16 +9,11 @@ class CompetitionListContainer extends Component {
     this.props.createCompetition("eng", randomText(50));
   }
 
-  competitionClicked(id) {
-    this.props.selectCompetition(id);
-  }
-
   render() {
     return (
         <CompetitionList
-          competition={this.props.competition}
-          competitionClicked={this.competitionClicked.bind(this)}
-          onCreateClicked={this.createCompetition.bind(this)} />
+          onCreateClicked={this.createCompetition.bind(this)}
+          {...this.props} />
     );
   }
 }
@@ -31,7 +26,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createCompetition: (language, content) => dispatch(actions.requestCreateCompetition(language, content)),
+    createCompetition: (language, content) =>
+      dispatch(actions.requestCreateCompetition(language, content)),
+    
     selectCompetition: id => dispatch(actions.selectCompetition(id))
   } 
 }

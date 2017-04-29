@@ -46,7 +46,8 @@ const timeLeft = competition => {
 const CompetitionList = props => (
   <div>
     <div style={competitionControlsWrapper}>
-      <CompetitionControls onCreateClicked={props.onCreateClicked} />
+      <CompetitionControls
+        onCreateClicked={props.onCreateClicked} />
     </div>
     <div style={competitionListWrapper}>
       <h2>Competitions</h2>
@@ -54,7 +55,7 @@ const CompetitionList = props => (
         props.competition.competitions.map((comp, i) => {
           return (
             <div
-              onClick={() => props.competitionClicked(comp.id)}
+              onClick={() => props.selectCompetition(comp.id)}
               style={props.competition.selected === comp.id ? selectedCompetitionStyle : competitionListRowStyle}
               className="competitionListRow" key={i}>
               <span>{comp.createdBy}&rsquo;s competition</span>
