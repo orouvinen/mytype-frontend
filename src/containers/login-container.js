@@ -23,7 +23,7 @@ class LoginContainer extends Component {
       return (
         <FormWrapper>
           <LoginForm
-            auth={this.props.auth}
+            {...this.props}
             loginTries={this.state.loginTries}
             onSubmit={this.handleSubmit.bind(this)} />
         </FormWrapper>

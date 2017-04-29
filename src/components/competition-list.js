@@ -4,7 +4,9 @@ import colors from '../colors';
 
 
 const competitionControlsWrapper = {
-  marginBottom: "10px",
+  margin: "5px 0 5px 0",
+  paddingRight: "1px",
+  textAlign: "right",
 };
 
 const competitionListWrapper = {
@@ -22,6 +24,12 @@ const competitionListRowStyle = {
 const selectedCompetitionStyle = {
   ...competitionListRowStyle,
   backgroundColor: colors.complementary1,
+};
+
+const headerStyle = {
+  padding: "10px",
+  background: "linear-gradient(" + colors.primary1 + ", " + colors.primary3 + ")",
+  borderRadius: "4px",
 };
 
 const timerDigits = value => ((value < 10) ? "0" : "") + Math.floor(value).toFixed(0);
@@ -45,12 +53,8 @@ const timeLeft = competition => {
 
 const CompetitionList = props => (
   <div>
-    <div style={competitionControlsWrapper}>
-      <CompetitionControls
-        onCreateClicked={props.onCreateClicked} />
-    </div>
     <div style={competitionListWrapper}>
-      <h2>Competitions</h2>
+      <h2 style={headerStyle}>Competitions</h2>
       {props.competition.competitions.length === 0 ? <div style={{ fontSize: "0.7em" }}>(No competitions running)</div> :
         props.competition.competitions.map((comp, i) => {
           return (
@@ -62,6 +66,9 @@ const CompetitionList = props => (
               <span>&nbsp;{timeLeft(props.competition.competitions[i])}</span>
             </div>)
         })}
+    </div>
+    <div style={competitionControlsWrapper}>
+      <CompetitionControls onCreateClicked={props.onCreateClicked} />
     </div>
   </div>
 );
