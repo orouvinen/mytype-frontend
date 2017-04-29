@@ -60,6 +60,9 @@ button {
      font-size: 1em;
      font-weight: bold;
      padding: 6px;
+     box-shadow: 2px 3px 13px #003138; /* primary4 */
+     -webkit-box-shadow: 2px 3px 13px #003138;
+     -moz-box-shadow: 2px 3px 13px #003138;
 }
 
 button[type="submit"] {
@@ -75,4 +78,13 @@ button:hover {
 
 button:active {
      background: #aa7400; /* secondary3 */
+     transform: translate(2px, 2px);
+}
+
+.greenButton {
+  background: #208820;
+}
+
+.greenButton:hover {
+  background: #10bb10;
 }
