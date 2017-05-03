@@ -1,15 +1,20 @@
 import io from 'socket.io-client';
 import { takeEvery, call, put, take } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
-import { competitionActions as actionTypes } from '../actions/action-types';
+import { typingActions as typingActionTypes,
+         competitionActions as competitionActionTypes } from '../actions/action-types';
 import * as competitionActions from '../actions/competition';
 import * as competition from '../fetch/competition';
 
 /*
  * Watchers
  */
+export function* watchTypingTestEnd() {
+  yield takeEvery(typingActionTypes.TYPINGTEST_DONE, storeResult);
+}
+
 export function* watchCompetitionCreate() {
-  yield takeEvery(actionTypes.COMPETITION_CREATE_REQUEST, createCompetition);
+  yield takeEvery(competitionActionTypes.COMPETITION_CREATE_REQUEST, createCompetition);
 }
 
 export function* watchCompetitionListUpdates() {
@@ -26,6 +31,25 @@ export function* watchCompetitionListUpdates() {
 /*
  * Workers
  */
+
+/*
+ * Save a competition results
+ */
+function* storeResult(action) {
+  const { userId, competitionId, wpm, acc, startTime, endTime } = action;
+  let response = yield call(competition.saveResult, userId, competitionId,
+                                                     wpm, acc, startTime, endTime);
+
+  switch(response.status) {
+    case 201:
+      yield put(competitionActions.saveResultSuccess());
+      break;
+    default:
+      // TODO: handle error
+      break;
+  }
+}
+
 function* createCompetition(action) {
   let response = yield call(competition.createCompetition, action.language, action.content);
   
@@ -33,6 +57,7 @@ function* createCompetition(action) {
     case 201:
       yield put(competitionActions.createCompetitionSuccess());
       break;
+    case 401:
     case 500:
       yield put(competitionActions.createCompetitionFail());
       break;

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TypingTest from '../components/typing-test';
 import * as actions from '../actions/typing-test';
+import { wpm, accuracy } from '../helpers/wpm';
 
 class TypingTestContainer extends Component {
   constructor() {
@@ -55,7 +56,13 @@ class TypingTestContainer extends Component {
   stop() {
     const { typingTest } = this.props;
     const endTime = typingTest.endTime || Date.now();
-    this.props.stop(endTime);
+    const { startTime } = typingTest;
+    const wpmMeasure = wpm(typingTest.correctChars, typingTest.wrongChars, endTime - startTime);
+    const acc = accuracy(typingTest.correctChars, typingTest.wrongChars); 
+    const userId = this.props.user.id;
+    const competitionId = this.props.competition;
+
+    this.props.stop(userId, competitionId, wpmMeasure, acc, startTime, endTime);
   }
 
   handleKeyPress(e) {
@@ -87,7 +94,11 @@ class TypingTestContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  return { typingTest: state.typingTest };
+  return {
+    typingTest: state.typingTest,
+    user: state.auth.user,
+    competition: state.competition.selected,
+  };
 }
 
 function mapDispatchToProps(dispatch) {

@@ -32,4 +32,8 @@ export function selectCompetition(id) {
     type: actions.COMPETITION_SELECT,
     id,
   };
+export function saveResultSuccess() {
+  return {
+    type: actions.COMPETITION_SAVE_RESULT_SUCCESS,
+  };
 }
