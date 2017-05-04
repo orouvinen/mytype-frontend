@@ -32,6 +32,29 @@ export function selectCompetition(id) {
     type: actions.COMPETITION_SELECT,
     id,
   };
+}
+
+export function requestLoadResults(competitionId) {
+  return {
+    type: actions.COMPETITION_LOAD_RESULTS_REQUEST,
+    competitionId,
+  };
+}
+
+export function loadResultsSuccess(competitionId, payload) {
+  return {
+    type: actions.COMPETITION_LOAD_RESULTS_SUCCESS,
+    competitionId,
+    payload,
+  };
+}
+
+export function loadResultsFail() {
+  return {
+    type: actions.COMPETITION_LOAD_RESULTS_FAIL,
+  };
+}
+
 export function saveResultSuccess() {
   return {
     type: actions.COMPETITION_SAVE_RESULT_SUCCESS,

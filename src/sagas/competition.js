@@ -13,6 +13,10 @@ export function* watchTypingTestEnd() {
   yield takeEvery(typingActionTypes.TYPINGTEST_DONE, storeResult);
 }
 
+export function* watchResultListLoad() {
+  yield takeEvery(competitionActionTypes.COMPETITION_LOAD_RESULTS_REQUEST, loadResultList);
+}
+
 export function* watchCompetitionCreate() {
   yield takeEvery(competitionActionTypes.COMPETITION_CREATE_REQUEST, createCompetition);
 }
@@ -49,6 +53,24 @@ function* storeResult(action) {
       break;
   }
 }
+
+
+/*
+ * Fetches all results for a competition.
+ */
+function* loadResultList(action) {
+  let response = yield call(competition.loadResults, action.competitionId);
+
+  switch(response.status) {
+    case 200:
+      const body = yield call(() => response.json().then(data => data));
+      yield put(competitionActions.loadResultsSuccess(body.id, body.results));
+      break;
+    default:
+      yield put(competitionActions.createCompetitionFail());
+  }
+}
+
 
 function* createCompetition(action) {
   let response = yield call(competition.createCompetition, action.language, action.content);

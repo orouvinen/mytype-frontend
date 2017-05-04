@@ -8,6 +8,7 @@ import competition from './reducers/competition';
 import { reducer as formReducer } from 'redux-form';
 
 import { persistStore, autoRehydrate } from 'redux-persist';
+import { asyncSessionStorage } from 'redux-persist/storages';
 import createFilter from 'redux-persist-transform-filter';
 import rootSaga from './sagas/index';
 
@@ -33,7 +34,8 @@ const compSubsetFilter = createFilter('competition', ['selected', 'competitions'
 
 persistStore(store, {
   transforms: [ authSubsetFilter, compSubsetFilter ],
-  blacklist: ['typingTest', 'form' ]
+  blacklist: ['typingTest', 'form' ],
+  storage: asyncSessionStorage,
 });
 
 sagaMiddleware.run(rootSaga);

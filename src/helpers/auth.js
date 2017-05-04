@@ -1,9 +1,9 @@
 export const storeAuthToken = token => {
-  localStorage.setItem('auth_token', token);
+  sessionStorage.setItem('auth_token', token);
 };
 
-export const getAuthToken = () => localStorage.getItem('auth_token');
+export const getAuthToken = () => sessionStorage.getItem('auth_token');
 
 export const deleteAuthToken = () => {
-  localStorage.removeItem('auth_token');
+  sessionStorage.removeItem('auth_token');
 };

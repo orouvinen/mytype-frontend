@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TypingTest from './typing-test-container';
+import CompetitionResultList from '../components/competition-result-list';
 import * as layout from '../two-columns';
+import * as actions from '../actions/competition';
 
 class CompetitionPage extends Component {
+  componentDidMount() {
+    this.props.loadCompetitionResults(this.props.params.competitionId);
+  }
+
   render() {
     if (!this.props.competition.selected)
       return null;
@@ -13,7 +19,7 @@ class CompetitionPage extends Component {
 
     return (<div style={layout.layoutWrapper}>
       <div style={layout.sideBar}>
-        {/* result list */}
+        <CompetitionResultList {...this.props} /> 
       </div>
 
       <div style={layout.mainContent}>
@@ -26,7 +32,13 @@ class CompetitionPage extends Component {
 function mapStateToProps(state) {
   return {
     competition: state.competition,
-  }
+  };
 }
 
-export default connect(mapStateToProps)(CompetitionPage);
+function mapDispatchToProps(dispatch) {
+  return {
+    loadCompetitionResults: competitionId => dispatch(actions.requestLoadResults(competitionId)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CompetitionPage);
