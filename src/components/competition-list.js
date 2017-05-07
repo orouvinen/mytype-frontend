@@ -51,26 +51,29 @@ const timeLeft = competition => {
 };
 
 
-const CompetitionList = props => (
+const CompetitionList = props => {
+  const competitions = props.competition.competitions;
+  const ids = Object.keys(competitions);
+  return (
   <div>
     <div style={competitionListWrapper}>
       <h2 style={headerStyle}>Competitions</h2>
-      {props.competition.competitions.length === 0 ? <div style={{ fontSize: "0.7em" }}>(No competitions running)</div> :
-        props.competition.competitions.map((comp, i) => {
+      {ids.length === 0 ? <div style={{ fontSize: "0.7em" }}>(No competitions running)</div> :
+        ids.map((id, i) => {
           return (
             <div
-              onClick={() => props.selectCompetition(comp.id)}
-              style={props.competition.selected === comp.id ? selectedCompetitionStyle : competitionListRowStyle}
+              onClick={() => props.selectCompetition(id)}
+              style={props.competition.selected === id ? selectedCompetitionStyle : competitionListRowStyle}
               className="competitionListRow" key={i}>
-              <span>{comp.createdBy}&rsquo;s competition</span>
-              <span>&nbsp;{timeLeft(props.competition.competitions[i])}</span>
+              <span>{i}&nbsp;</span>
+              <span>&nbsp;{timeLeft(competitions[id])}</span>
             </div>)
         })}
     </div>
     <div style={competitionControlsWrapper}>
       <CompetitionControls onCreateClicked={props.onCreateClicked} />
     </div>
-  </div>
-);
+  </div>);
+}
 
 export default CompetitionList;

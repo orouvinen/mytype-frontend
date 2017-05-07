@@ -34,24 +34,24 @@ export function selectCompetition(id) {
   };
 }
 
-export function requestLoadResults(competitionId) {
+export function requestLoadCompetition(competitionId) {
   return {
-    type: actions.COMPETITION_LOAD_RESULTS_REQUEST,
+    type: actions.COMPETITION_LOAD_REQUEST,
     competitionId,
   };
 }
 
-export function loadResultsSuccess(competitionId, payload) {
+export function loadCompetitionSuccess(id, competition) {
   return {
-    type: actions.COMPETITION_LOAD_RESULTS_SUCCESS,
-    competitionId,
-    payload,
+    type: actions.COMPETITION_LOAD_SUCCESS,
+    id,
+    competition,
   };
 }
 
-export function loadResultsFail() {
+export function loadCompetitionFail() {
   return {
-    type: actions.COMPETITION_LOAD_RESULTS_FAIL,
+    type: actions.COMPETITION_LOAD_FAIL,
   };
 }
 

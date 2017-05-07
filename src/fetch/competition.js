@@ -15,8 +15,8 @@ export function saveResult(user, competition, wpm, acc, startTime, endTime) {
   .then(response => response);
 }
 
-export function loadResults(competitionId) {
-  return fetch(`/api/competitions/${competitionId}`, {
+export function loadCompetition(competitionId, loadResults=true) {
+  return fetch(`/api/competitions/${competitionId}?loadResults=${loadResults}`, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',

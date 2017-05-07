@@ -7,7 +7,7 @@ import * as actions from '../actions/competition';
 
 class CompetitionPage extends Component {
   componentDidMount() {
-    this.props.loadCompetitionResults(this.props.params.competitionId);
+    this.props.loadCompetition(this.props.params.competitionId);
   }
 
   render() {
@@ -15,7 +15,7 @@ class CompetitionPage extends Component {
       return null;
 
     const id = this.props.params.competitionId;
-    const competition = this.props.competition.competitions.find(c => c.id.toString() === id);
+    const competition = this.props.competition.competitions[id];
 
     return (<div style={layout.layoutWrapper}>
       <div style={layout.sideBar}>
@@ -37,7 +37,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    loadCompetitionResults: competitionId => dispatch(actions.requestLoadResults(competitionId)),
+    loadCompetition: competitionId => dispatch(actions.requestLoadCompetition(competitionId)),
   };
 }
 

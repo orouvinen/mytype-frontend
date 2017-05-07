@@ -13,8 +13,8 @@ export function* watchTypingTestEnd() {
   yield takeEvery(typingActionTypes.TYPINGTEST_DONE, storeResult);
 }
 
-export function* watchResultListLoad() {
-  yield takeEvery(competitionActionTypes.COMPETITION_LOAD_RESULTS_REQUEST, loadResultList);
+export function* watchCompetitionLoad() {
+  yield takeEvery(competitionActionTypes.COMPETITION_LOAD_REQUEST, loadCompetition);
 }
 
 export function* watchCompetitionCreate() {
@@ -46,7 +46,8 @@ function* storeResult(action) {
 
   switch(response.status) {
     case 201:
-      yield put(competitionActions.saveResultSuccess());
+      yield* put(competitionActions.saveResultSuccess());
+      yield* put(competitionActions.requestLoadCompetition(competitionId));
       break;
     default:
       // TODO: handle error
@@ -58,16 +59,16 @@ function* storeResult(action) {
 /*
  * Fetches all results for a competition.
  */
-function* loadResultList(action) {
-  let response = yield call(competition.loadResults, action.competitionId);
+function* loadCompetition(action) {
+  let response = yield call(competition.loadCompetition, action.competitionId);
 
   switch(response.status) {
     case 200:
       const body = yield call(() => response.json().then(data => data));
-      yield put(competitionActions.loadResultsSuccess(body.id, body.results));
+      yield put(competitionActions.loadCompetitionSuccess(body.id, body));
       break;
     default:
-      yield put(competitionActions.createCompetitionFail());
+      yield put(competitionActions.loadCompetitionFail());
   }
 }
 

@@ -5,9 +5,9 @@ const initialState = {
   competitions: [],
   createCompetitionRequested: false,
   competitionCreated: false,
-  resultsLoading: false,
-  resultsFetched: false,
-  resultLoadFailed: false,
+  competitionLoading: false,
+  competitionLoaded: false,
+  competitionLoadFailed: false,
   selected: null,
 };
 
@@ -43,37 +43,32 @@ function competitions(state = initialState, action) {
         selected: action.id,
       };
 
-    case actions.COMPETITION_LOAD_RESULTS_REQUEST:
+    case actions.COMPETITION_LOAD_REQUEST:
       return {
         ...state,
-        resultsFetched: false,
-        resultLoadFailed: false,
-        resultsLoading: true,
+        competitionLoaded: false,
+        competitionLoadFailed: false,
+        competitionLoading: true,
       };
 
-    case actions.COMPETITION_LOAD_RESULTS_SUCCESS:
+    case actions.COMPETITION_LOAD_SUCCESS:
       let newState = Object.assign({}, state);
-      newState.resultsFetched = true;
-      newState.resultsLoading = false;
-      newState.resultLoadFailed = false;
+      newState.competitionLoaded = true;
+      newState.competitionLoading = false;
+      newState.competitionLoadFailed = false;
 
-      const competition = getCompetitionById(newState.competitions, action.competitionId); 
-      competition.results = action.payload;
+      newState.competitions[action.id] = action.competition;
       return newState;
 
-    case actions.COMPETITION_LOAD_RESULTS_FAIL:
+    case actions.COMPETITION_LOAD_FAIL:
       return {
         ...state,
-        resultsLoadFailed: true,
+        competitionLoadFailed: true,
       };
 
     default:
       return state;
   }
-}
-
-function getCompetitionById(competitions, id) {
-  return competitions.find(competition => competition.id === id);
 }
 
 export default competitions;
