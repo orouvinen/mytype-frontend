@@ -2,7 +2,7 @@ import { competitionActions as actions } from '../actions/action-types';
 
 
 const initialState = {
-  competitions: [],
+  competitions: {},
   createCompetitionRequested: false,
   competitionCreated: false,
   competitionLoading: false,
@@ -11,48 +11,56 @@ const initialState = {
   selected: null,
 };
 
+// Helper for creating deep copy of the state
+const cloneState = state => {
+  return {
+    ...state,
+    competitions: {...state.competitions }
+  };
+}
+
 function competitions(state = initialState, action) {
   switch (action.type) {
     case actions.COMPETITIONS_UPDATE:
       return {
-        ...state,
+        ...cloneState(state),
         competitions: action.competitions,
-      };
+      }
 
     case actions.COMPETITION_CREATE_REQUEST:
       return {
-        ...state,
+        ...cloneState(state),
         createCompetitionRequested: true,
       };
 
     case actions.COMPETITION_CREATE_SUCCESS:
       return {
-        ...state,
+        ...cloneState(state),
         competitionCreated: true,
       };
 
     case actions.COMPETITION_CREATE_FAIL:
       return {
-        ...state,
+        ...cloneState(state),
         competitionCreated: false,
       };
     
     case actions.COMPETITION_SELECT:
       return {
-        ...state,
+        ...cloneState(state),
         selected: action.id,
       };
 
     case actions.COMPETITION_LOAD_REQUEST:
       return {
-        ...state,
+        ...cloneState(state),
         competitionLoaded: false,
         competitionLoadFailed: false,
         competitionLoading: true,
       };
 
     case actions.COMPETITION_LOAD_SUCCESS:
-      let newState = Object.assign({}, state);
+      let newState = cloneState(state); 
       newState.competitionLoaded = true;
       newState.competitionLoading = false;
       newState.competitionLoadFailed = false;
@@ -62,7 +70,7 @@ function competitions(state = initialState, action) {
 
     case actions.COMPETITION_LOAD_FAIL:
       return {
-        ...state,
+        ...cloneState(state),
         competitionLoadFailed: true,
       };
 

@@ -16,17 +16,24 @@ const initialState = {
   totalWords: 0, // total number of words typed so far
 };
 
+const cloneState = state => {
+  return {
+    ...state,
+    typedLine: state.typedLine.slice(0),
+  };
+};
+
 function typingTest(state = initialState, action) {
   switch (action.type) {
     case typingActions.TYPINGTEST_SET_TEXT:
       return {
-        ...state,
+        ...cloneState(state),
         text: textToLines(action.text, action.lineLength),
       };
 
     case typingActions.TYPINGTEST_DONE:
       return {
-        ...state,
+        ...cloneState(state),
         stopTime: action.stopTime,
         running: false,
         finished: true,
@@ -35,7 +42,7 @@ function typingTest(state = initialState, action) {
 
     case typingActions.TYPINGTEST_START:
       return {
-        ...state,
+        ...cloneState(state),
         startTime: action.startTime,
         running: true,
         line: 0,
@@ -48,7 +55,7 @@ function typingTest(state = initialState, action) {
 
     case typingActions.TYPINGTEST_RESET:
       return {
-        ...initialState,
+        ...cloneState(state),
         text: state.text,
       };
     default:
@@ -57,7 +64,7 @@ function typingTest(state = initialState, action) {
 }
 
 function keyHandler(key, currentState) {
-  let state = Object.assign({}, currentState);
+  let state = cloneState(currentState);
   const { text, line, word, char, typedWord } = state;
   const words = text[line].split(' ');
   const correctWord = words[word];
@@ -92,7 +99,8 @@ function keyHandler(key, currentState) {
 
 // Returns new state when space / enter has been pressed
 function advanceWord(currentState) {
-  let state = Object.assign({}, currentState);
+  //let state = Object.assign({}, currentState);
+  let state = cloneState(currentState);
   const { line, text } = currentState;
   const words = text[line].split(' ');
   let currentWord = words[state.word];
