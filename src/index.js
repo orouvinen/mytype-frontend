@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Route, Router, IndexRoute, browserHistory } from 'react-router';
 import App from './containers/app-container';
-import MainPage from './components/main-page';
+import MainPage from './containers/main-page-container';
 import NotFound from './components/not-found';
 import CompetitionPage from './containers/competition-page-container';
 import SignUp from './containers/sign-up-container';

@@ -2,15 +2,17 @@ import React from 'react';
 
 const CompetitionResultList = props => {
   const { competitions, selected } = props.competition;
-  const competition = competitions[selected];
+  const selectedComp = competitions[selected];
   /* refactor CompetitionListRow out of this */
-  if (!competition.results)
-    return null;
-  
-  return (
+  // if (!selectedComp || !selectedComp.results)
+  //  return null;
+
+  if (!selectedComp)
+    return <div>No competition selected</div>
+  else return (
     <div>
       <h2>Results</h2>
-      {competition.results.map((r, i) => {
+      {selectedComp.results.map((r, i) => {
         return(
         <div key={i}>
           <span>{i+1}&nbsp;</span>
