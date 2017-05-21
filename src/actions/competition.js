@@ -27,6 +27,14 @@ export function updateCompetitionList(competitions) {
   };
 }
 
+export function updateCompetitionResults(competitionId, results) {
+  return {
+    type: actions.COMPETITION_RESULTS_UPDATE,
+    competitionId,
+    results,
+  }
+}
+
 export function selectCompetition(id) {
   return {
     type: actions.COMPETITION_SELECT,

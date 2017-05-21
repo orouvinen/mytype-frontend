@@ -1,5 +1,6 @@
 import { watchSignUpRequest, watchLoginRequest, watchLogout } from './auth';
-import { watchCompetitionCreate, watchCompetitionListUpdates } from './competition';
+import { watchCompetitionCreate, watchCompetitionListUpdate } from './competition';
+import { watchCompetitionResultsUpdate } from './competition';
 import { watchCompetitionLoad } from './competition';
 import { watchTypingTestEnd } from './competition';
 
@@ -8,7 +9,8 @@ export default function* rootSaga() {
     watchTypingTestEnd(),
     watchCompetitionLoad(),
     watchCompetitionCreate(),
-    watchCompetitionListUpdates(),
+    watchCompetitionListUpdate(),
+    watchCompetitionResultsUpdate(),
     watchSignUpRequest(),
     watchLoginRequest(),
     watchLogout(),

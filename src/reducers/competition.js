@@ -11,12 +11,24 @@ const initialState = {
   selected: null,
 };
 
-// Helper for creating deep copy of the state
-const cloneState = state => {
-  return {
+// (ugly) Helper for creating deep copy of the state
+function cloneState(state) {
+  let newState = {
     ...state,
-    competitions: {...state.competitions }
+    competitions: { ...state.competitions }
   };
+
+  // Make deep copies of result objects and the user objects inside those.
+  Object.keys(newState.competitions).forEach(id => {
+    const results = newState.competitions[id].results.slice(0);
+
+    results.forEach((r, i) => {
+      r.user = Object.assign({}, state.competitions[id].results[i].user);
+    });
+    newState.competitions[id].results = results;
+  });
+
+  return newState;
 }
 
 function competitions(state = initialState, action) {
@@ -26,6 +38,13 @@ function competitions(state = initialState, action) {
         ...cloneState(state),
         competitions: action.competitions,
       }
+
+    case actions.COMPETITION_RESULTS_UPDATE: {
+      let newState = cloneState(state);
+      const id = action.competitionId;
+      newState.competitions[id].results = action.results;
+      return newState;
+    }
 
     case actions.COMPETITION_CREATE_REQUEST:
       return {
@@ -44,7 +63,7 @@ function competitions(state = initialState, action) {
         ...cloneState(state),
         competitionCreated: false,
       };
-    
+
     case actions.COMPETITION_SELECT:
       return {
         ...cloneState(state),
@@ -60,7 +79,7 @@ function competitions(state = initialState, action) {
       };
 
     case actions.COMPETITION_LOAD_SUCCESS:
-      let newState = cloneState(state); 
+      let newState = cloneState(state);
       newState.competitionLoaded = true;
       newState.competitionLoading = false;
       newState.competitionLoadFailed = false;

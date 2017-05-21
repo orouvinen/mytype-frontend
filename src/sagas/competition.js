@@ -21,13 +21,24 @@ export function* watchCompetitionCreate() {
   yield takeEvery(competitionActionTypes.COMPETITION_CREATE_REQUEST, createCompetition);
 }
 
-export function* watchCompetitionListUpdates() {
-  const socket = yield call(createSocket);
+export function* watchCompetitionListUpdate() {
+  const socket = yield call(getSocket);
   const socketChannel = yield call(createCompetitionListUpdateChannel, socket);
 
   while (true) {
     const data = yield take(socketChannel);
     yield put(competitionActions.updateCompetitionList(data));
+  }
+}
+
+export function* watchCompetitionResultsUpdate() {
+  const socket = yield call(getSocket);
+  const socketChannel = yield call(createCompetitionResultsUpdateChannel, socket);
+
+  while (true) {
+    const data = yield take(socketChannel);
+    const competitionId = parseInt(data.competition, 10);
+    yield put(competitionActions.updateCompetitionResults(competitionId, data.results));
   }
 }
 
@@ -103,6 +114,23 @@ function createCompetitionListUpdateChannel(socket) {
   });
 }
 
-function createSocket() {
-  return io();
+function createCompetitionResultsUpdateChannel(socket) {
+  return eventChannel(emit => {
+    const competitionResultsUpdateHandler = event => {
+      emit(event);
+    };
+    socket.on('competitionResultsUpdate', competitionResultsUpdateHandler);
+    return() => {
+      socket.close();
+    };
+  });
+}
+
+let socket = null;
+
+function getSocket() {
+  if (socket === null)
+    socket = io();
+  
+  return socket;
 }
