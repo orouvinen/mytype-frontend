@@ -23,7 +23,7 @@ export function* watchCompetitionCreate() {
 
 export function* watchCompetitionListUpdate() {
   const socket = yield call(getSocket);
-  const socketChannel = yield call(createCompetitionListUpdateChannel, socket);
+  const socketChannel = yield call(createEventChannel, socket, 'competitionListUpdate');
 
   while (true) {
     const data = yield take(socketChannel);
@@ -33,7 +33,7 @@ export function* watchCompetitionListUpdate() {
 
 export function* watchCompetitionResultsUpdate() {
   const socket = yield call(getSocket);
-  const socketChannel = yield call(createCompetitionResultsUpdateChannel, socket);
+  const socketChannel = yield call(createEventChannel, socket, 'competitionResultsUpdate');
 
   while (true) {
     const data = yield take(socketChannel);
@@ -101,31 +101,15 @@ function* createCompetition(action) {
 }
 
 // Creates an event channel that emits websocket events
-function createCompetitionListUpdateChannel(socket) {
+function createEventChannel(socket, event) {
   return eventChannel(emit => {
-    const competitionListHandler = event => {
-      emit(event);
-    };
-    socket.on('competitionListUpdate', competitionListHandler);
-    // Return unsubscribe function
-    return() => {
-      socket.close();
-    };
+    socket.on(event, e => emit(e));
+    return () => socket.close();
   });
 }
 
-function createCompetitionResultsUpdateChannel(socket) {
-  return eventChannel(emit => {
-    const competitionResultsUpdateHandler = event => {
-      emit(event);
-    };
-    socket.on('competitionResultsUpdate', competitionResultsUpdateHandler);
-    return() => {
-      socket.close();
-    };
-  });
-}
 
+// Websocket connection
 let socket = null;
 
 function getSocket() {
