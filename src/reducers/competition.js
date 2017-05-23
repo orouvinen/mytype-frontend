@@ -11,7 +11,8 @@ const initialState = {
   selected: null,
 };
 
-// (ugly) Helper for creating deep copy of the state
+
+// Helper for creating deep copy of the state
 function cloneState(state) {
   let newState = {
     ...state,
@@ -20,7 +21,7 @@ function cloneState(state) {
 
   // Make deep copies of result objects and the user objects inside those.
   Object.keys(newState.competitions).forEach(id => {
-    const results = newState.competitions[id].results.slice(0);
+    const results = newState.competitions[id].results.slice();
 
     results.forEach((r, i) => {
       r.user = Object.assign({}, state.competitions[id].results[i].user);
@@ -30,6 +31,7 @@ function cloneState(state) {
 
   return newState;
 }
+
 
 function competitions(state = initialState, action) {
   switch (action.type) {
