@@ -38,7 +38,19 @@ export function* watchCompetitionResultsUpdate() {
   while (true) {
     const data = yield take(socketChannel);
     const competitionId = parseInt(data.competition, 10);
-    yield put(competitionActions.updateCompetitionResults(competitionId, data.results));
+    // Sort results by wpm in descending order.
+    // Better of two equal WPM results will be the one that was
+    // typed first.
+    yield put(competitionActions.updateCompetitionResults(competitionId,
+      data.results.sort((a, b) => {
+        if (a.wpm > b.wpm)
+          return -1;
+        else if (a.wpm < b.wpm)
+          return 1;
+        else
+          return a.endTime - b.endTime;
+      })
+    ));
   }
 }
 
