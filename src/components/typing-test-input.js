@@ -18,6 +18,7 @@ const TypingTestInput = ({typingTest, onKeyPress}) =>
     type="text"
     style={style}
     value={typingTest.typedWord}
+    onChange={() => null}
     onKeyDown={onKeyPress} />
 
 TypingTestInput.propTypes = {
