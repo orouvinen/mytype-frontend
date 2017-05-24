@@ -45,9 +45,7 @@ function typingTest(state = initialState, action) {
         ...cloneState(state),
         startTime: action.startTime,
         running: true,
-        line: 0,
-        word: 0,
-        totalWords: 0,
+        finished: false,
       };
 
     case typingActions.TYPINGTEST_KEYPRESS:
@@ -55,7 +53,7 @@ function typingTest(state = initialState, action) {
 
     case typingActions.TYPINGTEST_RESET:
       return {
-        ...cloneState(state),
+        ...initialState,
         text: state.text,
       };
     default:
