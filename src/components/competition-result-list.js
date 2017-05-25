@@ -10,28 +10,45 @@ const resultListStyle = {
   lineHeight: "2em",
 };
 
+const resultsTableStyle = {
+  width: "100%",
+  margin: "10px",
+};
+
 const CompetitionResultList = props => {
   const { competitions, selected } = props.competition;
   const selectedComp = competitions[selected];
 
   /* refactor CompetitionListRow out of this */
-
   if (!selectedComp)
     return <div>No competition selected</div>
+  /*
   if (selectedComp.results.length === 0)
     return <div>No results yet</div>;
-  
+ */
   return (
     <div style={resultListStyle}>
       <h2>Results</h2>
-      {selectedComp.results.map((r, i) => {
-        return(
-        <div key={i}>
-          <span>{i+1}&nbsp;</span>
-          <span>{r.user.name}&nbsp;</span> 
-          <span>{r.wpm.toFixed(1)}&nbsp;</span>
-        </div>);
-      })}
+      {selectedComp.results.length === 0 ? <div>No results yet, go type!</div> :
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>WPM</th>
+            </tr>
+          </thead>
+          <tbody>
+            {selectedComp.results.map((r, i) => {
+              return (
+                <tr key={i}>
+                  <td>{i + 1}</td>
+                  <td>{r.user.name}</td>
+                  <td>{r.wpm.toFixed(1)}</td>
+                </tr>);
+            })}
+          </tbody>
+        </table>}
     </div>
   );
 };

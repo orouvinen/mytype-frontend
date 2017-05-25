@@ -16,14 +16,21 @@ const competitionListWrapper = {
 };
 
 const competitionListRowStyle = {
-  padding: "0.5em",
-  margin: "2px 0 2px 0",
-  borderRadius: "1px",
+  backgroundColor: colors.primary3,
 };
 
 const selectedCompetitionStyle = {
   ...competitionListRowStyle,
-  backgroundColor: colors.complementary1,
+  backgroundColor: "#a8bb40",
+  color: colors.secondary4,
+  fontWeight: "bold",
+};
+
+const competitionTableStyle = {
+  width: "100%",
+  margin: "10px 0 auto 0",
+  /*border: `1px solid ${colors.secondary1}`,
+  borderRadius: "3px",*/
 };
 
 const headerStyle = {
@@ -55,25 +62,42 @@ const CompetitionList = props => {
   const competitions = props.competition.competitions;
   const ids = Object.keys(competitions);
   return (
-  <div>
-    <div style={competitionListWrapper}>
-      <h2 style={headerStyle}>Competitions</h2>
-      {ids.length === 0 ? <div style={{ fontSize: "0.7em" }}>(No competitions running)</div> :
-        ids.map((id, i) => {
-          return (
-            <div
-              onClick={() => props.selectCompetition(id)}
-              style={props.competition.selected === id ? selectedCompetitionStyle : competitionListRowStyle}
-              className="competitionListRow" key={i}>
-              <span>{i}&nbsp;</span>
-              <span>&nbsp;{timeLeft(competitions[id])}</span>
-            </div>)
-        })}
-    </div>
-    <div style={competitionControlsWrapper}>
-      <CompetitionControls onCreateClicked={props.onCreateClicked} />
-    </div>
-  </div>);
+    <div>
+      <div style={competitionListWrapper}>
+        <h2 style={headerStyle}>Competitions</h2>
+        <table style={competitionTableStyle}>
+          <thead>
+            <tr>
+              <th>Language</th>
+              <th>Time left</th>
+              <th>Leader</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ids.map(id => {
+              const competition = competitions[id];
+              return(
+                <tr onClick={() => props.selectCompetition(id)}
+                    key={id}
+                    className="competitionListRow"
+                    style={props.competition.selected === id
+                      ? selectedCompetitionStyle
+                      : competitionListRowStyle}>
+                  <td>{competition.language}</td>
+                  <td>{timeLeft(competition)}</td>
+                  <td>{competition.results.length > 0 ?
+                    competition.results[0].user.name + ` (${competition.results[0].wpm.toFixed(1)} WPM)` :
+                    "-"}
+                  </td>
+                </tr>);
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div style={competitionControlsWrapper}>
+        <CompetitionControls onCreateClicked={props.onCreateClicked} />
+      </div>
+    </div>);
 }
 
 export default CompetitionList;

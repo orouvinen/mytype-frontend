@@ -1,21 +1,21 @@
 * {
-     margin: 0;
-     padding: 0;
+  margin: 0;
+  padding: 0;
 }
 html * {
-     font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 input {
-     font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 body {
-     margin: 0;
-     padding: 0;
-     font-family: sans-serif;
-     background: #014953;
-     color: white;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #014953;
+  color: white;
 }
 
 .competitionListRow {
@@ -28,50 +28,66 @@ body {
 }
 
 label {
-     font-size: 0.8em;
-     padding-left: 3px;
-     display: inline-block;
+  font-size: 0.8em;
+  padding-left: 3px;
+  display: inline-block;
 }
 
 a {
-     color: #5c2c00; /* complementary 4 */
+  color: #5c2c00; /* complementary 4 */
+}
+
+th {
+  padding: 6px;
+  border-radius: 1px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: left;
+  background-color: #0c707e;
+  color: white;
+}
+
+td {
+  margin: 10px;
+  padding: 5px;
+  border-radius: 1px;
 }
 
 input[type="text"], input[type="password"], input[type="email"] {
-     padding: 3px;
-     margin: 0 0 0 3px;
-     background: #26818e;
-     color: white;
-     border: none;
-     border-radius: 1px;
-     font-size: 1.1em;
+  padding: 3px;
+  margin: 0 0 0 3px;
+  background: #26818e;
+  color: white;
+  border: none;
+  border-radius: 1px;
+  font-size: 1.1em;
 }
 
 input:focus {
-     border: 1px solid #cd9110; /* secondary2 */
-     outline: none;
+  border: 1px solid #cd9110; /* secondary2 */
+  outline: none;
 }
 
 button {
-     background: #e8b13a; /* secondary1 */
-     color: white;
-     border-radius: 1px;
-     border: none;
-     font-size: 1em;
-     font-weight: bold;
-     padding: 6px;
-     margin: 2px;
-     outline: none;
-     box-shadow: 2px 3px 13px #003138; /* primary4 */
-     -webkit-box-shadow: 2px 3px 13px #003138;
-     -moz-box-shadow: 2px 3px 13px #003138;
+  background: #e8b13a; /* secondary1 */
+  color: white;
+  border-radius: 1px;
+  border: none;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 6px;
+  margin: 2px;
+  outline: none;
+  box-shadow: 2px 3px 13px #003138; /* primary4 */
+  -webkit-box-shadow: 2px 3px 13px #003138;
+  -moz-box-shadow: 2px 3px 13px #003138;
 }
 
 button[type="submit"] {
-     line-height: 1.5em;
-     font-size: 1.2em;
-     font-weight: bold;
-     padding: 8px;
+  line-height: 1.5em;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 8px;
 }
 
 button:hover {
