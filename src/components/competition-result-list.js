@@ -12,7 +12,6 @@ const resultListStyle = {
 
 const resultsTableStyle = {
   width: "100%",
-  margin: "10px",
 };
 
 const CompetitionResultList = props => {
@@ -30,7 +29,7 @@ const CompetitionResultList = props => {
     <div style={resultListStyle}>
       <h2>Results</h2>
       {selectedComp.results.length === 0 ? <div>No results yet, go type!</div> :
-        <table>
+        <table style={resultsTableStyle}>
           <thead>
             <tr>
               <th>#</th>
