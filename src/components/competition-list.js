@@ -65,6 +65,7 @@ const CompetitionList = props => {
     <div>
       <div style={competitionListWrapper}>
         <h2 style={headerStyle}>Competitions</h2>
+        {ids.length === 0 ? <div><strong>No competitions running. Create one to get started!</strong></div> : null}
         <table style={competitionTableStyle}>
           <thead>
             <tr>
@@ -76,13 +77,13 @@ const CompetitionList = props => {
           <tbody>
             {ids.map(id => {
               const competition = competitions[id];
-              return(
+              return (
                 <tr onClick={() => props.selectCompetition(id)}
-                    key={id}
-                    className="competitionListRow"
-                    style={props.competition.selected === id
-                      ? selectedCompetitionStyle
-                      : competitionListRowStyle}>
+                  key={id}
+                  className="competitionListRow"
+                  style={props.competition.selected === id
+                    ? selectedCompetitionStyle
+                    : competitionListRowStyle}>
                   <td>{competition.language}</td>
                   <td>{timeLeft(competition)}</td>
                   <td>{competition.results.length > 0 ?
