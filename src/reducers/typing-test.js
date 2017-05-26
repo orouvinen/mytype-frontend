@@ -82,6 +82,7 @@ function keyHandler(key, currentState) {
     state.typedWord = state.typedWord.slice(0, state.typedWord.length - 1);
   } else if (key === ' ' || key === 'Enter') {
     state = advanceWord(currentState);
+    state.correctChars++;
   } else if (key.length === 1) { // Handle alpha-numeric letters
     if (key === correctWord[char])
       state.correctChars++;
