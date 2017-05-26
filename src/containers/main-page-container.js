@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CompetitionList from '../components/competition-list';
-import CompetitionResultList from '../components/competition-result-list';
 import SelectedCompetition from '../components/selected-competition';
 import { randomText } from '../helpers/typing-test-content-gen';
 import * as competitionActions from '../actions/competition';
@@ -18,7 +17,6 @@ class MainPageContainer extends Component {
       <div style={layout.layoutWrapper}>
         <div style={layout.leftColumn}>
           <SelectedCompetition {...this.props} />
-          <CompetitionResultList competition={this.props.competition} /> 
         </div>
         <div style={layout.centerColumn}>
           <CompetitionList

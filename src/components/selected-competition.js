@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import CompetitionResultList from './competition-result-list';
 import colors from '../colors';
 
 const infoBoxStyle = {
@@ -8,6 +9,14 @@ const infoBoxStyle = {
   padding: "5px",
   borderRadius: "1px",
   lineHeight: "2em",
+};
+
+const competitionStatsStyle = {
+  width: "calc(90% - 6px)",
+  padding: "3px",
+  backgroundColor: colors.primary3,
+  border: `1px solid ${colors.primary1}`,
+  margin: "5px auto",
 };
 
 const joinButtonWrapper = {
@@ -34,18 +43,20 @@ const SelectedCompetition = props => {
     const competitiondId = props.competition.selected;
     return (
       <div style={infoBoxStyle}>
-        <h3>Selected Competition</h3>
-        <div>
-          Avg WPM: {avgWpm(props.competition.competitions[competitiondId]).toFixed(1)}<br/>
-        </div>
+        <h3 style={{textAlign: "center"}}>Selected Competition</h3>
         <Link to={competitionUrl}>
           <div style={joinButtonWrapper}>
-            <button className="greenButton" style={{ width: "80%" }}>
+            <button className="greenButton" style={{ width: "90%" }}>
               Join
             </button>
           </div>
         </Link>
-      </div>);
+        <div style={competitionStatsStyle}>
+          Avg WPM: {avgWpm(props.competition.competitions[competitiondId]).toFixed(1)}<br />
+        </div>
+        <CompetitionResultList competition={props.competition} />
+      </div>
+    );
   }
 };
 
