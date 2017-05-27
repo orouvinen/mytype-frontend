@@ -4,7 +4,7 @@ import TypingTestInput from './typing-test-input';
 import WPM from './wpm';
 
 const containerStyle = {
-  width: "35em",
+  width: "40em",
   margin: "0 auto",
 };
 

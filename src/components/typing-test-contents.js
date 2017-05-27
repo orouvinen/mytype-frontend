@@ -10,7 +10,7 @@ const currentLineStyle = {
   minHeight: "3em",
   width: "100%",
   margin: "2px auto",
-  fontSize: "1.4em",
+  fontSize: "1.7em",
   backgroundColor: colors.primary1,
   borderRadius: 2,
 };
