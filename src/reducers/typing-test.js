@@ -82,6 +82,7 @@ function keyHandler(key, currentState) {
     state.typedWord = state.typedWord.slice(0, state.typedWord.length - 1);
   } else if (key === ' ' || key === 'Enter') {
     state = advanceWord(currentState);
+    // Typing the space between words always counts as correct character
     state.correctChars++;
   } else if (key.length === 1) { // Handle alpha-numeric letters
     if (key === correctWord[char])
@@ -98,7 +99,6 @@ function keyHandler(key, currentState) {
 
 // Returns new state when space / enter has been pressed
 function advanceWord(currentState) {
-  //let state = Object.assign({}, currentState);
   let state = cloneState(currentState);
   const { line, text } = currentState;
   const words = text[line].split(' ');
@@ -125,7 +125,6 @@ function advanceWord(currentState) {
       state.endTime = Date.now();
       state.finished = true;
     } else {
-      state.correctChars++; // Space / enter counts as correct char
       state.typedLine = [];
       state.word = 0;
       state.line++;
