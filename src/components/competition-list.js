@@ -16,13 +16,11 @@ const competitionListWrapper = {
 };
 
 const competitionListRowStyle = {
-  backgroundColor: colors.primary3,
 };
 
 const selectedCompetitionStyle = {
   ...competitionListRowStyle,
-  backgroundColor: "#a8bb40",
-  color: colors.secondary4,
+  backgroundColor: colors.complementary1,
   fontWeight: "bold",
 };
 
