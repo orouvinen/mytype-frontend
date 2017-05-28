@@ -45,7 +45,7 @@ class TypingTestContainer extends Component {
         line === text.length - 1 &&
         word === words.length - 1 &&
         typedWord === correctWord)
-      this.stop();
+          this.stop();
   }
 
   start() {
@@ -54,15 +54,21 @@ class TypingTestContainer extends Component {
   }
 
   stop() {
-    const { typingTest } = this.props;
-    const endTime = typingTest.endTime || Date.now();
-    const { startTime } = typingTest;
-    const wpmMeasure = wpm(typingTest.correctChars, typingTest.wrongChars, endTime - startTime);
-    const acc = accuracy(typingTest.correctChars, typingTest.wrongChars); 
-    const userId = this.props.user.id;
-    const competitionId = this.props.competition;
+    // When arriving here, we need to wait just a little bit for the last correctChar increment
+    // to be done in the store. I'm not exactly sure why it happens, but it happens.
+    // As a results, without the delay, we would store WPM measures that are ~0.5 WPM too slow.
+    setTimeout(() => {
+      const { typingTest } = this.props;
+      const { startTime } = typingTest;
+      const endTime = typingTest.endTime || Date.now();
 
-    this.props.stop(userId, competitionId, wpmMeasure, acc, startTime, endTime);
+      const wpmMeasure = wpm(typingTest.correctChars, typingTest.wrongChars, endTime - startTime);
+      const acc = accuracy(typingTest.correctChars, typingTest.wrongChars);
+      const userId = this.props.user.id;
+      const competitionId = this.props.competition.selected;
+
+      this.props.stop(userId, competitionId, wpmMeasure, acc, startTime, endTime);
+    }, 250);
   }
 
   handleKeyPress(e) {
@@ -84,11 +90,12 @@ class TypingTestContainer extends Component {
       this.props.keyPress(e.key);
   }
 
-  render() {
+ render() {
     return(
       <TypingTest
         typingTest={this.props.typingTest}
-        onKeyPress={this.handleKeyPress}/>
+        onKeyPress={this.handleKeyPress}
+        competition={this.props.competition} />
     );
   }
 }
@@ -97,7 +104,7 @@ function mapStateToProps(state) {
   return {
     typingTest: state.typingTest,
     user: state.auth.user,
-    competition: state.competition.selected,
+    competition: state.competition,
   };
 }
 

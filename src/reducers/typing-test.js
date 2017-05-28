@@ -10,7 +10,7 @@ const initialState = {
   running: false,  // typing is taking place?
   finished: false,    // the typing test has finished?
   startTime: undefined, // timestamp for typing start time
-  stopTime: undefined,  // timestamp for finishing time
+  endTime: undefined,  // timestamp for finishing time
   correctChars: 0,
   wrongChars: 0,
   totalWords: 0, // total number of words typed so far
@@ -34,7 +34,7 @@ function typingTest(state = initialState, action) {
     case typingActions.TYPINGTEST_DONE:
       return {
         ...cloneState(state),
-        stopTime: action.stopTime,
+        endTime: action.endTime,
         running: false,
         finished: true,
         finishWPM: action.wpm,
@@ -82,8 +82,6 @@ function keyHandler(key, currentState) {
     state.typedWord = state.typedWord.slice(0, state.typedWord.length - 1);
   } else if (key === ' ' || key === 'Enter') {
     state = advanceWord(currentState);
-    // Typing the space between words always counts as correct character
-    state.correctChars++;
   } else if (key.length === 1) { // Handle alpha-numeric letters
     if (key === correctWord[char])
       state.correctChars++;
@@ -109,6 +107,9 @@ function advanceWord(currentState) {
   state.totalWords++;
   state.char = 0;
   state.typedWord = "";
+  
+  // Typing the space between words always counts as correct character
+  state.correctChars++;
 
   // Add to incorrect character count any letters that were not typed,
   // or excess letters typed beyond the correct word.

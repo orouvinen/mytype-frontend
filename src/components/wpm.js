@@ -26,6 +26,11 @@ class WPM extends Component {
     }
   }
 
+  componentWillUnmount() {
+    if (this.state.timer)
+      clearInterval(this.state.timer);
+  }
+
   updateWPM() {
     const { typingTest } = this.props;
     const { correctChars, wrongChars } = typingTest;
@@ -47,7 +52,7 @@ class WPM extends Component {
     let timeElapsed;
     if (!typingTest.running) {
       if (typingTest.finished)
-        timeElapsed = typingTest.stopTime - typingTest.startTime; 
+        timeElapsed = typingTest.endTime - typingTest.startTime; 
       else
         return 0; // Nothing has been typed yet
     } else
