@@ -11,6 +11,12 @@ const summaryStyle = {
   borderRadius: "2px",
 }
 
+const headerStyle = {
+  padding: "10px",
+  background: "linear-gradient(" + colors.primary1 + ", " + colors.primary3 + ")",
+  borderRadius: "4px",
+};
+
 const TypingTestSummary = props => {
   if (!props.typingTest.finished)
     return null;
@@ -21,7 +27,7 @@ const TypingTestSummary = props => {
 
   return (
   <div style={summaryStyle}>
-    <h2>Summary</h2>
+    <h2 style={headerStyle}>Summary</h2>
     <div>WPM: {wpmMeasure.toFixed(1)}</div>
     <div>Accuracy: {accuracy(correctChars, wrongChars).toFixed(1)}%</div>
     <div>

@@ -11,7 +11,8 @@ const competitionControlsWrapper = {
 
 const competitionListWrapper = {
   padding: "5px",
-  background: colors.primary4,
+  background: colors.primary2,
+  border: `1px solid ${colors.primary1}`,
   borderRadius: "1px",
 };
 
@@ -21,14 +22,11 @@ const competitionListRowStyle = {
 const selectedCompetitionStyle = {
   ...competitionListRowStyle,
   backgroundColor: colors.complementary1,
-  fontWeight: "bold",
 };
 
 const competitionTableStyle = {
   width: "100%",
   margin: "10px 0 auto 0",
-  /*border: `1px solid ${colors.secondary1}`,
-  borderRadius: "3px",*/
 };
 
 const headerStyle = {
