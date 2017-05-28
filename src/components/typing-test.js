@@ -9,7 +9,7 @@ const containerStyle = {
   margin: "0 auto",
 };
 
-const TypingTest = ({ typingTest, competition, onKeyPress }) => {
+const TypingTest = ({ reset, typingTest, competition, onKeyPress }) => {
   return(
     <div style={containerStyle}>
       <TypingTestContents typingTest={typingTest} />
@@ -18,7 +18,7 @@ const TypingTest = ({ typingTest, competition, onKeyPress }) => {
           <TypingTestInput typingTest={typingTest} onKeyPress={onKeyPress} />
           <WPM typingTest={typingTest} />
         </div> :
-        <TypingTestSummary typingTest={typingTest} competition={competition} />}
+        <TypingTestSummary onResetClick={() => reset()} typingTest={typingTest} competition={competition} />}
     </div>);
 };
 

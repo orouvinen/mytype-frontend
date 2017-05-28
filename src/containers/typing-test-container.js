@@ -95,7 +95,8 @@ class TypingTestContainer extends Component {
       <TypingTest
         typingTest={this.props.typingTest}
         onKeyPress={this.handleKeyPress}
-        competition={this.props.competition} />
+        competition={this.props.competition}
+        reset={this.props.reset} />
     );
   }
 }

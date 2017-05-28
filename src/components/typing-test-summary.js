@@ -6,7 +6,9 @@ const summaryStyle = {
   clear: "both",
   display: "block",
   margin: "30px 0 0 0",
+  padding: "8px",
   backgroundColor: colors.primary0,
+  borderRadius: "2px",
 }
 
 const TypingTestSummary = props => {
@@ -20,7 +22,11 @@ const TypingTestSummary = props => {
   return (
   <div style={summaryStyle}>
     <h2>Summary</h2>
-    <div>WPM: {wpmMeasure}</div>
+    <div>WPM: {wpmMeasure.toFixed(1)}</div>
+    <div>Accuracy: {accuracy(correctChars, wrongChars).toFixed(1)}%</div>
+    <div>
+      <button type="button" onClick={() => props.onResetClick()}>Try again!</button>
+    </div>
   </div>);
 }
 
