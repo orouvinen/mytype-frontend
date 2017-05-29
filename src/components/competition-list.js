@@ -56,7 +56,7 @@ const timeLeft = competition => {
 
 const CompetitionList = props => {
   const competitions = props.competition.competitions;
-  const ids = Object.keys(competitions);
+  const ids = Object.keys(competitions).map(Number);
   return (
     <div>
       <div style={competitionListWrapper}>
