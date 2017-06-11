@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+import { isEmpty } from '../helpers/util';
 import { takeEvery, call, put, take } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import { typingActions as typingActionTypes,
@@ -26,8 +27,22 @@ export function* watchCompetitionListUpdate() {
   const socketChannel = yield call(createEventChannel, socket, 'competitionListUpdate');
 
   while (true) {
-    const data = yield take(socketChannel);
-    yield put(competitionActions.updateCompetitionList(data));
+    const competitions = yield take(socketChannel);
+    // Competition results come as an object (that maps from user id to a result)
+    // from the back-end. It's more suitable for the front-end to process the
+    // results as an array, so let's convert.
+    Object.keys(competitions).forEach(compId => {
+      const comp = competitions[compId];
+      let results = [];
+
+      if (!isEmpty(comp.results)) {
+        Object.keys(comp.results).forEach(userId => {
+          results.push(comp.results[userId]);
+        });
+      }
+      comp.results = results;
+    });
+    yield put(competitionActions.updateCompetitionList(competitions));
   }
 }
 
@@ -41,8 +56,13 @@ export function* watchCompetitionResultsUpdate() {
     // Sort results by wpm in descending order.
     // Better of two equal WPM results will be the one that was
     // typed first.
+    let results = [];
+    for (let userId in data.results) {
+      if (data.results.hasOwnProperty(userId))
+        results.push(data.results[userId]);
+    }
     yield put(competitionActions.updateCompetitionResults(competitionId,
-      data.results.sort((a, b) => {
+      results.sort((a, b) => {
         if (a.wpm > b.wpm)
           return -1;
         else if (a.wpm < b.wpm)
