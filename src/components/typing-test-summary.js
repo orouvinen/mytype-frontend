@@ -9,6 +9,7 @@ const summaryStyle = {
   padding: "8px",
   backgroundColor: colors.primary2,
   borderRadius: "2px",
+  textAlign: "center",
 }
 
 const headerStyle = {
@@ -28,8 +29,9 @@ const TypingTestSummary = props => {
   return (
   <div style={summaryStyle}>
     <h2 style={headerStyle}>Summary</h2>
-    <div>WPM: {wpmMeasure.toFixed(1)}</div>
-    <div>Accuracy: {accuracy(correctChars, wrongChars).toFixed(1)}%</div>
+    <div style={{fontSize: "5em"}}>{wpmMeasure.toFixed(1)}</div>
+    <div style={{fontSize: "1.3em"}}>WPM</div>
+    <div style={{marginTop: "2em"}}>Accuracy: {accuracy(correctChars, wrongChars).toFixed(1)}%</div>
     <div>
       <button type="button" onClick={() => props.onResetClick()}>Try again!</button>
     </div>
