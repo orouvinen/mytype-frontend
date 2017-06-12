@@ -40,7 +40,7 @@ export function* watchCompetitionListUpdate() {
           results.push(comp.results[userId]);
         });
       }
-      comp.results = results;
+      comp.results = sortResults(results);
     });
     yield put(competitionActions.updateCompetitionList(competitions));
   }
@@ -53,24 +53,12 @@ export function* watchCompetitionResultsUpdate() {
   while (true) {
     const data = yield take(socketChannel);
     const competitionId = parseInt(data.competition, 10);
-    // Sort results by wpm in descending order.
-    // Better of two equal WPM results will be the one that was
-    // typed first.
     let results = [];
     for (let userId in data.results) {
       if (data.results.hasOwnProperty(userId))
         results.push(data.results[userId]);
     }
-    yield put(competitionActions.updateCompetitionResults(competitionId,
-      results.sort((a, b) => {
-        if (a.wpm > b.wpm)
-          return -1;
-        else if (a.wpm < b.wpm)
-          return 1;
-        else
-          return a.endTime - b.endTime;
-      })
-    ));
+    yield put(competitionActions.updateCompetitionResults(competitionId, sortResults(results)));
   }
 }
 
@@ -137,6 +125,21 @@ function createEventChannel(socket, event) {
   return eventChannel(emit => {
     socket.on(event, e => emit(e));
     return () => socket.close();
+  });
+}
+
+// Sorts competition result array
+function sortResults(results) {
+  return results.sort((a, b) => {
+    // Sort results by wpm in descending order.
+    // Better of two equal WPM results will be the one that was
+    // typed first.
+    if (a.wpm > b.wpm)
+      return -1;
+    else if (a.wpm < b.wpm)
+      return 1;
+    else
+      return a.endTime - b.endTime;
   });
 }
 
