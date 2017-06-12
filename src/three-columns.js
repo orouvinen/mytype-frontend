@@ -1,4 +1,3 @@
-import colors from './colors';
 export { layoutWrapper } from './layout-wrapper';
 
 export const leftColumn = {
