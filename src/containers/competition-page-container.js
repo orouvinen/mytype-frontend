@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TypingTest from './typing-test-container';
 import CompetitionResultList from '../components/competition-result-list';
-import * as layout from '../two-columns';
+import * as layout from '../three-columns';
 import * as actions from '../actions/competition';
 
 class CompetitionPage extends Component {
@@ -18,12 +18,16 @@ class CompetitionPage extends Component {
     const competition = this.props.competition.competitions[id];
 
     return (<div style={layout.layoutWrapper}>
-      <div style={layout.sideBar}>
+      <div style={layout.leftColumn}>
         <CompetitionResultList {...this.props} /> 
       </div>
 
-      <div style={layout.mainContent}>
+      <div style={layout.centerColumn}>
         <TypingTest content={competition.content} />
+      </div>
+
+      <div style={layout.rightColumn}>
+        <CompetitionResultList {...this.props} />
       </div>
     </div>);
   }

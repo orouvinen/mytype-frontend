@@ -1,7 +1,9 @@
-export const layoutWrapper = {
-  display: "flex",
-  justifyContent: "space-between",
-};
+export { layoutWrapper } from './layout-wrapper';
+
+//export const layoutWrapper = {
+//  display: "flex",
+//  justifyContent: "space-between",
+//};
 
 export const sideBar = {
   marginLeft: "35px",

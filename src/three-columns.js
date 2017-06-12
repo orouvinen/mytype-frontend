@@ -1,7 +1,5 @@
-export const layoutWrapper = {
-  display: "flex",
-  justifyContent: "space-between",
-};
+import colors from './colors';
+export { layoutWrapper } from './layout-wrapper';
 
 export const leftColumn = {
   marginLeft: "15px",
@@ -16,6 +14,7 @@ export const centerColumn = {
 };
 
 export const rightColumn = {
+  marginRight: "15px",
   order: "3",
   flex: "1 6 20%",
 };

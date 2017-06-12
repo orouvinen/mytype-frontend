@@ -7,7 +7,7 @@ const summaryStyle = {
   display: "block",
   margin: "30px 0 0 0",
   padding: "8px",
-  backgroundColor: colors.primary0,
+  backgroundColor: colors.primary2,
   borderRadius: "2px",
 }
 

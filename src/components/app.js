@@ -8,6 +8,7 @@ const headerStyle = {
   padding: "10px",
   margin: "0 auto 10px auto",
   fontSize: "1.2em",
+  height: "40px",
 };
 
 const titleWrapper = {
