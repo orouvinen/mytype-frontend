@@ -4,6 +4,7 @@ import CompetitionList from '../components/competition-list';
 import { randomText } from '../helpers/typing-test-content-gen';
 import * as actions from '../actions/competition';
 
+
 class CompetitionListContainer extends Component {
   createCompetition() {
     this.props.createCompetition("eng", randomText(50));

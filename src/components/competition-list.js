@@ -37,6 +37,7 @@ const headerStyle = {
 
 const timerDigits = value => ((value < 10) ? "0" : "") + Math.floor(value).toFixed(0);
 
+
 const timeLeft = competition => {
   // Get creation time
   const start = new Date(competition.createdAt);
@@ -56,7 +57,13 @@ const timeLeft = competition => {
 
 const CompetitionList = props => {
   const competitions = props.competition.competitions;
-  const ids = Object.keys(competitions).map(Number);
+  const { page, itemsPerPage } = props;
+  const firstItem = page * itemsPerPage; // First item (index) to show
+  const ids =
+    Object.keys(competitions)
+      .map(Number)
+      .slice(firstItem, firstItem + itemsPerPage);
+
   return (
     <div>
       <div style={competitionListWrapper}>
@@ -65,13 +72,14 @@ const CompetitionList = props => {
         <table style={competitionTableStyle}>
           <thead>
             <tr>
+              <th>#</th>
               <th>Language</th>
               <th>Time left</th>
               <th>Leader</th>
             </tr>
           </thead>
           <tbody>
-            {ids.map(id => {
+            {ids.map((id, i) => {
               const competition = competitions[id];
               return (
                 <tr onClick={() => props.selectCompetition(id)}
@@ -80,6 +88,7 @@ const CompetitionList = props => {
                   style={props.competition.selected === id
                     ? selectedCompetitionStyle
                     : competitionListRowStyle}>
+                  <td>{firstItem + i + 1}</td>
                   <td>{competition.language}</td>
                   <td>{timeLeft(competition)}</td>
                   <td>{competition.results.length > 0 ?
@@ -90,9 +99,7 @@ const CompetitionList = props => {
             })}
           </tbody>
         </table>
-      </div>
-      <div style={competitionControlsWrapper}>
-        <CompetitionControls onCreateClicked={props.onCreateClicked} />
+        <button style={{width: "calc(100% - 10px)", margin: "10px 5px 5px 5px"}} className="greenButton" type="button" onClick={props.onCreateClicked}>+ Create competition</button>
       </div>
     </div>);
 }
