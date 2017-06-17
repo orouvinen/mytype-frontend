@@ -13,31 +13,31 @@ const Paginate = (WrappedComponent, totalItems, itemsPerPage) => {
         numPages: totalItems === 0 ? 1 : Math.ceil(totalItems / itemsPerPage),
       };
     }
-    
+
     nextPage() {
       const { page, numPages } = this.state;
       if (page < numPages - 1)
-        this.setState({ page: page + 1});
+        this.setState({ page: page + 1 });
     }
 
     prevPage() {
       const { page } = this.state;
 
       if (page > 0)
-        this.setState({ page: page - 1});
+        this.setState({ page: page - 1 });
     }
 
     render() {
       return (
-      <div>
+        <div>
           <WrappedComponent
             page={this.state.page}
             itemsPerPage={itemsPerPage}
             {...this.props} />
-           
+
           <div style={{ textAlign: "left" }}>
             <button type="button" onClick={this.prevPage.bind(this)}>&lt;</button>
-            <span style={{fontSize: "0.8em"}}> Page {this.state.page + 1} / {this.state.numPages} </span>
+            <span style={{ fontSize: "0.8em" }}> Page {this.state.page + 1} / {this.state.numPages} </span>
             <button type="button" onClick={this.nextPage.bind(this)}>&gt;</button>
           </div>
         </div>);
