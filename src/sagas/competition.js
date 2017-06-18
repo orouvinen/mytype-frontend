@@ -110,6 +110,13 @@ function* createCompetition(action) {
   switch(response.status) {
     case 201:
       yield put(competitionActions.createCompetitionSuccess());
+      // Grab competition id from response header's location field,
+      // and use that to select the created competition
+      const compUri = response.headers.get('location');
+      const id = parseInt(compUri.slice(compUri.lastIndexOf('/') + 1), 10);
+      yield put(competitionActions.selectCompetition(id));
+      yield put(competitionActions.requestLoadCompetition(id));
+
       break;
     case 401:
     case 500:

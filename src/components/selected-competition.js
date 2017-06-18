@@ -38,6 +38,13 @@ const SelectedCompetition = props => {
       <div style={infoBoxStyle}>
         <span style={{ color: "gray" }}>No competition selected.</span>
       </div>);
+  } else if (!props.competition.competitions[props.competition.selected]) {
+    // If the selected competition is not yet loaded in the store, then
+    // don't attempt to render anything.
+    // This happens, when the user has created a competition and it was
+    // then automatically selected by the createCompetition saga, but
+    // the competition list update isn't yet received from the back-end.
+    return null;
   } else {
     const competitionUrl = `/competition/${props.competition.selected}`;
     const competitiondId = props.competition.selected;
