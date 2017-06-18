@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 // Import reducers
 import typingTest from './reducers/typing-test';
-import index from './reducers/index';
+import ui from './reducers/ui';
 import auth from './reducers/auth';
 import competition from './reducers/competition';
 import { reducer as formReducer } from 'redux-form';
@@ -14,7 +14,7 @@ import rootSaga from './sagas/index';
 
 const rootReducer = combineReducers({
   typingTest,
-  index,
+  ui,
   auth,
   competition,
   form: formReducer

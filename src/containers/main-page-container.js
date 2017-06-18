@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CompetitionList from '../components/competition-list';
 import SelectedCompetition from '../components/selected-competition';
-import Paginate from '../containers/paginate';
+import paginate from '../containers/paginate';
 import { randomText } from '../helpers/typing-test-content-gen';
 import * as competitionActions from '../actions/competition';
+import * as uiActions from '../actions/ui';
 import * as layout from '../three-columns';
 
 
@@ -14,7 +15,8 @@ class MainPageContainer extends Component {
   }
 
   render() {
-    const PagedCompetitionList = Paginate(CompetitionList, this.props.competitionCount, 10);
+    const PagedCompetitionList =
+      paginate(CompetitionList, this.props.ui.competitionListPage, this.props.competitionCount, 10);
 
     return (
       <div style={layout.layoutWrapper}>
@@ -36,6 +38,7 @@ function mapStateToProps(state) {
   return {
     competition: state.competition,
     competitionCount: Object.keys(state.competition.competitions).length,
+    ui: state.ui,
   }
 }
 
@@ -43,8 +46,9 @@ function mapDispatchToProps(dispatch) {
   return {
     createCompetition: (language, content) =>
       dispatch(competitionActions.requestCreateCompetition(language, content)),
-
     selectCompetition: id => dispatch(competitionActions.selectCompetition(id)),
+    nextPage: () => dispatch(uiActions.competitionListNextPage()),
+    prevPage: () => dispatch(uiActions.competitionListPrevPage()),
   }
 }
 
