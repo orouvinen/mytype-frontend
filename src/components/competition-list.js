@@ -1,13 +1,6 @@
 import React from 'react';
-import CompetitionControls from './competition-controls';
 import colors from '../colors';
 
-
-const competitionControlsWrapper = {
-  margin: "5px 0 5px 0",
-  paddingRight: "1px",
-  textAlign: "right",
-};
 
 const competitionListWrapper = {
   padding: "5px",
