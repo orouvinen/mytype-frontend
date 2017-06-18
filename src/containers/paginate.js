@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
 
-// Creates a component that adds pagination to a list component of some sort.
-// The wrapped component has to accept the props
-// "itemsPerPage": how many items to display per page
-// "page" -> current page number to display
-const Paginate = (WrappedComponent, totalItems, itemsPerPage) => {
+// Paginate: creates a component that adds pagination to a list component of some sort.
+//
+// Args:
+//   WrappedComponent: the component that will be paginated
+//   initialPage: page (0..n-1) to display when first rendering the wrapped component
+//   totalItems: number of items contained in the component's listing
+//   itemsPerPage: how many items to display per page
+//   
+// In order for the wrapped component to work with pagination provided by this
+// component, wrapped component has to accept the props
+//
+//  "itemsPerPage": how many items to display per page
+//  "page" -> current page number to display
+//
+// and render the correct items based on these.
+// 
+const paginate = (WrappedComponent, initialPage, totalItems, itemsPerPage) => {
   return class Paginated extends Component {
     constructor() {
       super();
       this.state = {
-        page: 0,
+        page: initialPage,
         numPages: totalItems === 0 ? 1 : Math.ceil(totalItems / itemsPerPage),
       };
     }
@@ -17,14 +29,14 @@ const Paginate = (WrappedComponent, totalItems, itemsPerPage) => {
     nextPage() {
       const { page, numPages } = this.state;
       if (page < numPages - 1)
-        this.setState({ page: page + 1 });
+        this.props.nextPage();
     }
 
     prevPage() {
       const { page } = this.state;
 
       if (page > 0)
-        this.setState({ page: page - 1 });
+        this.props.prevPage();
     }
 
     render() {
@@ -45,4 +57,4 @@ const Paginate = (WrappedComponent, totalItems, itemsPerPage) => {
   };
 };
 
-export default Paginate;
+export default paginate;
