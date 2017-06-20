@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import * as actions from '../actions/user';
 import UserProfile from '../components/user-profile';
+import { loadUser } from '../fetch/user';
 
 class UserProfileContainer extends Component {
+  constructor() {
+    super();
+    /* Just keep the user data in local state for now */
+    this.state = {
+      profileUser: null,
+    };
+  }
+
+  componentDidMount() {
+    loadUser(this.props.params.userId)
+    .then(response => {
+      response.json().then(data => this.setState({ profileUser: data.user }));
+    });
+  }
+
   render() {
     if (!this.props.loggedIn) {
       return(
@@ -12,16 +29,23 @@ class UserProfileContainer extends Component {
         </div>
       );
     }
-    return <UserProfile user={this.props.user} />
-      
+    if (!this.state.profileUser) {
+      return <div>Loading...</div>;
+    }
+    return <UserProfile user={this.state.profileUser} />
   }
 }
 
 function mapStateToProps(state) {
   return {
-    user: state.auth.user,
     loggedIn: state.auth.loggedIn,
   };
 }
 
-export default connect(mapStateToProps)(UserProfileContainer);
+function mapDispatchToProps(dispatch) {
+  return {
+    loadUser: () => actions.requestUserLoad(),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfileContainer);
