@@ -20,7 +20,7 @@ ReactDOM.render(
         <Route path="/competition/:competitionId" component={CompetitionPage} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/profile" component={UserProfile} />
+        <Route path="/profile/:userId" component={UserProfile} />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>
