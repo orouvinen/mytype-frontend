@@ -28,7 +28,6 @@ const profileBody = {
 };
 
 const UserProfile = ({ user }) => {
-  console.log(user);
   return (
     <div style={layoutWrapper}>
       <div style={profileWrapper}>
