@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import * as actions from '../actions/user';
 import UserProfile from '../components/user-profile';
 import { loadUser } from '../fetch/user';
 
@@ -42,10 +41,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    loadUser: () => actions.requestUserLoad(),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfileContainer);
+export default connect(mapStateToProps)(UserProfileContainer);
