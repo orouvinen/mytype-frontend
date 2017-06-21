@@ -2,13 +2,6 @@ import React from 'react';
 import { layoutWrapper } from '../layout-wrapper';
 import colors from '../colors';
 
-const userBadgeStyle = {
-  margin: "10px auto",
-  padding: "10px",
-  width: "100%",
-  backgroundColor: colors.primary2,
-};
-
 const profileWrapper = {
   padding: "5px",
   background: colors.primary2,
