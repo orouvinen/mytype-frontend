@@ -9,9 +9,19 @@ import SignUpComplete from '../components/sign-up-complete';
 
 
 class SignUpContainer extends Component {
+  constructor() {
+    super();
+    this.state = { passwordsMatch: true };
+  }
+
   handleSubmit(values) {
-    const { name, email, password } = values;
-    this.props.requestSignUp(name, email, password);
+    const { name, email, password, passwordAgain } = values;
+    const passwordsMatch = password === passwordAgain;
+
+    this.setState({ passwordsMatch });
+
+    if (passwordsMatch)
+      this.props.requestSignUp(name, email, password);
   }
 
   render() {
@@ -24,7 +34,7 @@ class SignUpContainer extends Component {
     else
       return (
         <FormWrapper>
-          <SignUpForm auth={this.props.auth} onSubmit={this.handleSubmit.bind(this)} />
+          <SignUpForm passwordsMatch={this.state.passwordsMatch} auth={this.props.auth} onSubmit={this.handleSubmit.bind(this)} />
         </FormWrapper>
       );
   }
