@@ -29,8 +29,16 @@ const AccountExistsNotify = props => {
     return null;
 };
 
+const PasswordMismatchNotify = ({ passwordsMatch }) => {
+  console.log(passwordsMatch);
+  if (passwordsMatch)
+    return null;
 
-const SignUpForm = (props) => {
+  return <div style={errorMessageStyle}>Passwords do not match!</div>;
+};
+
+
+const SignUpForm = props => {
   const { handleSubmit } = props;
   if (props.auth.loggedIn) {
     return (
@@ -47,11 +55,11 @@ const SignUpForm = (props) => {
       </div>);
 
   }
-
   return (
     <div>
       <h2>Create a new account</h2>
       <AccountExistsNotify auth={props.auth} />
+      <PasswordMismatchNotify passwordsMatch={props.passwordsMatch} />
       <form onSubmit={handleSubmit} method="POST">
         <div style={inputFieldContainer}>
           <div><label htmlFor="name">Username</label></div>
@@ -64,6 +72,10 @@ const SignUpForm = (props) => {
         <div style={inputFieldContainer}>
           <div><label htmlFor="password">Password</label></div>
           <div><Field name="password" component="input" type="password" required /></div>
+        </div>
+        <div style={inputFieldContainer}>
+          <div><label htmlFor="passwordAgain">Password again</label></div>
+          <div><Field name="passwordAgain" component="input" type="password" required /></div>
         </div>
         <div style={submitButtonContainer}>
           <button type="submit">Sign me up!</button>
