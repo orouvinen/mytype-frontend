@@ -30,7 +30,6 @@ const AccountExistsNotify = props => {
 };
 
 const PasswordMismatchNotify = ({ passwordsMatch }) => {
-  console.log(passwordsMatch);
   if (passwordsMatch)
     return null;
 
