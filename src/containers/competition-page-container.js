@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TypingTest from './typing-test-container';
 import CompetitionResultList from '../components/competition-result-list';
+import LinksPanel from '../containers/links-panel-container';
 import * as layout from '../three-columns';
 import * as actions from '../actions/competition';
 
@@ -27,7 +28,7 @@ class CompetitionPage extends Component {
       </div>
 
       <div style={layout.rightColumn}>
-        <CompetitionResultList {...this.props} />
+        <LinksPanel />
       </div>
     </div>);
   }

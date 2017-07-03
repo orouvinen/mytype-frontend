@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CompetitionList from '../components/competition-list';
 import SelectedCompetition from '../components/selected-competition';
+import LinksPanel from '../containers/links-panel-container';
 import paginate from '../containers/paginate';
 import { randomText } from '../helpers/typing-test-content-gen';
 import * as competitionActions from '../actions/competition';
 import * as uiActions from '../actions/ui';
 import * as layout from '../three-columns';
-
 
 class MainPageContainer extends Component {
   createCompetition() {
@@ -28,7 +28,7 @@ class MainPageContainer extends Component {
             onCreateClicked={this.createCompetition.bind(this)}
             {...this.props} />
         </div>
-        <div style={layout.rightColumn}></div>
+        <div style={layout.rightColumn}><LinksPanel /></div>
       </div>
     );
   }

@@ -18,6 +18,21 @@ body {
   color: white;
 }
 
+.borderedContainer {
+  padding: 5px;
+  background: #025C68; /* Primary 2 */
+  /*border: 1px solid #26818E;*/
+  border-radius: 1px;
+}
+
+.borderedContainer h1,
+.borderedContainer h2,
+.borderedContainer h3 {
+  padding: 10px;
+  background: linear-gradient(#0C707E, #014953); /* primary1 -> primary3 */
+  border-radius: 4px;
+}
+
 .competitionListRow {
   background-color: #025C68
 }
@@ -35,6 +50,10 @@ label {
 
 a {
   color: #5c2c00; /* complementary 4 */
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 
 th {

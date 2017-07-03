@@ -1,5 +1,4 @@
 import React from 'react';
-import colors from '../colors';
 import { wpm, accuracy } from '../helpers/wpm';
 
 const summaryStyle = {
@@ -7,15 +6,7 @@ const summaryStyle = {
   display: "block",
   margin: "30px 0 0 0",
   padding: "8px",
-  backgroundColor: colors.primary2,
-  borderRadius: "2px",
   textAlign: "center",
-}
-
-const headerStyle = {
-  padding: "10px",
-  background: "linear-gradient(" + colors.primary1 + ", " + colors.primary3 + ")",
-  borderRadius: "4px",
 };
 
 const TypingTestSummary = props => {
@@ -27,13 +18,13 @@ const TypingTestSummary = props => {
   const wpmMeasure = wpm(correctChars, wrongChars, endTime - startTime);
 
   return (
-  <div style={summaryStyle}>
-    <h2 style={headerStyle}>Summary</h2>
+  <div className="borderedContainer" style={summaryStyle}>
+    <h1>Summary</h1>
     <div style={{fontSize: "5em"}}>{wpmMeasure.toFixed(1)}</div>
     <div style={{fontSize: "1.3em"}}>WPM</div>
     <div style={{marginTop: "2em"}}>Accuracy: {accuracy(correctChars, wrongChars).toFixed(1)}%</div>
     <div>
-      <button type="button" onClick={() => props.onResetClick()}>Try again!</button>
+      <button style={{fontSize: "1.5em"}} type="button" onClick={() => props.onResetClick()}>Try again!</button>
     </div>
   </div>);
 }

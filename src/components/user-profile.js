@@ -21,6 +21,9 @@ const profileBody = {
 };
 
 const UserProfile = ({ user }) => {
+  if (!user)
+    return <div className="borderedContainer">Fetching user data...</div>;
+
   return (
     <div style={layoutWrapper}>
       <div style={profileWrapper}>

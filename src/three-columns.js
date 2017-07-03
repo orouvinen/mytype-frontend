@@ -8,6 +8,7 @@ export const leftColumn = {
 
 export const centerColumn = {
   marginLeft: "20px",
+  marginRight: "20px",
   order: "2",
   flex: "3 1 60%",
 };

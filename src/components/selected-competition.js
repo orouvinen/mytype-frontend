@@ -20,6 +20,8 @@ const competitionStatsStyle = {
 };
 
 const joinButtonWrapper = {
+  marginTop: "5px",
+  marginBottom: "5px",
   textAlign: "center",
 };
 
@@ -49,8 +51,8 @@ const SelectedCompetition = props => {
     const competitionUrl = `/competition/${props.competition.selected}`;
     const competitiondId = props.competition.selected;
     return (
-      <div style={infoBoxStyle}>
-        <h3 style={{textAlign: "center"}}>Selected Competition</h3>
+      <div className="borderedContainer">
+        <h2 style={{textAlign: "center"}}>Selected Competition</h2>
         <Link to={competitionUrl}>
           <div style={joinButtonWrapper}>
             <button className="greenButton" style={{ width: "90%" }}>

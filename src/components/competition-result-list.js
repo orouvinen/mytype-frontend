@@ -1,16 +1,7 @@
 import React from 'react';
-import colors from '../colors';
-
-const resultListStyle = {
-  backgroundColor: colors.primary2,
-  marginTop: "5px",
-  marginRight: "5px",
-  padding: "5px",
-  borderRadius: "1px",
-  lineHeight: "2em",
-};
 
 const resultsTableStyle = {
+  marginTop: "5px",
   width: "100%",
 };
 
@@ -20,14 +11,11 @@ const CompetitionResultList = props => {
 
   /* refactor CompetitionListRow out of this */
   if (!selectedComp)
-    return <div>No competition selected</div>
-  /*
-  if (selectedComp.results.length === 0)
-    return <div>No results yet</div>;
- */
+    return <div>No competition selected</div>;
+    
   return (
-    <div style={resultListStyle}>
-      <h2>Results</h2>
+    <div className="borderedContainer">
+      <h3>Leaderboard</h3>
       {selectedComp.results.length === 0 ? <div>No results yet, go type!</div> :
         <table style={resultsTableStyle}>
           <thead>
