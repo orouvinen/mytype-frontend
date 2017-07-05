@@ -6,7 +6,7 @@ import LinksPanel from '../containers/links-panel-container';
 import * as layout from '../three-columns';
 import * as actions from '../actions/competition';
 
-class CompetitionPage extends Component {
+class CompetitionPageContainer extends Component {
   componentDidMount() {
     this.props.loadCompetition(this.props.params.competitionId);
   }
@@ -46,4 +46,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompetitionPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CompetitionPageContainer);
