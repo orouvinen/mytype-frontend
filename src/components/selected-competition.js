@@ -38,7 +38,10 @@ const SelectedCompetition = props => {
   if (!props.competition.selected) {
     return (
       <div style={infoBoxStyle}>
-        <span style={{ color: "gray" }}>No competition selected.</span>
+        <span style={{ color: colors.complementary0 }}>
+          <strong>No competition selected.</strong><br/> To get started, select a competition from the competition list, or create a new competition
+          if there's no suitable competition running already.
+        </span>
       </div>);
   } else if (!props.competition.competitions[props.competition.selected]) {
     // If the selected competition is not yet loaded in the store, then

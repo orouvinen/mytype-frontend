@@ -93,6 +93,7 @@ class TypingTestContainer extends Component {
  render() {
     return(
       <TypingTest
+        user={this.props.user}
         typingTest={this.props.typingTest}
         onKeyPress={this.handleKeyPress}
         competition={this.props.competition}
