@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import UserProfile from '../components/user-profile';
-import { loadUser } from '../fetch/user';
+import { loadUsers } from '../fetch/user';
 
 class UserProfileContainer extends Component {
   constructor() {
@@ -9,18 +9,41 @@ class UserProfileContainer extends Component {
     /* Just keep the user data in local state for now */
     this.state = {
       profileUser: null,
+      // users: null,
+      userStats: {
+        topPct: 0,
+      },
+      users: [],
     };
   }
 
   componentDidMount() {
-    loadUser(this.props.params.userId)
-    .then(response => {
-      response.json().then(data => this.setState({ profileUser: data.user }));
+    loadUsers('wpm', 'desc')
+    .then(response => response.json())
+    .then(data => {
+      const userId = parseInt(this.props.params.userId, 10);
+      const { users } = data;
+
+      this.setState({
+        profileUser: users.find(u => u.id === userId),
+        users,
+      }, () => {
+        this.setState({ userStats: { topPct: this.userPos() } })
+      });
     });
   }
 
+  userPos() {
+    let pos;
+    pos = this.state.users.indexOf(this.state.profileUser);
+    if (pos === -1)
+      return "-"; // shouldn't happen
+    
+    return (pos + 1).toString() + " / " + this.state.users.length;
+  }
+
   render() {
-    return <UserProfile user={this.state.profileUser} />
+    return <UserProfile user={this.state.profileUser} stats={this.state.userStats} />
   }
 }
 

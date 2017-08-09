@@ -10,3 +10,14 @@ export function loadUser(userId) {
   })
   .then(response => response);
 }
+
+export function loadUsers(sort = null, order = 'asc') {
+  let uri = '/api/users';
+  if (sort)
+    uri += `?sort=${sort}&order=${order}`;
+
+  return fetch(uri, {
+    method: 'GET'
+  })
+  .then(response => response);
+}

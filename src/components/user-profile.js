@@ -20,9 +20,13 @@ const profileBody = {
   padding: "10px",
 };
 
-const UserProfile = ({ user }) => {
-  if (!user)
-    return <div className="borderedContainer">Fetching user data...</div>;
+const UserProfile = ({ user, stats}) => {
+  if (!user || !stats) {
+    return(
+    <div style={layoutWrapper}>
+      <div style={profileWrapper}>Fetching user data...</div>
+    </div>);
+  }
 
   return (
     <div style={layoutWrapper}>
@@ -30,6 +34,7 @@ const UserProfile = ({ user }) => {
         <h1 style={headerStyle}>{user.name}</h1>
         <div style={profileBody}>
           <div>WPM: {user.avgWpm.toFixed(1)}</div>
+          <div>User position: {stats.topPct}</div>
           <div>Accuracy: {user.avgAcc.toFixed(0)}%</div>
           <div>Typed a total of <strong>{user.numTypingTests}</strong> typing tests.</div>
         </div>
