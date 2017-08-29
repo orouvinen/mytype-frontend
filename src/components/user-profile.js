@@ -31,7 +31,7 @@ const UserProfile = ({ user, stats}) => {
   return (
     <div style={layoutWrapper}>
       <div style={profileWrapper}>
-        <h1 style={headerStyle}>{user.name}</h1>
+        <h1 className="headerBar">{user.name}</h1>
         <div style={profileBody}>
           <div>WPM: {user.avgWpm.toFixed(1)}</div>
           <div>User position: {stats.topPct}</div>

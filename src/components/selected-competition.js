@@ -55,7 +55,7 @@ const SelectedCompetition = props => {
     const competitiondId = props.competition.selected;
     return (
       <div className="borderedContainer">
-        <h2 style={{textAlign: "center"}}>Selected Competition</h2>
+        <h2 className="headerBar">Selected Competition</h2>
         <Link to={competitionUrl}>
           <div style={joinButtonWrapper}>
             <button className="greenButton" style={{ width: "90%" }}>

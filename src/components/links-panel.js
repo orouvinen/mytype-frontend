@@ -19,7 +19,7 @@ const LinksPanel = props => {
   return (
     <div className="borderedContainer">
       <section>
-        <h2>Links</h2>
+        <h2 className="headerBar">Links</h2>
         <li style={linkListStyle}>
           <ul>{userProfileLink}</ul>
           <ul>{authLink}</ul>

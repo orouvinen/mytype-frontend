@@ -8,7 +8,7 @@ const containerStyle = {
   maxWidth: "500px",
   margin: "30px auto",
   padding: "20px",
-  borderRadius: "2px",
+  borderRadius: "1px",
 };
 
 const FormWrapper = (props) => {

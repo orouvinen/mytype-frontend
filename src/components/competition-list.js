@@ -22,11 +22,15 @@ const competitionTableStyle = {
   margin: "10px 0 auto 0",
 };
 
+/*
 const headerStyle = {
   padding: "10px",
   background: "linear-gradient(" + colors.primary1 + ", " + colors.primary3 + ")",
-  borderRadius: "4px",
+  borderRadius: "1px",
+  boxShadow: "2px 3px 13px #003138",
+  marginBottom: "5px",
 };
+*/
 
 const timerDigits = value => ((value < 10) ? "0" : "") + Math.floor(value).toFixed(0);
 
@@ -60,7 +64,7 @@ const CompetitionList = props => {
   return (
     <div>
       <div style={competitionListWrapper}>
-        <h2 style={headerStyle}>Competitions</h2>
+        <h2 className="headerBar">Competitions</h2>
         {ids.length === 0 ? <div><strong>No competitions running. Create one to get started!</strong></div> : null}
         <table style={competitionTableStyle}>
           <thead>
