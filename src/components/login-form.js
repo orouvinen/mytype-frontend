@@ -51,7 +51,7 @@ const LoginForm = props => {
           <div><Field name="password" component="input" type="password" required /></div>
         </div>
         <div style={submitButtonContainer}>
-          <button type="submit">Login!</button>
+          <button type="submit"><span className="fa fa-sign-in"></span>&nbsp;Login!</button>
         </div>
       </form>
     </div>

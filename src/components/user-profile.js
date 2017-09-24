@@ -30,7 +30,7 @@ const UserProfile = ({ user, stats }) => {
   return (
     <div style={layoutWrapper}>
       <div style={profileWrapper}>
-        <h1 className="headerBar">{user.name}</h1>
+        <h1 className="headerBar"><span className="fa fa-user-o"></span>&nbsp;{user.name}</h1>
         <div style={profileBody}>
           <CommonData heading="Ranking">{stats.topPct}</CommonData>
           <CommonData heading="WPM">{user.avgWpm.toFixed(1)}</CommonData>

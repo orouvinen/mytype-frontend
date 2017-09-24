@@ -22,18 +22,7 @@ const competitionTableStyle = {
   margin: "10px 0 auto 0",
 };
 
-/*
-const headerStyle = {
-  padding: "10px",
-  background: "linear-gradient(" + colors.primary1 + ", " + colors.primary3 + ")",
-  borderRadius: "1px",
-  boxShadow: "2px 3px 13px #003138",
-  marginBottom: "5px",
-};
-*/
-
 const timerDigits = value => ((value < 10) ? "0" : "") + Math.floor(value).toFixed(0);
-
 
 const timeLeft = competition => {
   // Get creation time
@@ -96,7 +85,9 @@ const CompetitionList = props => {
             })}
           </tbody>
         </table>
-        <button style={{width: "calc(100% - 10px)", margin: "10px 5px 5px 5px"}} className="greenButton" type="button" onClick={props.onCreateClicked}>+ Create competition</button>
+        <button style={{width: "calc(100% - 10px)", margin: "10px 5px 5px 5px"}} className="greenButton" type="button" onClick={props.onCreateClicked}>
+          <span className="fa fa-plus"></span>&nbsp;Create competition
+        </button>
       </div>
     </div>);
 }

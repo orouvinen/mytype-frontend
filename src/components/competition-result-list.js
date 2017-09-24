@@ -17,7 +17,7 @@ const CompetitionResultList = props => {
   return (
     <div className="borderedContainer">
       <h3 className="headerBar">Leaderboard</h3>
-      {selectedComp.results.length === 0 ? <div>No results yet, go type!</div> :
+      {selectedComp.results.length === 0 ? <div>No results yet, be the first!</div> :
         <table style={resultsTableStyle}>
           <thead>
             <tr>

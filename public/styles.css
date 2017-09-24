@@ -106,16 +106,16 @@ input:focus {
 button {
   background: yellowgreen;
   color: white;
-  border-radius: 1px;
+  border-radius: 3px;
   border: none;
   font-size: 1em;
   font-weight: bold;
   padding: 6px;
-  margin: 5px;
+  margin: 5px 3px 5px 3px;
   outline: none;
-  box-shadow: 2px 3px 13px #2b6169; /* primary3 */
-  -webkit-box-shadow: 2px 3px 13px #2b6169;
-  -moz-box-shadow: 2px 3px 13px #2b6169;
+  box-shadow: 1px 2px 13px #2b6169; /* primary3 */
+  -webkit-box-shadow: 1px 2px 13px #2b6169;
+  -moz-box-shadow: 1px 2px 13px #2b6169;
 }
 
 button[type="submit"] {
@@ -130,12 +130,16 @@ button:hover {
 }
 
 button:active {
-     background:  white; /* secondary3 */
+     background: white; /* secondary3 */
      color: black;
      transform: translate(2px, 2px);
+     box-shadow: -1px -2px 13px #2b6169; /* primary3 */
+     -webkit-box-shadow: -1px -2px 13px #2b6169;
+     -moz-box-shadow: -1px -2px 13px #2b6169;
 }
 
 .greenButton {
+  border-radius: 3px;
   background: #00a050;
   color: white;
 }
