@@ -10,13 +10,6 @@ const profileWrapper = {
   width: "100%",
 };
 
-// const headerStyle = {
-//   fontSize: "3em",
-//   background: "linear-gradient(" + colors.primary1 + ", " + colors.primary3 + ")",
-//   borderRadius: "4px",
-//   padding: "10px",
-// };
-
 const profileBody = {
   padding: "10px",
 };
