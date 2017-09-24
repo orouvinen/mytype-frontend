@@ -37,7 +37,7 @@ const App = props => (
         {props.auth.loggedIn ?
           <div>
             <div>Logged in: <Link to={`/profile/${props.auth.user.id}`}>{props.auth.user.name}</Link></div>
-            <a href="#" onClick={props.logout}>Logout</a>
+            <Link to='/logout'>Logout</Link>
           </div> :
           <Link to='/login'>Login</Link>
         }

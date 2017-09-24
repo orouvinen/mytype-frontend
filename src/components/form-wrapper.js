@@ -1,7 +1,7 @@
 import React from 'react';
 import colors from '../colors';
 
-// Wrapper around the whole login form
+// Wrapper around the whole form
 const containerStyle = {
   backgroundColor: colors.primary2,
   width: "50%",
