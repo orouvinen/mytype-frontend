@@ -9,6 +9,8 @@ import * as competitionActions from '../actions/competition';
 import * as uiActions from '../actions/ui';
 import * as layout from '../three-columns';
 
+const competitionsPerPage = 10;
+
 class MainPageContainer extends Component {
   createCompetition() {
     this.props.createCompetition("eng", randomText(100));
@@ -16,7 +18,7 @@ class MainPageContainer extends Component {
 
   render() {
     const PagedCompetitionList =
-      paginate(CompetitionList, this.props.ui.competitionListPage, this.props.competitionCount, 10);
+      paginate(CompetitionList, this.props.ui.competitionListPage, this.props.competitionCount, competitionsPerPage);
 
     return (
       <div style={layout.layoutWrapper}>
@@ -50,7 +52,8 @@ function mapDispatchToProps(dispatch) {
     selectCompetition: id => dispatch(competitionActions.selectCompetition(id)),
     nextPage: () => dispatch(uiActions.competitionListNextPage()),
     prevPage: () => dispatch(uiActions.competitionListPrevPage()),
-  }
+    setPage: pageNum => dispatch(uiActions.competitionListSetPage(pageNum)),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPageContainer);

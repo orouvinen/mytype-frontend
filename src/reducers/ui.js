@@ -18,6 +18,12 @@ function ui(state = initialState, action) {
         competitionListPage: state.competitionListPage - 1, 
       };
 
+    case uiActions.COMPETITION_LIST_SET_PAGE:
+      return {
+        ...state,
+        competitionListPage: action.pageNum,
+      };
+
     default:
       return state;
   }

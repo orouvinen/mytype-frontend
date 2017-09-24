@@ -20,6 +20,12 @@ const paginate = (WrappedComponent, initialPage, totalItems, itemsPerPage) => {
   return class Paginated extends Component {
     constructor() {
       super();
+
+      this.firstPage = this.firstPage.bind(this);
+      this.lastPage = this.lastPage.bind(this);
+      this.nextPage = this.nextPage.bind(this);
+      this.prevPage = this.prevPage.bind(this);
+
       this.state = {
         page: initialPage,
         numPages: totalItems === 0 ? 1 : Math.ceil(totalItems / itemsPerPage),
@@ -39,6 +45,14 @@ const paginate = (WrappedComponent, initialPage, totalItems, itemsPerPage) => {
         this.props.prevPage();
     }
 
+    firstPage() {
+      this.props.setPage(0);
+    }
+
+    lastPage() {
+      this.props.setPage(this.state.numPages - 1);
+    }
+
     render() {
       return (
         <div>
@@ -48,9 +62,19 @@ const paginate = (WrappedComponent, initialPage, totalItems, itemsPerPage) => {
             {...this.props} />
 
           <div style={{ textAlign: "left" }}>
-            <button type="button" onClick={this.prevPage.bind(this)}>&lt;</button>
+            <button type="button" onClick={() => this.firstPage()}>
+              <span className="fa fa-fast-backward"></span>
+            </button>
+            <button type="button" onClick={() => this.prevPage()}>
+              <span className="fa fa-backward"></span>
+            </button>
             <span style={{ fontSize: "0.8em" }}> Page {this.state.page + 1} / {this.state.numPages} </span>
-            <button type="button" onClick={this.nextPage.bind(this)}>&gt;</button>
+            <button type="button" onClick={() => this.nextPage()}>
+              <span className="fa fa-forward"></span>
+            </button>
+            <button type="button" onClick={() => this.lastPage()}>
+              <span className="fa fa-fast-forward"></span>
+            </button>
           </div>
         </div>);
     }

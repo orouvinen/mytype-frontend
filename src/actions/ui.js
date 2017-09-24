@@ -11,3 +11,10 @@ export function competitionListPrevPage() {
     type: uiActions.COMPETITION_LIST_PREV_PAGE,
   };
 }
+
+export function competitionListSetPage(pageNum) {
+  return {
+    type: uiActions.COMPETITION_LIST_SET_PAGE,
+    pageNum,
+  };
+}
