@@ -19,7 +19,7 @@ class TypingTestContainer extends Component {
     const text = this.props.content;
     this.props.setText(text, 45);
     
-    // Transform the text into on array of words for local state
+    // Transform the text into an array of words for local state
     this.setState({ words: text.split(" ") }); 
     this.props.reset();
   }
@@ -64,7 +64,7 @@ class TypingTestContainer extends Component {
 
       const wpmMeasure = wpm(typingTest.correctChars, typingTest.wrongChars, endTime - startTime);
       const acc = accuracy(typingTest.correctChars, typingTest.wrongChars);
-      const userId = this.props.user.id;
+      const userId = this.props.user ? this.props.user.id : null;
       const competitionId = this.props.competition.selected;
 
       this.props.stop(userId, competitionId, wpmMeasure, acc, startTime, endTime);

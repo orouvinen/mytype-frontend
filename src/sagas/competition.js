@@ -72,8 +72,11 @@ export function* watchCompetitionResultsUpdate() {
  */
 function* storeResult(action) {
   const { userId, competitionId, wpm, acc, startTime, endTime } = action;
+  if (!userId)
+    return;
+
   let response = yield call(competition.saveResult, userId, competitionId,
-                                                     wpm, acc, startTime, endTime);
+                            wpm, acc, startTime, endTime);
 
   switch(response.status) {
     case 201:
