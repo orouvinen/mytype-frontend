@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const resultsTableStyle = {
   marginTop: "5px",
@@ -30,7 +31,7 @@ const CompetitionResultList = props => {
               return (
                 <tr key={i}>
                   <td>{i + 1}</td>
-                  <td>{r.user.name}</td>
+                  <td><Link to={`/profile/${r.user.id}`}>{r.user.name}</Link></td>
                   <td>{r.wpm.toFixed(1)}</td>
                 </tr>);
             })}
