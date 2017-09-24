@@ -11,7 +11,7 @@ import * as layout from '../three-columns';
 
 class MainPageContainer extends Component {
   createCompetition() {
-    this.props.createCompetition("eng", randomText(50));
+    this.props.createCompetition("eng", randomText(100));
   }
 
   render() {

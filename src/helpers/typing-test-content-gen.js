@@ -7,7 +7,7 @@ const corpus =
 'know water than call first people may down side been now find any new work part take get place made ' +
 'live where after back little only round man year came show every good me give our under ' +
 'name very through just form much great think say help low line before turn cause same mean differ ' +
-'move right bou old too does tell sentence set three want air well also play small end put home ' +
+'move right boy old too does tell sentence set three want air well also play small end put home ' +
 'read hand port large spell add even land here must big high such follow act why ask men change ' +
 'went light kind off need house picture try us again animal point mother world near build self ' +
 'earth father head stand own page should country found answer school grow study still learn ' +
