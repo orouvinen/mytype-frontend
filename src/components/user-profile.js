@@ -4,7 +4,6 @@ import colors from '../colors';
 
 const profileWrapper = {
   padding: "5px",
-  background: colors.primary2,
   border: `1px solid ${colors.primary1}`,
   borderRadius: "1px",
   width: "100%",

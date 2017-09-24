@@ -6,6 +6,6 @@ export const layoutWrapper = {
   height: "calc(100vh - 110px)",
   display: "flex",
   justifyContent: "space-between",
-  background: `linear-gradient(${colors.primary3}, ${colors.primary2})`,
+  background: `linear-gradient(${colors.primary1}, ${colors.primary3})`,
   borderRadius: "1px",
 };

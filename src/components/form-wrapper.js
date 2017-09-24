@@ -3,7 +3,8 @@ import colors from '../colors';
 
 // Wrapper around the whole form
 const containerStyle = {
-  backgroundColor: colors.primary2,
+  backgroundColor: colors.primary1,
+  border: `${colors.secondary1} solid 1px`,
   width: "50%",
   maxWidth: "500px",
   margin: "30px auto",

@@ -14,23 +14,22 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: #014953;
+  background: #a0bbbf;
   color: white;
   line-height: 1.6;
 }
 
 .headerBar {
   padding: 10px;
-  background: linear-gradient(#0c707e, #014953); /* primary1, primary3 */
+  background: linear-gradient(#a0bbbf, #47787e); /* primary1, primary2 */
   border-radius: 1px;
-  box-shadow: 2px 3px 13px #003138;
+  box-shadow: 2px 3px 13px #174b53; /* primary4 */
   margin-bottom: 5px;
 }
 
 .borderedContainer {
-  padding: 5px;
-  background: #025C68; /* Primary 2 */
-  /*border: 1px solid #26818E;*/
+  padding: 8px;
+  background: #6a9197; /* Primary 2 */
   border-radius: 1px;
 }
 
@@ -38,16 +37,17 @@ body {
 .borderedContainer h2,
 .borderedContainer h3 {
   padding: 10px;
-  background: linear-gradient(#0C707E, #014953); /* primary1 -> primary3 */
+  background: linear-gradient(#a0bbbf, #47787e); /* primary1 -> primary2 */
   border-radius: 1px;
 }
 
 .competitionListRow {
-  background-color: #025C68
+  background-color: #ffe9d5;
+  color: #ab8a44;
 }
 
 .competitionListRow:hover {
-  background-color: #CD6B10; /* Complementary 1*/
+  background-color: white; /* Complementary 1*/
   cursor: pointer;
 }
 
@@ -58,10 +58,8 @@ label {
 }
 
 a {
-  /* color: #5c2c00; */ /* complementary 4 */
-  color: #5c2c00; /* complementary 4 */
+  color: #fff2d5;/* complementary 4 */
   text-decoration: none;
- /* border-bottom: 1px dashed #ababab; */
   transition: 0.2s;
 }
 a:hover {
@@ -70,12 +68,12 @@ a:hover {
 }
 
 th {
-  padding: 6px;
+  padding: 4px;
   border-radius: 1px;
   font-size: 1.2em;
   font-weight: bold;
   text-align: left;
-  background-color: #0c707e;
+  background-color: #a0bbbf;
   color: white;
 }
 
@@ -88,7 +86,7 @@ td {
 input[type="text"], input[type="password"], input[type="email"] {
   padding: 3px;
   margin: 0 0 0 3px;
-  background: #26818e;
+  background: #a0bbbf;
   color: white;
   border: none;
   border-radius: 1px;
@@ -96,23 +94,23 @@ input[type="text"], input[type="password"], input[type="email"] {
 }
 
 input:focus {
-  border: 1px solid #cd9110; /* secondary2 */
+  border: 1px solid #f6dfac; /* secondary2 */
   outline: none;
 }
 
 button {
-  background: #e8b13a; /* secondary1 */
+  background: yellowgreen;
   color: white;
   border-radius: 1px;
   border: none;
   font-size: 1em;
   font-weight: bold;
   padding: 6px;
-  margin: 2px;
+  margin: 5px;
   outline: none;
-  box-shadow: 2px 3px 13px #003138; /* primary4 */
-  -webkit-box-shadow: 2px 3px 13px #003138;
-  -moz-box-shadow: 2px 3px 13px #003138;
+  box-shadow: 2px 3px 13px #2b6169; /* primary3 */
+  -webkit-box-shadow: 2px 3px 13px #2b6169;
+  -moz-box-shadow: 2px 3px 13px #2b6169;
 }
 
 button[type="submit"] {
@@ -123,7 +121,7 @@ button[type="submit"] {
 }
 
 button:hover {
-     background: #cd9110; /* secondary2 */
+     background: #50c05a; /* secondary2 */
 }
 
 button:active {
@@ -132,9 +130,11 @@ button:active {
 }
 
 .greenButton {
-  background: #208820;
+  background: #00a050;
+  color: white;
 }
 
 .greenButton:hover {
-  background: #10bb10;
+  background: #50c05a;
+  color: black;
 }

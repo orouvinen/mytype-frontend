@@ -14,7 +14,7 @@ const infoBoxStyle = {
 const competitionStatsStyle = {
   width: "calc(90% - 6px)",
   padding: "3px",
-  backgroundColor: colors.primary3,
+  backgroundColor: colors.primary2,
   border: `1px solid ${colors.primary1}`,
   margin: "5px auto",
 };

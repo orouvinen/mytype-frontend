@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
+import colors from '../colors';
 
 const headerStyle = {
-  background: "linear-gradient(#e8b13a, #875c00)",
+  background: `linear-gradient(${colors.secondary1}, ${colors.secondary2})`,
   fontWeight: "bold",
   color: "white",
   padding: "10px",

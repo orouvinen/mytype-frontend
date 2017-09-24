@@ -11,7 +11,7 @@ const currentLineStyle = {
   width: "100%",
   margin: "2px auto",
   fontSize: "1.7em",
-  backgroundColor: colors.primary1,
+  backgroundColor: colors.primary2,
   borderRadius: 2,
 };
 
