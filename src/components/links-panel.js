@@ -11,7 +11,7 @@ const LinksPanel = props => {
   let authLink = null;
 
   if (props.auth.user) {
-    userProfileLink = <Link to={`/profile/${props.auth.user.id}`}>Profile</Link>;
+    userProfileLink = <Link to={`/profile/${props.auth.user.id}`}>My profile</Link>;
     authLink = <Link to='/logout'>Logout</Link>;
   } else {
     authLink = <Link to='/login'>Login</Link>

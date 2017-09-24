@@ -63,7 +63,7 @@ const SelectedCompetition = props => {
             </button>
           </div>
         </Link>
-        <div style={competitionStatsStyle}>
+        <div className="data-display" style={competitionStatsStyle}>
           Avg WPM: {avgWpm(props.competition.competitions[competitiondId]).toFixed(1)}<br />
         </div>
         <CompetitionResultList competition={props.competition} />

@@ -19,6 +19,10 @@ body {
   line-height: 1.6;
 }
 
+.data-display {
+  font-family: 'Droid Sans', sans-serif;
+}
+
 .headerBar {
   padding: 10px;
   background: linear-gradient(#a0bbbf, #47787e); /* primary1, primary2 */
@@ -81,6 +85,7 @@ td {
   margin: 10px;
   padding: 5px;
   border-radius: 1px;
+  font-family: "Droid Sans", sans-serif;
 }
 
 input[type="text"], input[type="password"], input[type="email"] {
@@ -125,7 +130,8 @@ button:hover {
 }
 
 button:active {
-     background: #aa7400; /* secondary3 */
+     background:  white; /* secondary3 */
+     color: black;
      transform: translate(2px, 2px);
 }
 
