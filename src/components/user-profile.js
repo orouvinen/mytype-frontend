@@ -1,4 +1,5 @@
 import React from 'react';
+import CommonData from './common-data';
 import { layoutWrapper } from '../layout-wrapper';
 import colors from '../colors';
 
@@ -18,12 +19,6 @@ const profileBody = {
   boxShadow: `2px 3px 13px ${colors.primary4}`,
 };
 
-const ProfileData = props =>
-  <div>
-    <span style={{ fontWeight: "bold" }}>{props.heading}:&nbsp;</span>
-    <span className="data-display">{props.children}</span>
-  </div>
-
 const UserProfile = ({ user, stats }) => {
   if (!user || !stats) {
     return(
@@ -37,10 +32,10 @@ const UserProfile = ({ user, stats }) => {
       <div style={profileWrapper}>
         <h1 className="headerBar">{user.name}</h1>
         <div style={profileBody}>
-          <ProfileData heading="Ranking">{stats.topPct}</ProfileData>
-          <ProfileData heading="WPM">{user.avgWpm.toFixed(1)}</ProfileData>
-          <ProfileData heading="Accuracy">{user.avgAcc.toFixed(0)}%</ProfileData>
-          <ProfileData heading="Typing tests typed">{user.numTypingTests}</ProfileData>
+          <CommonData heading="Ranking">{stats.topPct}</CommonData>
+          <CommonData heading="WPM">{user.avgWpm.toFixed(1)}</CommonData>
+          <CommonData heading="Accuracy">{user.avgAcc.toFixed(0)}%</CommonData>
+          <CommonData heading="Typing tests typed">{user.numTypingTests}</CommonData>
         </div>
       </div>
     </div>

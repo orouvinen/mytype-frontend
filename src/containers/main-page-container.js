@@ -36,6 +36,7 @@ class MainPageContainer extends Component {
 
 function mapStateToProps(state) {
   return {
+    auth: state.auth,
     competition: state.competition,
     competitionCount: Object.keys(state.competition.competitions).length,
     ui: state.ui,

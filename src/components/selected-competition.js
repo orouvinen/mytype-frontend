@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import CompetitionResultList from './competition-result-list';
+import CommonData from './common-data';
 import colors from '../colors';
 
 const infoBoxStyle = {
@@ -34,12 +35,20 @@ function avgWpm(competition) {
     .reduce((sum, val) => sum + val, 0) / competition.results.length;
 }
 
+function userRank(user, competition) {
+  const position = competition.results.findIndex(c => c.user.id === user.id) + 1;
+  if (!position)
+    return '-';
+
+  return position;
+}
+
 const SelectedCompetition = props => {
   if (!props.competition.selected) {
     return (
       <div style={infoBoxStyle}>
         <span style={{ color: colors.complementary0 }}>
-          <strong>No competition selected.</strong><br/> To get started, select a competition from the competition list, or create a new competition
+          <strong>No competition selected.</strong><br /> To get started, select a competition from the competition list, or create a new competition
           if there's no suitable competition running already.
         </span>
       </div>);
@@ -63,8 +72,17 @@ const SelectedCompetition = props => {
             </button>
           </div>
         </Link>
-        <div className="data-display" style={competitionStatsStyle}>
-          Avg WPM: {avgWpm(props.competition.competitions[competitiondId]).toFixed(1)}<br />
+        <div style={competitionStatsStyle}>
+          <CommonData heading="Avg. WPM">
+            {avgWpm(props.competition.competitions[competitiondId]).toFixed(1)}<br />
+          </CommonData>
+        </div>
+        <div style={competitionStatsStyle}>
+          <CommonData heading="Your current position">
+            {props.auth.loggedIn ?
+              userRank(props.auth.user, props.competition.competitions[props.competition.selected]) :
+              "N/A"}
+          </CommonData>
         </div>
         <CompetitionResultList competition={props.competition} />
       </div>
