@@ -6,7 +6,6 @@ import colors from '../colors';
 // TODO: this is identical (except for textAlign to the wrapper found in user profile component. DRY.
 const logoutWrapper = {
   padding: "5px",
-  background: colors.primary2,
   border: `1px solid ${colors.primary1}`,
   borderRadius: "1px",
   width: "100%",
