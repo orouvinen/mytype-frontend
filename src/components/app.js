@@ -16,11 +16,6 @@ const titleWrapper = {
   float: "left",
 };
 
-const authWrapper = {
-  float: "right",
-  fontSize: "0.7em",
-};
-
 const headerLinkStyle = {
   color: "white",
   textDecoration: "none",
@@ -34,16 +29,6 @@ const App = props => (
       <div style={titleWrapper}>
         <h2><Link style={headerLinkStyle} to="/">{headerAppTitle}</Link></h2>
       </div>
-      <div style={authWrapper}>
-        {props.auth.loggedIn ?
-          <div>
-            <div>Logged in: <Link to={`/profile/${props.auth.user.id}`}>{props.auth.user.name}</Link></div>
-            <Link to='/logout'>Logout</Link>
-          </div> :
-          <Link to='/login'>Login</Link>
-        }
-      </div>
-      <div style={{clear: "both"}}></div>
     </header>
     {React.cloneElement(props.children, props)}
   </div>
