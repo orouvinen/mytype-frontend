@@ -67,7 +67,7 @@ const SelectedCompetition = props => {
         <h2 className="headerBar">Selected Competition</h2>
         <Link to={competitionUrl}>
           <div style={joinButtonWrapper}>
-            <button className="greenButton" style={{ width: "90%" }}>
+            <button style={{ width: "90%" }}>
               Join
             </button>
           </div>

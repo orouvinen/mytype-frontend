@@ -59,9 +59,8 @@ const CompetitionList = props => {
           <thead>
             <tr>
               <th>#</th>
-              <th>Language</th>
-              <th>Time left</th>
               <th>Leader</th>
+              <th>Time left</th>
             </tr>
           </thead>
           <tbody>
@@ -75,17 +74,16 @@ const CompetitionList = props => {
                     ? selectedCompetitionStyle
                     : competitionListRowStyle}>
                   <td>{firstItem + i + 1}</td>
-                  <td>{competition.language}</td>
-                  <td>{timeLeft(competition)}</td>
                   <td>{competition.results.length > 0 ?
                     competition.results[0].user.name + ` (${competition.results[0].wpm.toFixed(1)} WPM)` :
                     "-"}
                   </td>
+                  <td>{timeLeft(competition)}</td>
                 </tr>);
             })}
           </tbody>
         </table>
-        <button style={{width: "calc(100% - 10px)", margin: "10px 5px 5px 5px"}} className="greenButton" type="button" onClick={props.onCreateClicked}>
+        <button style={{width: "calc(100% - 10px)", margin: "10px 5px 5px 5px"}} type="button" onClick={props.onCreateClicked}>
           <span className="fa fa-plus"></span>&nbsp;Create competition
         </button>
       </div>

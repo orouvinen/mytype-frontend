@@ -104,7 +104,7 @@ input:focus {
 }
 
 button {
-  background: yellowgreen;
+  background: linear-gradient(#cf9e72, #ab7644);
   color: white;
   border-radius: 3px;
   border: none;
@@ -126,12 +126,11 @@ button[type="submit"] {
 }
 
 button:hover {
-     background: #50c05a; /* secondary2 */
+     background: #ab7644; /* secondary2 */
 }
 
 button:active {
-     background: white; /* secondary3 */
-     color: black;
+     background: linear-gradient(#ab7644, #cf9e72);
      transform: translate(2px, 2px);
      box-shadow: -1px -2px 13px #2b6169; /* primary3 */
      -webkit-box-shadow: -1px -2px 13px #2b6169;
