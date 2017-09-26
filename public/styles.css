@@ -23,8 +23,17 @@ body {
   font-family: 'Droid Sans', sans-serif;
 }
 
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.3em;
+}
+
 .headerBar {
   padding: 10px;
+  margin: 10px;
   background: linear-gradient(#a0bbbf, #47787e); /* primary1, primary2 */
   border-radius: 1px;
   box-shadow: 2px 3px 13px #174b53; /* primary4 */

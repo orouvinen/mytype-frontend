@@ -11,6 +11,7 @@ import SignUp from './containers/sign-up-container';
 import Login from './containers/login-container';
 import Logout from './containers/logout-container';
 import UserProfile from './containers/user-profile-container';
+import LeaderBoard from './containers/leaderboard-container';
 import store from './store';
 
 
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Route path="/logout" component={Logout} />
         <Route path="/signup" component={SignUp} />
         <Route path="/profile/:userId" component={UserProfile} />
+        <Route path="/leaderboard" component={LeaderBoard} />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>

@@ -5,6 +5,7 @@ import typingTest from './reducers/typing-test';
 import ui from './reducers/ui';
 import auth from './reducers/auth';
 import competition from './reducers/competition';
+import users from './reducers/users';
 import { reducer as formReducer } from 'redux-form';
 
 import { persistStore, autoRehydrate } from 'redux-persist';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   ui,
   auth,
   competition,
+  users,
   form: formReducer
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

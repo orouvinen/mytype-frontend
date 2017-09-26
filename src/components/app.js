@@ -19,6 +19,7 @@ const titleWrapper = {
 const headerLinkStyle = {
   color: "white",
   textDecoration: "none",
+  fontSize: "1.2em",
 };
 
 const headerAppTitle = "mytype";

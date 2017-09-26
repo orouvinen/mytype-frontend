@@ -21,6 +21,7 @@ const LinksPanel = props => {
       <section>
         <h2 className="headerBar">Links</h2>
         <li style={linkListStyle}>
+          <ul><span className="fa fa-trophy"></span>&nbsp;<Link to='/leaderboard'>&nbsp;Leaderboard</Link></ul> 
           <ul>{userProfileLink}</ul>
           <ul><span className={props.auth.loggedIn ? "fa fa-sign-out" : "fa fa-sign-in"}></span>&nbsp;{authLink}</ul>
         </li>
