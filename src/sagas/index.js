@@ -25,12 +25,14 @@ export function createApiWorker(fetchFunc, fetchArgs, httpStatusActions) {
     const payload = yield call(() => response.json().then(data => data));
 
     for (const status in httpStatusActions) {
-      const statusCode = parseInt(status);
+      if (httpStatusActions.hasOwnProperty(status)) {
+        const statusCode = parseInt(status, 10);
 
-      if (httpStatusActions.hasOwnProperty(statusCode) && response.status === statusCode) {
-        const actionCreator = httpStatusActions[status];
-        yield put(actionCreator(payload));
-        return;
+        if (response.status === statusCode) {
+          const action = httpStatusActions[status];
+          yield put(action(payload));
+          return;
+        }
       }
     }
     if (httpStatusActions.default)

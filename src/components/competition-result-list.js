@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 
 const resultsTableStyle = {
   marginTop: "5px",
+  padding: "10px",
   width: "100%",
 };
 
@@ -16,7 +17,7 @@ const CompetitionResultList = props => {
     
   return (
     <div className="borderedContainer">
-      <h3 className="headerBar">Leaderboard</h3>
+      <h3 className="headerBar">Results</h3>
       {selectedComp.results.length === 0 ? <div>No results yet, be the first!</div> :
         <table style={resultsTableStyle}>
           <thead>
