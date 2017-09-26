@@ -33,7 +33,6 @@ h2 {
 
 .headerBar {
   padding: 10px;
-  margin: 10px;
   background: linear-gradient(#a0bbbf, #47787e); /* primary1, primary2 */
   border-radius: 1px;
   box-shadow: 2px 3px 13px #174b53; /* primary4 */
@@ -41,7 +40,7 @@ h2 {
 }
 
 .borderedContainer {
-  padding: 8px;
+  padding: 10px;
   background: #6a9197; /* Primary 2 */
   border-radius: 1px;
 }
@@ -73,11 +72,14 @@ label {
 a {
   color: #fff2d5;/* complementary 4 */
   text-decoration: none;
-  transition: 0.2s;
 }
 a:hover {
-  /*text-decoration: underline;*/
   border-bottom: 4px solid white;
+  transition: 0.1s;
+}
+
+tbody {
+  line-height: 1.2;
 }
 
 th {
@@ -144,15 +146,4 @@ button:active {
      box-shadow: -1px -2px 13px #2b6169; /* primary3 */
      -webkit-box-shadow: -1px -2px 13px #2b6169;
      -moz-box-shadow: -1px -2px 13px #2b6169;
-}
-
-.greenButton {
-  border-radius: 3px;
-  background: #00a050;
-  color: white;
-}
-
-.greenButton:hover {
-  background: #50c05a;
-  color: black;
 }
