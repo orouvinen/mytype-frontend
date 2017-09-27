@@ -80,8 +80,8 @@ function* storeResult(action) {
 
   switch(response.status) {
     case 201:
-      yield* put(competitionActions.saveResultSuccess());
-      yield* put(competitionActions.requestLoadCompetition(competitionId));
+      yield put(competitionActions.saveResultSuccess());
+      yield put(competitionActions.requestLoadCompetition(competitionId));
       break;
     default:
       // TODO: handle error
