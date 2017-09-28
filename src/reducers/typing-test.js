@@ -37,7 +37,7 @@ function typingTest(state = initialState, action) {
         endTime: action.endTime,
         running: false,
         finished: true,
-        finishWPM: action.wpm,
+        finishWPM: action.finishWpm,
       };
 
     case typingActions.TYPINGTEST_START:

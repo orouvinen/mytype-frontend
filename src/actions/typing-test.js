@@ -8,14 +8,10 @@ export function setText(text, lineLength) {
   };
 }
 
-export function stop(userId, competitionId, wpm, acc, startTime, endTime) {
+export function stop(finishWpm, endTime) {
   return {
     type: typingActions.TYPINGTEST_DONE,
-    userId,
-    competitionId,
-    wpm,
-    acc,
-    startTime,
+    finishWpm,
     endTime,
   };
 }

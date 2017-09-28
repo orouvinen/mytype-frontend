@@ -17,6 +17,8 @@ class CompetitionPageContainer extends Component {
 
     const id = this.props.params.competitionId;
     const competition = this.props.competition.competitions[id];
+    if (!competition)
+      return <div>Couldn't load the requested competition</div>;
 
     return (<div style={layout.layoutWrapper}>
       <div style={layout.leftColumn}>

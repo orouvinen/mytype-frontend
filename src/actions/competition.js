@@ -63,6 +63,18 @@ export function loadCompetitionFail() {
   };
 }
 
+export function saveResult(userId, competitionId, wpm, acc, startTime, endTime) {
+  return {
+    type: actions.COMPETITION_SAVE_RESULT_REQUEST,
+    userId,
+    competitionId,
+    wpm,
+    acc,
+    startTime,
+    endTime,
+  };
+}
+
 export function saveResultSuccess() {
   return {
     type: actions.COMPETITION_SAVE_RESULT_SUCCESS,

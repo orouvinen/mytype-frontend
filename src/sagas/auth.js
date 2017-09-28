@@ -1,71 +1,50 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
+import { takeEvery, call } from 'redux-saga/effects';
 import * as actions from '../actions/auth';
 import { reset } from '../actions/typing-test';
 import { authActions } from '../actions/action-types';
 import { storeAuthToken, deleteAuthToken } from '../helpers/auth';
 import * as auth from '../fetch/auth';
 import { browserHistory } from 'react-router';
+import { createApiWorker } from './index';
 
 /*
  * Listeners
  */
 export function* watchSignUpRequest() {
-  yield takeEvery(authActions.AUTH_SIGNUP_REQUEST, signUp);
+  yield takeEvery(authActions.AUTH_SIGNUP_REQUEST,
+    createApiWorker(auth.signUp,
+      ['name', 'email', 'password'],
+      new Map([
+        [201, () => [actions.signUpSuccess()]],
+        [409, () => [actions.signUpFail('Email is already in use')]],
+        ['default', () => [actions.signUpFail('Sign up failed')]],
+      ]
+    )));
 }
 
 export function* watchLoginRequest() {
-  yield takeEvery(authActions.AUTH_LOGIN_REQUEST, authenticate);
+  yield takeEvery(authActions.AUTH_LOGIN_REQUEST,
+    createApiWorker(auth.authenticate,
+      ['email', 'password'],
+      new Map([
+        [200, (action, response, payload) =>
+          [
+            () => [storeAuthToken, payload.token],
+            actions.loginSuccess(payload),
+            reset(),
+            () => [browserHistory.push, '/']
+          ]
+        ],
+        [401, () => [actions.loginFail('Invalid email address or password')]],
+        ['default', () => [actions.loginFail('Can\'t login')]]
+      ]
+    )));
 }
 
 export function* watchLogout() {
-  yield takeEvery(authActions.AUTH_LOGOUT, logout);
-}
-
-
-/*
- * Workers
- */
-function* signUp(action) {
-  const { name, email, password } = action;
-  let response = yield call(auth.signUp, name, email, password);
-
-  switch (response.status) {
-    case 201:
-      yield put(actions.signUpSuccess());
-      break;
-    case 409:
-      yield put(actions.signUpFail("Email is already in use"));
-      break;
-    default:
-      yield put(actions.signUpFail("Sign up failed"));
-  }
-}
-
-function* authenticate(action) {
-  const { email, password} = action;
-  const response = yield call(auth.authenticate, email, password);
-
-  switch (response.status) {
-    case 200: // OK
-      // Retrieve response body as json, save JWT for future requests and
-      // dispatch action for succesful login and redirect app to root route.
-      const body = yield call(() => response.json().then(data => data));
-      yield call(storeAuthToken, body.token);
-      yield put(actions.loginSuccess(body));
-      yield put(reset());
-      yield call(browserHistory.push, '/');
-      break;
-
-    case 401: // Unauthorized
-      yield put(actions.loginFail("Invalid email address or password"));
-      break;
-
-    default:
-      yield put(actions.loginFail("Can't login"));
-  }
-}
-
-function* logout(action) {
-  yield call(deleteAuthToken);
+  yield takeEvery(authActions.AUTH_LOGOUT, 
+    function*() {
+      yield call(deleteAuthToken);
+    });
 }
 

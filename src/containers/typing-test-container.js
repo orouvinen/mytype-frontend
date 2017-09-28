@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TypingTest from '../components/typing-test';
 import * as actions from '../actions/typing-test';
+import { saveResult } from '../actions/competition';
 import { wpm, accuracy } from '../helpers/wpm';
 
 class TypingTestContainer extends Component {
@@ -58,16 +59,19 @@ class TypingTestContainer extends Component {
     // to be done in the store. I'm not exactly sure why it happens, but it happens.
     // As a results, without the delay, we would store WPM measures that are ~0.5 WPM too slow.
     setTimeout(() => {
-      const { typingTest } = this.props;
+      const { typingTest, auth } = this.props;
       const { startTime } = typingTest;
       const endTime = typingTest.endTime || Date.now();
 
       const wpmMeasure = wpm(typingTest.correctChars, typingTest.wrongChars, endTime - startTime);
       const acc = accuracy(typingTest.correctChars, typingTest.wrongChars);
-      const userId = this.props.user ? this.props.user.id : null;
-      const competitionId = this.props.competition.selected;
 
-      this.props.stop(userId, competitionId, wpmMeasure, acc, startTime, endTime);
+      this.props.stop(wpmMeasure, endTime);
+
+      if(auth.loggedIn) {
+        const competitionId = this.props.competition.selected;
+        this.props.saveResult(auth.user.id, competitionId, wpmMeasure, acc, startTime, endTime);
+      }
     }, 250);
   }
 
@@ -93,7 +97,7 @@ class TypingTestContainer extends Component {
  render() {
     return(
       <TypingTest
-        user={this.props.user}
+        user={this.props.auth.user}
         typingTest={this.props.typingTest}
         onKeyPress={this.handleKeyPress}
         competition={this.props.competition}
@@ -104,14 +108,19 @@ class TypingTestContainer extends Component {
 
 function mapStateToProps(state) {
   return {
+    auth: state.auth,
     typingTest: state.typingTest,
-    user: state.auth.user,
+    //user: state.auth.user,
     competition: state.competition,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
+  return { 
+    ...bindActionCreators(actions, dispatch),
+    saveResult: (userId, competitionId, wpm, acc, startTime, endTime) =>
+      dispatch(saveResult(userId, competitionId, wpm, acc, startTime, endTime)),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TypingTestContainer);

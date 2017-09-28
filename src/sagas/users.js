@@ -7,9 +7,12 @@ import { createApiWorker } from './index';
 export function* watchLeaderBoardLoad() {
   yield takeLatest(actionTypes.USERDATA_FETCH_USERS_REQUEST,
     createApiWorker(loadUsers, ['wpm', 'desc'],
-      { 
-        200: payload => actions.loadUsersSuccess(payload.users),
-        "default": status => actions.loadUsersFail(status),
-      }
-    ));
+      new Map([
+        [200,
+          (action, response, payload) => [actions.loadUsersSuccess(payload.users)]
+        ],
+        ['default',
+          (action, response) => [actions.loadUsersFail(response.status)]
+        ]
+      ]), false));
 }

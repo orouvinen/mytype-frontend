@@ -40,7 +40,7 @@ function userRank(user, competition) {
   if (!position)
     return '-';
 
-  return position;
+  return '#' + position;
 }
 
 const SelectedCompetition = props => {
@@ -80,7 +80,7 @@ const SelectedCompetition = props => {
         <div style={competitionStatsStyle}>
           <CommonData heading="Your current position">
             {props.auth.loggedIn ?
-              "#" + userRank(props.auth.user, props.competition.competitions[props.competition.selected]) :
+              userRank(props.auth.user, props.competition.competitions[props.competition.selected]) :
               "N/A"}
           </CommonData>
         </div>
