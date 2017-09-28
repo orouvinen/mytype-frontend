@@ -48,9 +48,6 @@ export function createApiWorker(apiFunc, args, resActions, actionArgs = true) {
   return function*(action) {
     let fetchArgs;
 
-    //if (action.hasOwnProperty('userId') && !action.userId)
-    //  return;
-
     if (actionArgs)
       fetchArgs = args.map(arg => action[arg]);
     else

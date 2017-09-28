@@ -9,7 +9,6 @@ import * as competition from '../fetch/competition';
 import { createApiWorker } from './index';
 
 export function* watchTypingTestEnd() {
-  // yield takeEvery(typingActionTypes.TYPINGTEST_DONE, storeResult);
   yield takeEvery(competitionActionTypes.COMPETITION_SAVE_RESULT_REQUEST,
     createApiWorker(competition.saveResult,
       ['userId', 'competitionId', 'wpm', 'acc', 'startTime', 'endTime'],
