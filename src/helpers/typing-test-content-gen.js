@@ -11,7 +11,7 @@ const corpus =
 'read hand port large spell add even land here must big high such follow act why ask men change ' +
 'went light kind off need house picture try us again animal point mother world near build self ' +
 'earth father head stand own page should country found answer school grow study still learn ' +
-'plant cover food sun four thought let keep eye never las door between city tree cross since hard ' +
+'plant cover food sun four thought let keep eye never last door between city tree cross since hard ' +
 'start might story saw far sea draw left late run don\'t while press close night real life few stop ' +
 'open seem together next white children begin got walk example ease paper often always music those ' +
 'both mark book letter until mile river car feet care second group carry took rain eat room friend ' +
