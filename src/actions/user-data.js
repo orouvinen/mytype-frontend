@@ -1,8 +1,10 @@
 import { userDataActions as actions } from './action-types';
 
-export function loadUsersRequest() {
+export function loadUsersRequest(sortBy, order) {
   return {
     type: actions.USERDATA_FETCH_USERS_REQUEST,
+    sortBy,
+    order
   };
 }
 

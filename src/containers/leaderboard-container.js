@@ -19,7 +19,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    loadUsers: () => dispatch(loadUsersRequest()),
+    loadUsers: () => dispatch(loadUsersRequest('wpm', 'desc')),
   };
 }
 
