@@ -26,7 +26,7 @@ export function loadCompetition(competitionId, loadResults=true) {
   .then(response => response);
 }
 
-export function createCompetition(language, content) {
+export function createCompetition(language, content, createdBy) {
   return fetch('/api/competitions', {
     method: 'POST',
     headers: {
@@ -37,6 +37,7 @@ export function createCompetition(language, content) {
     body: JSON.stringify({
       language,
       content,
+      createdBy,
     }),
   })
   .then(response => response);

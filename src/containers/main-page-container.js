@@ -12,8 +12,39 @@ import * as layout from '../three-columns';
 const competitionsPerPage = 10;
 
 class MainPageContainer extends Component {
+  constructor() {
+    super();
+    this.userCompetitionCount = this.userCompetitionCount.bind(this);
+    this.state = { createCompetitionMessage: null };
+  }
+
   createCompetition() {
-    this.props.createCompetition("eng", randomText(100));
+    if (this.props.auth.loggedIn) {
+      if (this.userCompetitionCount() >= 3)
+        this.setState({ createCompetitionMessage:
+          'You can have most three running competitions at any time. ' +
+          'Please wait until one of your created competitions has ended. '
+        });
+      else
+        this.props.createCompetition("eng", randomText(100), this.props.auth.user);
+    } else {
+      this.setState({ createCompetitionMessage:
+        'Please login to create a competition.'
+      });
+    }
+  }
+
+  userCompetitionCount() {
+    const { competitions } = this.props.competition;
+
+    let n = 0;
+    for(const id in competitions) {
+      if (competitions.hasOwnProperty(id)) {
+        if (competitions[id].createdBy === this.props.auth.user.id)
+          n++;
+      } 
+    }
+    return n;
   }
 
   render() {
@@ -28,6 +59,7 @@ class MainPageContainer extends Component {
         <div style={layout.centerColumn}>
           <PagedCompetitionList
             onCreateClicked={this.createCompetition.bind(this)}
+            createCompetitionMessage={this.state.createCompetitionMessage}            
             {...this.props} />
         </div>
         <div style={layout.rightColumn}><LinksPanel /></div>
@@ -47,8 +79,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createCompetition: (language, content) =>
-      dispatch(competitionActions.requestCreateCompetition(language, content)),
+    createCompetition: (language, content, user) =>
+      dispatch(competitionActions.requestCreateCompetition(language, content, user)),
     selectCompetition: id => dispatch(competitionActions.selectCompetition(id)),
     nextPage: () => dispatch(uiActions.competitionListNextPage()),
     prevPage: () => dispatch(uiActions.competitionListPrevPage()),

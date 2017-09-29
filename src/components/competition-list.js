@@ -85,12 +85,11 @@ const CompetitionList = props => {
         </table>
         <button
           type="button"
-          disabled={!auth.loggedIn}
-          title={auth.loggedIn ? "" : "Please sign in to create a competition"}
           style={{width: "calc(100% - 10px)", margin: "10px 5px 5px 5px"}}
           onClick={props.onCreateClicked}>
           <span className="fa fa-plus"></span>&nbsp;Create competition
         </button>
+        <span>{props.createCompetitionMessage ? props.createCompetitionMessage : ''}</span>
       </div>
     </div>);
 }

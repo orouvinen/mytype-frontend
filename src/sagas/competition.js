@@ -38,7 +38,7 @@ export function* watchCompetitionLoad() {
 export function* watchCompetitionCreate() {
   yield takeEvery(competitionActionTypes.COMPETITION_CREATE_REQUEST,
     createApiWorker(competition.createCompetition,
-      ['language', 'content'],
+      ['language', 'content', 'createdBy'],
       new Map([
         [201, (action, response, _) => {
           const compUri = response.headers.get('location');
