@@ -22,7 +22,7 @@ class MainPageContainer extends Component {
     if (this.props.auth.loggedIn) {
       if (this.userCompetitionCount() >= 3)
         this.setState({ createCompetitionMessage:
-          'You can have most three running competitions at any time. ' +
+          'You can have maximum of three running competitions at any time. ' +
           'Please wait until one of your created competitions has ended. '
         });
       else
