@@ -18,6 +18,7 @@ const LeaderBoard = ({ users }) => {
     <div style={layoutWrapper}>
       <div style={layout.centerColumn}>
         <h1 className="headerBar">Leaderboard</h1>
+        <h2>Fastest typists</h2>
         <table className="borderedContainer" style={leaderBoardTableStyle}>
           <thead>
             <tr>
