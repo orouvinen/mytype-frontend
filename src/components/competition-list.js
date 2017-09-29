@@ -43,7 +43,7 @@ const timeLeft = competition => {
 
 const CompetitionList = props => {
   const competitions = props.competition.competitions;
-  const { page, itemsPerPage } = props;
+  const { page, itemsPerPage, auth } = props;
   const firstItem = page * itemsPerPage; // First item (index) to show
   const ids =
     Object.keys(competitions)
@@ -83,7 +83,12 @@ const CompetitionList = props => {
             })}
           </tbody>
         </table>
-        <button style={{width: "calc(100% - 10px)", margin: "10px 5px 5px 5px"}} type="button" onClick={props.onCreateClicked}>
+        <button
+          type="button"
+          disabled={!auth.loggedIn}
+          title={auth.loggedIn ? "" : "Please sign in to create a competition"}
+          style={{width: "calc(100% - 10px)", margin: "10px 5px 5px 5px"}}
+          onClick={props.onCreateClicked}>
           <span className="fa fa-plus"></span>&nbsp;Create competition
         </button>
       </div>
