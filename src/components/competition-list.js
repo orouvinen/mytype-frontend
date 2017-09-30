@@ -43,7 +43,7 @@ const timeLeft = competition => {
 
 const CompetitionList = props => {
   const competitions = props.competition.competitions;
-  const { page, itemsPerPage, auth } = props;
+  const { page, itemsPerPage } = props;
   const firstItem = page * itemsPerPage; // First item (index) to show
   const ids =
     Object.keys(competitions)

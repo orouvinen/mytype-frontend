@@ -1,7 +1,8 @@
 import React from 'react';
 import CommonData from './common-data';
-import { layoutWrapper } from '../layout-wrapper';
+import * as layout from '../three-columns';
 import colors from '../colors';
+import LinksPanel from '../containers/links-panel-container';
 
 const profileWrapper = {
   padding: "10px",
@@ -22,20 +23,24 @@ const profileBody = {
 const UserProfile = ({ user, stats }) => {
   if (!user || !stats) {
     return(
-    <div style={layoutWrapper}>
+    <div style={layout.layoutWrapper}>
       <div style={profileWrapper}>Fetching user data...</div>
     </div>);
   }
-
   return (
-    <div style={layoutWrapper}>
-      <div style={profileWrapper}>
-        <h1 className="headerBar"><span className="fa fa-user-o"></span>&nbsp;{user.name}</h1>
-        <div style={profileBody}>
-          <CommonData heading="Ranking">{stats.topPct}</CommonData>
-          <CommonData heading="WPM">{user.avgWpm.toFixed(1)}</CommonData>
-          <CommonData heading="Accuracy">{user.avgAcc.toFixed(0)}%</CommonData>
-          <CommonData heading="Typing tests typed">{user.numTypingTests}</CommonData>
+    <div style={layout.layoutWrapper}>
+      <div style={{...layout.rightColumn, marginLeft: "15px"}}>
+        <LinksPanel />
+      </div>
+      <div style={layout.centerColumn}>
+        <div className="borderedContainer">
+          <h1 className="headerBar"><span className="fa fa-user-o"></span>&nbsp;{user.name}</h1>
+          <div style={profileBody}>
+            <CommonData heading="Ranking">{stats.topPct}</CommonData>
+            <CommonData heading="WPM">{user.avgWpm.toFixed(1)}</CommonData>
+            <CommonData heading="Accuracy">{user.avgAcc.toFixed(0)}%</CommonData>
+            <CommonData heading="Typing tests typed">{user.numTypingTests}</CommonData>
+          </div>
         </div>
       </div>
     </div>
