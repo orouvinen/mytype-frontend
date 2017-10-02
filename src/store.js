@@ -21,7 +21,13 @@ const rootReducer = combineReducers({
   users,
   form: formReducer
 });
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const env = process.env.NODE_ENV || 'development';
+
+let composeEnhancers = compose;
+if (env === 'development')
+  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+
 const sagaMiddleware = createSagaMiddleware();
 
 let store = createStore(rootReducer,
