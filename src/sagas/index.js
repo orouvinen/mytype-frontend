@@ -46,18 +46,13 @@ import { watchLeaderBoardLoad } from './users';
 //  The 'default' callback receives two arguments: the original Redux object and the HTTP response object.
 export function createApiWorker(apiFunc, args, resActions, actionArgs = true) {
   return function*(action) {
-    let fetchArgs;
-
-    if (actionArgs)
-      fetchArgs = args.map(arg => action[arg]);
-    else
-      fetchArgs = args;
-    
+    const fetchArgs = actionArgs ? args.map(arg => action[arg]) : args;
     const response = yield call(apiFunc, ...fetchArgs);
+    
     const payload = yield call(() =>
       response.json()
-      .then(data => data)
-      .catch(_ => null));
+        .then(data => data)
+        .catch(_ => null));
       
     const statusCode = parseInt(response.status, 10);
 
