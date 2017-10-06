@@ -37,14 +37,9 @@ class MainPageContainer extends Component {
   userCompetitionCount() {
     const { competitions } = this.props.competition;
 
-    let n = 0;
-    for(const id in competitions) {
-      if (competitions.hasOwnProperty(id)) {
-        if (competitions[id].createdBy === this.props.auth.user.id)
-          n++;
-      } 
-    }
-    return n;
+    return Object.keys(competitions)
+      .filter(id => competitions[id].createdBy === this.props.auth.user.id)
+      .length;
   }
 
   render() {
