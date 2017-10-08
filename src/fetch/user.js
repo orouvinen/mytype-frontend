@@ -21,3 +21,14 @@ export function loadUsers(sort = null, order = 'asc') {
   })
   .then(response => response);
 }
+
+export function loadUserNotifications(userId) {
+  return fetch(`/api/users/${userId}/notifications`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + getAuthToken(),
+    }
+  })
+  .then(response => response);
+}

@@ -5,6 +5,7 @@ import { watchCompetitionResultsUpdate } from './competition';
 import { watchCompetitionLoad } from './competition';
 import { watchTypingTestEnd } from './competition';
 import { watchLeaderBoardLoad } from './users';
+import { watchNotificationsLoad } from './notification';
 
 // Creates a saga worker that can be passed to take, takeLatest etc.
 // Basically it captures the pattern of receiving an async Redux action,
@@ -84,5 +85,6 @@ export default function* rootSaga() {
     watchLoginRequest(),
     watchLogout(),
     watchLeaderBoardLoad(),
+    watchNotificationsLoad(),
   ];
 }

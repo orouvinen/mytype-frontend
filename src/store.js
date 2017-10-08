@@ -6,6 +6,7 @@ import ui from './reducers/ui';
 import auth from './reducers/auth';
 import competition from './reducers/competition';
 import users from './reducers/users';
+import notification from './reducers/notification';
 import { reducer as formReducer } from 'redux-form';
 
 import { persistStore, autoRehydrate } from 'redux-persist';
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   auth,
   competition,
   users,
+  notification,
   form: formReducer
 });
 

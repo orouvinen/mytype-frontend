@@ -1,5 +1,6 @@
 import { takeEvery, call } from 'redux-saga/effects';
 import * as actions from '../actions/auth';
+import * as notificationActions from '../actions/notification';
 import { reset } from '../actions/typing-test';
 import { authActions } from '../actions/action-types';
 import { storeAuthToken, deleteAuthToken } from '../helpers/auth';
@@ -31,6 +32,7 @@ export function* watchLoginRequest() {
           [
             () => [storeAuthToken, payload.token],
             actions.loginSuccess(payload),
+            notificationActions.loadNotificationsRequest(payload.user.id),
             reset(),
             () => [browserHistory.push, '/']
           ]
