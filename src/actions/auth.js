@@ -30,10 +30,10 @@ export function requestLogin(email, password) {
   };
 }
 
-export function loginSuccess(responseBody) {
+export function loginSuccess(payload) {
   return {
     type: authActions.AUTH_LOGIN_SUCCESS,
-    data: responseBody,
+    data: payload,
   };
 }
 

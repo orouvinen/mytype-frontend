@@ -19,7 +19,7 @@ function users(state = initialState, action) {
       ...state,
       loading: false,
       loadFailed: false,
-      users: action.data,
+      users: action.users,
     };
 
   case actions.USERDATA_FETCH_USERS_FAIL:

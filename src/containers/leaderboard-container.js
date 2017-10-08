@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LeaderBoard from '../components/leaderboard';
-import { loadUsersRequest } from '../actions/user-data';
+import { loadUsersRequest } from '../actions/users';
 
 const showTopUsersCount = 50;
 

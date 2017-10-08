@@ -6,7 +6,7 @@ import Notifications from '../components/notifications';
 
 function mapStateToProps(state) {
   return {
-    notifications: state.notification,
+    notifications: state.notification.notifications,
   }
 }
 

@@ -8,10 +8,10 @@ export function loadUsersRequest(sortBy, order) {
   };
 }
 
-export function loadUsersSuccess(data) {
+export function loadUsersSuccess(users) {
   return {
     type: actions.USERDATA_FETCH_USERS_SUCCESS,
-    data,
+    users,
   };
 }
 

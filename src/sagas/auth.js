@@ -1,6 +1,6 @@
 import { takeEvery, call } from 'redux-saga/effects';
 import * as actions from '../actions/auth';
-import * as notificationActions from '../actions/notification';
+import * as notificationActions from '../actions/notifications';
 import { reset } from '../actions/typing-test';
 import { authActions } from '../actions/action-types';
 import { storeAuthToken, deleteAuthToken } from '../helpers/auth';

@@ -1,8 +1,8 @@
 import { takeLatest } from 'redux-saga/effects';
 import { createApiWorker } from './index';
 import { notificationActions as actionTypes } from '../actions/action-types';
-import * as actions from '../actions/notification';
-import { loadUserNotifications } from '../fetch/user';
+import * as actions from '../actions/notifications';
+import { loadUserNotifications } from '../fetch/users';
 
 export function* watchNotificationsLoad() {
   yield takeLatest(actionTypes.NOTIFICATION_LOAD_NOTIFICATIONS_REQUEST,
