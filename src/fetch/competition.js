@@ -15,6 +15,18 @@ export function saveResult(user, competition, wpm, acc, startTime, endTime) {
   .then(response => response);
 }
 
+export function loadCompetitions(finished = false) {
+  return fetch(`/api/competitions?finished=${finished}`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    }
+  })
+  .then(response => response);
+}
+
+
 export function loadCompetition(competitionId, loadResults=true) {
   return fetch(`/api/competitions/${competitionId}?loadResults=${loadResults}`, {
     method: 'GET',

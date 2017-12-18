@@ -27,7 +27,7 @@ const rootReducer = combineReducers({
 const env = process.env.NODE_ENV || 'development';
 
 let composeEnhancers = compose;
-if (env === 'development')
+if (env === 'development' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
   composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
 const sagaMiddleware = createSagaMiddleware();
@@ -49,5 +49,6 @@ persistStore(store, {
 });
 
 sagaMiddleware.run(rootSaga);
+store.dispatch({ type: 'INITIAL_LOAD' });
 
 export default store;

@@ -1,11 +1,13 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { watchSignUpRequest, watchLoginRequest, watchLogout } from './auth';
 import { watchCompetitionCreate, watchCompetitionListUpdate } from './competition';
 import { watchCompetitionResultsUpdate } from './competition';
-import { watchCompetitionLoad } from './competition';
+import { watchCompetitionLoad, watchCompetitionsLoad } from './competition';
 import { watchTypingTestEnd } from './competition';
 import { watchLeaderBoardLoad } from './users';
 import { watchNotificationsLoad } from './notifications';
+import { requestLoadCompetitions } from '../actions/competition';
+
 
 // Creates a saga worker that can be passed to take, takeLatest etc.
 // Basically it captures the pattern of receiving an async Redux action,
@@ -73,11 +75,18 @@ export function createApiWorker(apiFunc, args, resActions, actionArgs = true) {
   };
 }
 
+function* watchInitialLoad() {
+  yield takeLatest('INITIAL_LOAD', function*() {
+    yield put(requestLoadCompetitions());
+  });
+}
 
 export default function* rootSaga() {
   yield [
+    watchInitialLoad(),
     watchTypingTestEnd(),
     watchCompetitionLoad(),
+    watchCompetitionsLoad(),
     watchCompetitionCreate(),
     watchCompetitionListUpdate(),
     watchCompetitionResultsUpdate(),

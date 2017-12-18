@@ -59,8 +59,18 @@ h2 {
 }
 
 .competitionListRow:hover {
-  background-color: white; /* Complementary 1*/
+  background-color: white;
   cursor: pointer;
+}
+
+.listGroup {
+  list-style-type: none;
+}
+.listGroup > li {
+  margin-bottom: 2px;
+  padding: 10px;
+  border: 1px solid #a0bbbf;
+  border-radius: 2px;
 }
 
 label {

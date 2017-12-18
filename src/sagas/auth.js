@@ -1,16 +1,16 @@
 import { takeEvery, call } from 'redux-saga/effects';
 import * as actions from '../actions/auth';
+import * as competitionActions from '../actions/competition';
 import * as notificationActions from '../actions/notifications';
-import { reset } from '../actions/typing-test';
+import * as typingTestActions from '../actions/typing-test';
+
 import { authActions } from '../actions/action-types';
 import { storeAuthToken, deleteAuthToken } from '../helpers/auth';
 import * as auth from '../fetch/auth';
 import { browserHistory } from 'react-router';
 import { createApiWorker } from './index';
 
-/*
- * Listeners
- */
+
 export function* watchSignUpRequest() {
   yield takeEvery(authActions.AUTH_SIGNUP_REQUEST,
     createApiWorker(auth.signUp,
@@ -33,7 +33,7 @@ export function* watchLoginRequest() {
             () => [storeAuthToken, payload.token],
             actions.loginSuccess(payload),
             notificationActions.loadNotificationsRequest(payload.user.id),
-            reset(),
+            typingTestActions.reset(),
             () => [browserHistory.push, '/']
           ]
         ],

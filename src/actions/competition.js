@@ -43,6 +43,28 @@ export function selectCompetition(id) {
   };
 }
 
+// Argument `finished` indicates whether to load closed competitions
+// (by default requst competitions that are currently running.)
+export function requestLoadCompetitions(finished = false) {
+  return {
+    type: actions.COMPETITION_LOAD_ALL_REQUEST,
+    finished,
+  };
+}
+
+export function loadCompetitionsSuccess(competitions) {
+  return {
+    type: actions.COMPETITION_LOAD_ALL_SUCCESS,
+    competitions,
+  };
+}
+
+export function loadCompetitionsFail() {
+  return {
+    type: actions.COMPETITION_LOAD_ALL_FAIL,
+  };
+}
+
 export function requestLoadCompetition(competitionId) {
   return {
     type: actions.COMPETITION_LOAD_REQUEST,

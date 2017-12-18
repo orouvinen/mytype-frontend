@@ -35,11 +35,12 @@ function cloneState(state) {
 
 function competitions(state = initialState, action) {
   switch (action.type) {
+    case actions.COMPETITION_LOAD_ALL_SUCCESS:
     case actions.COMPETITIONS_UPDATE:
       return {
         ...cloneState(state),
         competitions: action.competitions,
-      }
+      };
 
     case actions.COMPETITION_RESULTS_UPDATE: {
       let newState = cloneState(state);

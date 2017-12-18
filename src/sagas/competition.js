@@ -22,6 +22,20 @@ export function* watchTypingTestEnd() {
       ])));
 }
 
+export function* watchCompetitionsLoad() {
+  yield takeEvery(competitionActionTypes.COMPETITION_LOAD_ALL_REQUEST,
+    createApiWorker(competition.loadCompetitions, ['finished'],
+    new Map([
+      [200, (action, response, payload) => [
+          competitionActions.loadCompetitionsSuccess(payload)
+        ]
+      ],
+      ['default', (action, response) =>
+        [ competitionActions.loadCompetitionsFail() ]
+      ]
+    ])));
+}
+
 export function* watchCompetitionLoad() {
   yield takeEvery(competitionActionTypes.COMPETITION_LOAD_REQUEST,
     createApiWorker(competition.loadCompetition, ['competitionId'],
