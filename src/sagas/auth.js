@@ -1,6 +1,5 @@
 import { takeEvery, call } from 'redux-saga/effects';
 import * as actions from '../actions/auth';
-import * as competitionActions from '../actions/competition';
 import * as notificationActions from '../actions/notifications';
 import * as typingTestActions from '../actions/typing-test';
 
