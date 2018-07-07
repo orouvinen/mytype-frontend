@@ -38,3 +38,10 @@ export function acknowledgeFail() {
     type: actions.NOTIFICATION_ACKNOWLEDGE_FAIL,
   };
 }
+
+export function addNotification(notification) {
+  return {
+    type: actions.NOTIFICATION_ADD,
+    notification,
+  };
+}

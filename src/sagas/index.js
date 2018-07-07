@@ -1,11 +1,13 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import io from 'socket.io-client';
+import { eventChannel } from 'redux-saga';
+import { select, call, put, takeLatest } from 'redux-saga/effects';
 import { watchSignUpRequest, watchLoginRequest, watchLogout } from './auth';
 import { watchCompetitionCreate, watchCompetitionListUpdate } from './competition';
 import { watchCompetitionResultsUpdate } from './competition';
 import { watchCompetitionLoad, watchCompetitionsLoad } from './competition';
 import { watchTypingTestEnd } from './competition';
 import { watchLeaderBoardLoad } from './users';
-import { watchNotificationsLoad } from './notifications';
+import { watchNotificationsLoad, watchNotificationPush } from './notifications';
 import { requestLoadCompetitions } from '../actions/competition';
 
 
@@ -17,7 +19,7 @@ import { requestLoadCompetitions } from '../actions/competition';
 //
 // Args:
 //
-// apiFunc: 
+// apiFunc:
 //    API fetch function to call (located in '../fetch/*')
 //
 // args:
@@ -35,7 +37,7 @@ import { requestLoadCompetitions } from '../actions/competition';
 //    The callback receives three arguments:
 //    the original Redux action, a HTTP response object from fetch,
 //    and the actual data extracted from the response object.
-// 
+//
 //  The return array from the callbacks can contain plain Redux action objects and
 //  functions. Plain objects are subject to saga put effect. If a callback return
 //  element is a function, it must return an array, where the first element is a
@@ -51,12 +53,12 @@ export function createApiWorker(apiFunc, args, resActions, actionArgs = true) {
   return function*(action) {
     const fetchArgs = actionArgs ? args.map(arg => action[arg]) : args;
     const response = yield call(apiFunc, ...fetchArgs);
-    
+
     const payload = yield call(() =>
       response.json()
         .then(data => data)
         .catch(_ => null));
-      
+
     const statusCode = parseInt(response.status, 10);
 
     for (let [status, callback] of resActions) {
@@ -75,6 +77,16 @@ export function createApiWorker(apiFunc, args, resActions, actionArgs = true) {
   };
 }
 
+
+// Re-subscribe to notifications if there's an user logged in
+function* watchRehydrate() {
+  yield takeLatest('persist/REHYDRATE', function*() {
+    let user = yield select(state => state.auth.user);
+    if (user)
+      yield call(wsSend, 'notificationSubscribe', { userId: user.id });
+  });
+}
+
 function* watchInitialLoad() {
   yield takeLatest('INITIAL_LOAD', function*() {
     yield put(requestLoadCompetitions());
@@ -83,6 +95,7 @@ function* watchInitialLoad() {
 
 export default function* rootSaga() {
   yield [
+    watchRehydrate(),
     watchInitialLoad(),
     watchTypingTestEnd(),
     watchCompetitionLoad(),
@@ -95,5 +108,29 @@ export default function* rootSaga() {
     watchLogout(),
     watchLeaderBoardLoad(),
     watchNotificationsLoad(),
+    watchNotificationPush(),
   ];
+}
+
+// Creates an event channel that emits websocket events
+export function createEventChannel(socket, event) {
+  return eventChannel(emit => {
+    socket.on(event, emit);
+    return () => { socket.emit('disconnect'); socket.close(); };
+  });
+}
+
+// Websocket connection
+let socket = null;
+
+export function getSocket() {
+  if (socket === null)
+    socket = io.connect("localhost:3002", { transports: ['websocket'] });
+
+  return socket;
+}
+
+export function wsSend(msgName, msgData) {
+  let socket = getSocket();
+  socket.emit(msgName, msgData);
 }

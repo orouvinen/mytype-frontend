@@ -18,3 +18,9 @@ export function competitionListSetPage(pageNum) {
     pageNum,
   };
 }
+
+export function toggleNotifications() {
+  return {
+    type: uiActions.TOGGLE_NOTIFICATIONS,
+  };
+}

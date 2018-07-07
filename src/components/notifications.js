@@ -1,18 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+function topResultNotification(notification) {
+  return(
+    <span>
+      {notification.user.name} is ranked <strong>#{notification.ranking+1} </strong>
+       with a WPM <strong>{notification.wpm.toFixed(1)}. </strong>
+       <Link to={`/competition/${notification.competition}`}>Go to competition</Link>
+    </span>
+  );
+}
+
+function competitionFinishedNotification(notification) {
+  return(
+    <span>
+      <Link to={`/competition/${notification.competition.id}`}>
+        Competition
+      </Link>&nbsp; you participated in was finished.
+    </span>);
+}
+
 const Notifications = props =>
-  <div className="borderedContainer">
+  (props.notifications && props.visible) &&
+  <div className="notificationBar">
     <section>
-      <h3 className="headerBar">Events</h3>
+      <h3 className="headerBar">Notifications</h3>
+      <div className="closeButton">
+        <a href="#" onClick={props.hideNotifications}>
+          <span className="fa fa-close"></span>&nbsp; Close
+        </a>
+      </div>
       <ul className="listGroup">
-        <li>foo</li>
-        <li>quux</li>
-        <li>baz</li>
-        <li>foo</li>
-        <li>foo!</li>
+      {props.notifications.length == 0 
+        ? <div>No notifications. Go make some.</div>
+        : props.notifications.map((n, i) =>
+          <li key={i}>
+            {n.type === 'top_result' ? topResultNotification(n) :
+            n.type === 'finished' ? competitionFinishedNotification(n) : null}
+          </li>
+      )}
       </ul>
     </section>
-  </div>
+  </div>;
 
 export default Notifications;

@@ -2,6 +2,7 @@ import { uiActions } from '../actions/action-types';
 
 const initialState = {
   competitionListPage: 0,
+  notificationsVisible: true,
 };
 
 function ui(state = initialState, action) {
@@ -22,6 +23,12 @@ function ui(state = initialState, action) {
       return {
         ...state,
         competitionListPage: action.pageNum,
+      };
+    
+    case uiActions.TOGGLE_NOTIFICATIONS: 
+      return {
+        ...state,
+        notificationsVisible: !state.notificationsVisible,
       };
 
     default:

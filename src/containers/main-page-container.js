@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import CompetitionList from '../components/competition-list';
 import SelectedCompetition from '../components/selected-competition';
 import LinksPanel from '../containers/links-panel-container';
-import Notifications from '../containers/notifications-container';
 import paginate from '../containers/paginate';
 import { randomText } from '../helpers/typing-test-content-gen';
 import * as competitionActions from '../actions/competition';
@@ -27,7 +26,7 @@ class MainPageContainer extends Component {
           'Please wait until one of your created competitions has ended. '
         });
       else
-        this.props.createCompetition("eng", randomText(100), this.props.auth.user);
+        this.props.createCompetition("eng", randomText(10), this.props.auth.user);
     } else {
       this.setState({ createCompetitionMessage:
         'Please login to create a competition.'
@@ -57,9 +56,6 @@ class MainPageContainer extends Component {
             onCreateClicked={this.createCompetition.bind(this)}
             createCompetitionMessage={this.state.createCompetitionMessage}            
             {...this.props} />
-          <div style={{marginTop: "30px"}}>
-            <Notifications />
-          </div>
         </div>
         <div style={layout.rightColumn}><LinksPanel /></div>
       </div>

@@ -1,12 +1,10 @@
-import io from 'socket.io-client';
 import { isEmpty } from '../helpers/util';
 import { takeEvery, call, put, take } from 'redux-saga/effects';
-import { eventChannel } from 'redux-saga';
 import { /*typingActions as typingActionTypes, */
          competitionActions as competitionActionTypes } from '../actions/action-types';
 import * as competitionActions from '../actions/competition';
 import * as competition from '../fetch/competition';
-import { createApiWorker } from './index';
+import { createApiWorker, createEventChannel, getSocket } from './index';
 
 export function* watchTypingTestEnd() {
   yield takeEvery(competitionActionTypes.COMPETITION_SAVE_RESULT_REQUEST,
@@ -111,13 +109,6 @@ export function* watchCompetitionResultsUpdate() {
 }
 
 
-// Creates an event channel that emits websocket events
-function createEventChannel(socket, event) {
-  return eventChannel(emit => {
-    socket.on(event, e => emit(e));
-    return () => socket.close();
-  });
-}
 
 // Sorts competition result array
 function sortResults(results) {
@@ -135,12 +126,3 @@ function sortResults(results) {
 }
 
 
-// Websocket connection
-let socket = null;
-
-function getSocket() {
-  if (socket === null)
-    socket = io();
-  
-  return socket;
-}

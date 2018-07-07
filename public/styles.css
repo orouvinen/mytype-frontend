@@ -39,6 +39,22 @@ h2 {
   margin-bottom: 5px;
 }
 
+.notificationBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 30%;
+  min-width: 300px;
+  min-height: 100%;
+  background: #a0bbbf;
+  box-shadow: 2px 3px 13px #174b53;
+}
+
+.notificationBar .closeButton {
+  padding-left: 10px;
+}
+
 .borderedContainer {
   padding: 10px;
   background: #6a9197; /* Primary 2 */

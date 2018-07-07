@@ -35,7 +35,7 @@ const sagaMiddleware = createSagaMiddleware();
 let store = createStore(rootReducer,
   composeEnhancers(
     applyMiddleware(sagaMiddleware),
-    autoRehydrate()
+    autoRehydrate(),
 ));
 
 // Only persist loggedIn-status and the possible user object from auth state

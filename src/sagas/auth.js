@@ -7,7 +7,7 @@ import { authActions } from '../actions/action-types';
 import { storeAuthToken, deleteAuthToken } from '../helpers/auth';
 import * as auth from '../fetch/auth';
 import { browserHistory } from 'react-router';
-import { createApiWorker } from './index';
+import { wsSend, createApiWorker } from './index';
 
 
 export function* watchSignUpRequest() {
@@ -33,6 +33,7 @@ export function* watchLoginRequest() {
             actions.loginSuccess(payload),
             notificationActions.loadNotificationsRequest(payload.user.id),
             typingTestActions.reset(),
+            () => [wsSend, 'notificationSubscribe', { userId: payload.user.id }],
             () => [browserHistory.push, '/']
           ]
         ],
@@ -43,7 +44,7 @@ export function* watchLoginRequest() {
 }
 
 export function* watchLogout() {
-  yield takeEvery(authActions.AUTH_LOGOUT, 
+  yield takeEvery(authActions.AUTH_LOGOUT,
     function*() {
       yield call(deleteAuthToken);
     });
