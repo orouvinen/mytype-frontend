@@ -32,6 +32,12 @@ function notificationsReducer(state = initialState, action) {
           notifications,
         };
 
+      case actions.NOTIFICATION_EMPTY:
+        return {
+          ...state,
+          notifications: [],
+        };
+
     default:
       return state;
   }

@@ -3,12 +3,15 @@ import App from '../components/app';
 import * as actions from '../actions/ui';
 
 function mapStateToProps(state) {
-    return {};
+  return {
+    notifications: state.notification.notifications || [],
+  };
 }
+
 function mapDispatchToProps(dispatch) {
-    return {
-        showNotifications: () => dispatch(actions.toggleNotifications()),
-    };
+  return {
+    showNotifications: () => dispatch(actions.toggleNotifications()),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

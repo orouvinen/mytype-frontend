@@ -8,13 +8,16 @@ import * as actions from '../actions/competition';
 
 class CompetitionPageContainer extends Component {
   componentDidMount() {
+    // this.props.selectCompetition(this.props.params.competitionId);
     this.props.loadCompetition(this.props.params.competitionId);
   }
 
-  render() {
-    if (!this.props.competition.selected)
-      return null;
+  componentWillUpdate(prevProps) {
+    if (prevProps.params.competitionId !== this.props.params.competitionId)
+      this.props.selectCompetition(this.props.params.competitionId);
+  }
 
+  render() {
     const id = this.props.params.competitionId;
     const competition = this.props.competition.competitions[id];
     if (!competition)
@@ -22,7 +25,8 @@ class CompetitionPageContainer extends Component {
 
     return (<div style={layout.layoutWrapper}>
       <div style={layout.leftColumn}>
-        <CompetitionResultList {...this.props} /> 
+        {/*<CompetitionResultList {...this.props} /> */}
+        <CompetitionResultList competition={competition} />
       </div>
 
       <div style={layout.centerColumn}>
@@ -45,6 +49,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     loadCompetition: competitionId => dispatch(actions.requestLoadCompetition(competitionId)),
+    selectCompetition: competitionId => dispatch(actions.selectCompetition(competitionId)),
   };
 }
 

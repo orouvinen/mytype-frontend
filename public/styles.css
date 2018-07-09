@@ -50,8 +50,7 @@ h2 {
   background: #a0bbbf;
   box-shadow: 2px 3px 13px #174b53;
 }
-
-.notificationBar .closeButton {
+.notificationBar .barContent {
   padding-left: 10px;
 }
 

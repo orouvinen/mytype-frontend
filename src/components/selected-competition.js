@@ -84,7 +84,7 @@ const SelectedCompetition = props => {
               "N/A"}
           </CommonData>
         </div>
-        <CompetitionResultList competition={props.competition} />
+        <CompetitionResultList competition={props.competition.competitions[props.competition.selected]} />
       </div>
     );
   }

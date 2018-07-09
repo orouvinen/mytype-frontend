@@ -8,8 +8,9 @@ const resultsTableStyle = {
 };
 
 const CompetitionResultList = props => {
-  const { competitions, selected } = props.competition;
-  const selectedComp = competitions[selected];
+  // const { competitions, selected } = props.competition;
+  //const selectedComp = competitions[selected];
+  const selectedComp = props.competition;
 
   /* refactor CompetitionListRow out of this */
   if (!selectedComp)

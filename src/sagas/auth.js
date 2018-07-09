@@ -1,4 +1,4 @@
-import { takeEvery, call } from 'redux-saga/effects';
+import { takeEvery, call, put } from 'redux-saga/effects';
 import * as actions from '../actions/auth';
 import * as notificationActions from '../actions/notifications';
 import * as typingTestActions from '../actions/typing-test';
@@ -47,6 +47,7 @@ export function* watchLogout() {
   yield takeEvery(authActions.AUTH_LOGOUT,
     function*() {
       yield call(deleteAuthToken);
+      yield put(notificationActions.deleteNotifications());
     });
 }
 

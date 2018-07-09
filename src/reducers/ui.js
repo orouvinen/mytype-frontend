@@ -2,7 +2,7 @@ import { uiActions } from '../actions/action-types';
 
 const initialState = {
   competitionListPage: 0,
-  notificationsVisible: true,
+  notificationsVisible: false,
 };
 
 function ui(state = initialState, action) {

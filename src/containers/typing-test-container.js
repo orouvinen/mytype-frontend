@@ -13,16 +13,24 @@ class TypingTestContainer extends Component {
     this.stop = this.stop.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.state = { words: [] }; 
+    
+    this.initText = this.initText.bind(this);
+  }
+
+  initText() {
+    const text = this.props.content;
+    this.props.setText(text, 45);
+    this.setState({ words: text.split(" ") });
+    this.props.reset();
   }
 
   componentDidMount() {
-    // Generate random words
-    const text = this.props.content;
-    this.props.setText(text, 45);
-    
-    // Transform the text into an array of words for local state
-    this.setState({ words: text.split(" ") }); 
-    this.props.reset();
+    this.initText();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.content !== this.props.content)
+      this.initText();
   }
 
   componentWillReceiveProps(props) {

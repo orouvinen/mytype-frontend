@@ -25,13 +25,19 @@ const headerLinkStyle = {
 
 const headerAppTitle = "mytype";
 
+function notAcknowledgedNotificationCount(notifications) {
+  return notifications
+    .filter(n => !n.acknowledged)
+    .length;
+}
+
 const App = props => (
   <div>
     <header style={headerStyle}>
       <div style={titleWrapper}>
         <h2><Link style={headerLinkStyle} to="/">{headerAppTitle}</Link></h2>
         <div style={{ fontSize: "0.75em", color: "white" }}>
-          <a href="#" onClick={props.showNotifications}>Notifications (0)</a>
+          <a href="#" onClick={props.showNotifications}>Notifications ({notAcknowledgedNotificationCount(props.notifications)})</a>
         </div>
       </div>
     </header>

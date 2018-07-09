@@ -45,3 +45,9 @@ export function addNotification(notification) {
     notification,
   };
 }
+
+export function deleteNotifications() {
+  return {
+    type: actions.NOTIFICATION_EMPTY,
+  };
+}
