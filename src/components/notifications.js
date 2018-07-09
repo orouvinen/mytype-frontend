@@ -4,8 +4,8 @@ import { Link } from 'react-router';
 function topResultNotification(notification) {
   return(
     <span>
-      {notification.user.name} is ranked <strong>#{notification.ranking+1} </strong>
-       with a WPM <strong>{notification.wpm.toFixed(1)}. </strong>
+      Rank <strong>#{notification.ranking+1}</strong> by <Link to={`/profile/${notification.user.id}`}>{notification.user.name}</Link> with
+       WPM <strong>{notification.wpm.toFixed(1)}. </strong>
        <Link to={`/competition/${notification.competition}`}>Go to competition</Link>
     </span>
   );

@@ -8,7 +8,6 @@ import * as actions from '../actions/competition';
 
 class CompetitionPageContainer extends Component {
   componentDidMount() {
-    // this.props.selectCompetition(this.props.params.competitionId);
     this.props.loadCompetition(this.props.params.competitionId);
   }
 
@@ -25,7 +24,6 @@ class CompetitionPageContainer extends Component {
 
     return (<div style={layout.layoutWrapper}>
       <div style={layout.leftColumn}>
-        {/*<CompetitionResultList {...this.props} /> */}
         <CompetitionResultList competition={competition} />
       </div>
 
