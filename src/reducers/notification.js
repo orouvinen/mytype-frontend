@@ -10,7 +10,7 @@ function notificationsReducer(state = initialState, action) {
       return {
         ...state,
         notifications: state.notifications
-          .filter(n => n !== action.notificationId)
+          .filter(n => !action.notificationIds.some(id => n.notificationId === id))
       }
 
       case actions.NOTIFICATION_LOAD_NOTIFICATIONS_SUCCESS:

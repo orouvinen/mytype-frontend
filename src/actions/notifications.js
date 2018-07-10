@@ -20,16 +20,17 @@ export function loadNotificationsFail() {
   };
 }
 
-export function acknowledge(notificationId) {
+export function acknowledge(notificationIds) {
   return {
     type: actions.NOTIFICATION_ACKNOWLEDGE_REQUEST,
-    notificationId,
+    notificationIds,
   };
 }
 
-export function acknowledgeSuccess() {
+export function acknowledgeSuccess(notificationIds) {
   return {
     type: actions.NOTIFICATION_ACKNOWLEDGE_SUCCESS,
+    notificationIds,
   };
 }
 

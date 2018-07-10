@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import * as actions from '../actions/ui';
+import * as uiActions from '../actions/ui';
+import * as actions from '../actions/notifications';
 import Notifications from '../components/notifications';
 
 function mapStateToProps(state) {
@@ -12,7 +13,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    hideNotifications: () => dispatch(actions.toggleNotifications()),
+    hideNotifications: () => dispatch(uiActions.toggleNotifications()),
+    acknowledge: notificationIds => dispatch(actions.acknowledge(notificationIds)),
   };
 }
 

@@ -7,7 +7,7 @@ import { watchCompetitionResultsUpdate } from './competition';
 import { watchCompetitionLoad, watchCompetitionsLoad } from './competition';
 import { watchTypingTestEnd } from './competition';
 import { watchLeaderBoardLoad } from './users';
-import { watchNotificationsLoad, watchNotificationPush } from './notifications';
+import { watchNotificationsLoad, watchNotificationPush, watchAcknowledge } from './notifications';
 import { requestLoadCompetitions } from '../actions/competition';
 
 
@@ -109,6 +109,7 @@ export default function* rootSaga() {
     watchLeaderBoardLoad(),
     watchNotificationsLoad(),
     watchNotificationPush(),
+    watchAcknowledge(),
   ];
 }
 

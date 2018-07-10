@@ -1,7 +1,8 @@
-import { call, take, put, takeLatest } from 'redux-saga/effects';
+import { call, take, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { createApiWorker } from './index';
 import { notificationActions as actionTypes } from '../actions/action-types';
 import * as actions from '../actions/notifications';
+import { acknowledgeNotifications } from '../fetch/notification';
 import { loadUserNotifications } from '../fetch/users';
 import { getSocket, createEventChannel } from './index';
 
@@ -22,4 +23,13 @@ export function* watchNotificationPush() {
     const data = yield take(socketChannel);
     yield put(actions.addNotification(data));
   }
+}
+
+export function* watchAcknowledge() {
+  yield takeLatest(actionTypes.NOTIFICATION_ACKNOWLEDGE_REQUEST,
+    createApiWorker(acknowledgeNotifications, ['notificationIds'],
+    new Map([
+      [204, (action, response) => [actions.acknowledgeSuccess(action.notificationIds)]],
+      ['default', (action, response) => [actions.acknowledgeFail()]]
+    ])));
 }
