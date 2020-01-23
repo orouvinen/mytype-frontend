@@ -11,6 +11,12 @@ import { watchNotificationsLoad, watchNotificationPush, watchAcknowledge } from 
 import { requestLoadCompetitions } from '../actions/competition';
 
 
+// Hey. The below piece of code (that createApiWorker-thing) is an experiment in
+// abstraction gone wrong. 
+// You can tell by the fact that the comment to explain it takes more
+// lines than there is code.
+
+
 // Creates a saga worker that can be passed to take, takeLatest etc.
 // Basically it captures the pattern of receiving an async Redux action,
 // making an API call based on the action, getting data from the response,

@@ -1,4 +1,4 @@
-import { call, take, put, takeLatest, takeEvery } from 'redux-saga/effects';
+import { call, take, put, takeLatest } from 'redux-saga/effects';
 import { createApiWorker } from './index';
 import { notificationActions as actionTypes } from '../actions/action-types';
 import * as actions from '../actions/notifications';

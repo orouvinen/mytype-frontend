@@ -25,18 +25,13 @@ const competitionTableStyle = {
 const timerDigits = value => ((value < 10) ? "0" : "") + Math.floor(value).toFixed(0);
 
 const timeLeft = competition => {
-  // Get creation time
-  const start = new Date(competition.createdAt);
-  // Work out end time
-  const end = new Date(start);
-  end.setDate(start.getDate() + (competition.duration / 24));
+  const end = new Date(competition.finishAt);
 
   const msLeft = end.getTime() - Date.now();
   const secsLeft = msLeft / 1000;
-  let minsLeft = secsLeft / 60;
+  const minsLeft = secsLeft / 60;
   const hoursLeft = minsLeft / 60;
 
-  // Construct the timer string
   return timerDigits(hoursLeft) + ":" + timerDigits(minsLeft % 60);
 };
 
